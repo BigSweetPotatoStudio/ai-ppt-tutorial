@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="zh-CN" class="white-theme">
+<html lang="zh-CN">
 
 <head>
     <meta charset="utf-8">
@@ -179,33 +179,6 @@
             50% { transform: rotateX(15deg) translateZ(25px) translateY(-3px); }
         }
 
-        /* 主题切换按钮 */
-        .theme-switcher {
-            position: fixed;
-            top: 20px;
-            right: 20px;
-            z-index: 1000;
-            display: flex;
-            gap: 8px;
-        }
-
-        .theme-btn {
-            padding: 8px 12px;
-            border: none;
-            border-radius: 8px;
-            font-size: 0.8em;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            backdrop-filter: var(--glass-blur-light);
-            background: var(--glass-bg);
-            color: var(--text-primary);
-            border: 1px solid var(--glass-border);
-        }
-
-        .theme-btn:hover {
-            background: var(--glass-bg-hover);
-            transform: translateY(-2px);
-        }
 
         .tech-grid {
             display: grid;
@@ -521,11 +494,6 @@
 </head>
 
 <body>
-    <!-- 主题切换按钮 -->
-    <div class="theme-switcher">
-        <button class="theme-btn" onclick="switchTheme('white-theme')">🌞 商务白</button>
-        <button class="theme-btn" onclick="switchTheme('dark-theme')">🌙 极客黑</button>
-    </div>
 
     <div class="reveal">
         <div class="slides">
@@ -1131,30 +1099,6 @@ response = model.generate(tokenizer(prompt, return_tensors="pt"))</code></pre>
     <script src="https://cdn.jsdelivr.net/npm/reveal.js@5.2.1/plugin/highlight/highlight.js"></script>
 
     <script>
-        // 主题切换功能
-        function switchTheme(theme) {
-            document.documentElement.className = theme;
-            localStorage.setItem('preferred-theme', theme);
-            
-            // 动态切换主题样式
-            if (theme === 'dark-theme') {
-                document.documentElement.style.setProperty('--glass-bg', 'rgba(0, 0, 0, 0.6)');
-                document.documentElement.style.setProperty('--glass-bg-hover', 'rgba(0, 0, 0, 0.8)');
-                document.documentElement.style.setProperty('--text-primary', '#ffffff');
-                document.documentElement.style.setProperty('--text-secondary', '#cccccc');
-                document.body.style.background = 'linear-gradient(135deg, #1a1a1a 0%, #2c2c2c 50%, #1a1a1a 100%)';
-            } else {
-                document.documentElement.style.setProperty('--glass-bg', 'rgba(255, 255, 255, 0.6)');
-                document.documentElement.style.setProperty('--glass-bg-hover', 'rgba(255, 255, 255, 0.8)');
-                document.documentElement.style.setProperty('--text-primary', '#1a1a1a');
-                document.documentElement.style.setProperty('--text-secondary', '#4a4a4a');
-                document.body.style.background = 'linear-gradient(135deg, #ffffff 0%, #f8f9fa 50%, #ffffff 100%)';
-            }
-        }
-
-        // 加载保存的主题
-        const savedTheme = localStorage.getItem('preferred-theme') || 'white-theme';
-        switchTheme(savedTheme);
 
         // Reveal.js 初始化
         Reveal.initialize({
@@ -1236,11 +1180,6 @@ response = model.generate(tokenizer(prompt, return_tensors="pt"))</code></pre>
             }
             if (event.key === 'r' || event.key === 'R') {
                 Reveal.slide(0);
-            }
-            if (event.key === 't' || event.key === 'T') {
-                const currentTheme = document.documentElement.className;
-                const newTheme = currentTheme === 'white-theme' ? 'dark-theme' : 'white-theme';
-                switchTheme(newTheme);
             }
         });
     </script>
