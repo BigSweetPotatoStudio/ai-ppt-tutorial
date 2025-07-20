@@ -14,6 +14,52 @@
 
 ---
 
+## 🎯 在线演示
+
+**🌐 GitHub Pages 在线演示 (根目录部署)**
+
+<table>
+<tr>
+<td width="50%" align="center">
+
+### 🌞 **白色商务主题**
+**[📍 在线演示](https://bigsweetpotatostudio.github.io/ai-ppt-tutorial/)**
+
+专业商务演示 | 投影兼容 | 毛玻璃效果
+
+[![预览](https://img.shields.io/badge/预览-白色主题-667eea?style=for-the-badge)](https://bigsweetpotatostudio.github.io/ai-ppt-tutorial/)
+
+</td>
+<td width="50%" align="center">
+
+### 🌙 **黑色极客主题**
+**[📍 在线演示](https://bigsweetpotatostudio.github.io/ai-ppt-tutorial/index.dark.html)**
+
+炫酷技术分享 | 霓虹发光 | 赛博风格
+
+[![预览](https://img.shields.io/badge/预览-黑色主题-00ff88?style=for-the-badge)](https://bigsweetpotatostudio.github.io/ai-ppt-tutorial/index.dark.html)
+
+</td>
+</tr>
+</table>
+
+**🎨 更多演示案例**
+- **[Claude Code功能演示](https://bigsweetpotatostudio.github.io/ai-ppt-tutorial/examples/claude-code-demo.html)** - AI编程助手完整功能展示
+- **[AI编程最佳实践规范](https://bigsweetpotatostudio.github.io/ai-ppt-tutorial/examples/reveal-demo.html)** - AI编程最佳实践规范
+
+**💻 本地预览**
+```bash
+# 克隆项目
+git clone https://github.com/BigSweetPotatoStudio/ai-ppt-tutorial.git
+cd ai-ppt-tutorial
+
+# 直接打开HTML文件即可预览
+open index.html              # 白色主题
+open index.dark.html         # 黑色主题
+```
+
+---
+
 ## 🎯 主题选择系统
 
 <table>
@@ -134,21 +180,16 @@ ai-ppt-tutorial/
 - **技术炫酷** → 查看 [`themes/dark-theme.md`](./themes/dark-theme.md)
 - **混合使用** → 查看主配置 [`CLAUDE.md`](./CLAUDE.md)
 
-### 2️⃣ **在线预览**
+### 2️⃣ **本地开发**
 
-**🌐 GitHub Pages 在线演示**
-- **[🌞 白色商务主题](https://bigsweetpotatostudio.github.io/ai-ppt-tutorial/index.html)** - 专业商务演示
-- **[🌙 黑色极客主题](https://bigsweetpotatostudio.github.io/ai-ppt-tutorial/index.dark.html)** - 炫酷技术分享  
-- **[🎨 Claude Code演示](https://bigsweetpotatostudio.github.io/ai-ppt-tutorial/examples/claude-code-demo.html)** - AI编程功能展示
-
-**💻 本地预览**
 ```bash
 # 克隆项目
 git clone https://github.com/BigSweetPotatoStudio/ai-ppt-tutorial.git
 cd ai-ppt-tutorial
 
 # 直接打开HTML文件即可预览
-open index.html
+open index.html              # 白色主题 (根目录演示)
+open index.dark.html         # 黑色主题
 ```
 
 ### 3️⃣ **开始创建**
@@ -235,9 +276,9 @@ open index.html
 
 ### 🎯 **实战案例** 
 
-1. **[🎨 Claude Code演示](https://bigsweetpotatostudio.github.io/ai-ppt-tutorial/examples/claude-code-demo.html)** - AI编程助手功能展示
-2. **[🌞 白色商务主题](https://bigsweetpotatostudio.github.io/ai-ppt-tutorial/index.html)** - 商务演示模板案例
-3. **[🌙 黑色极客主题](https://bigsweetpotatostudio.github.io/ai-ppt-tutorial/index.dark.html)** - 技术分享模板案例
+1. **[🌞 白色商务主题](https://bigsweetpotatostudio.github.io/ai-ppt-tutorial/)** - 商务演示模板案例 (根目录)
+2. **[🌙 黑色极客主题](https://bigsweetpotatostudio.github.io/ai-ppt-tutorial/index.dark.html)** - 技术分享模板案例
+3. **[🎨 Claude Code演示](https://bigsweetpotatostudio.github.io/ai-ppt-tutorial/examples/claude-code-demo.html)** - AI编程助手功能展示
 
 ### 🎬 **主题切换演示**
 
