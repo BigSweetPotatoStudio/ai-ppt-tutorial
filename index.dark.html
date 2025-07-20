@@ -1,0 +1,1319 @@
+<!DOCTYPE html>
+<html lang="zh-CN" class="dark-theme">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>⚡ Claude Code PPT 极客设计系统教程</title>
+
+    <!-- Reveal.js 5.2.1 CDN -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5.2.1/dist/reveal.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5.2.1/dist/theme/black.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5.2.1/plugin/highlight/monokai.css">
+
+    <!-- 字体CDN -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fontsource/inter@5.0.21/index.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fontsource/jetbrains-mono@5.0.21/index.css">
+
+    <style>
+        /* 黑色极客主题CSS变量系统 */
+        :root {
+            /* 极客霓虹色彩系统 */
+            --keyword-highlight: #ff2d92;
+            --success-highlight: #00ff88;
+            --info-highlight: #00d4ff;
+            --warning-highlight: #ff8c00;
+            --number-highlight: #ffff00;
+            --code-highlight: #c792ea;
+
+            /* 暗色文字层次 */
+            --text-primary: #ffffff;
+            --text-secondary: #b0b0b0;
+            --text-light: #808080;
+
+            /* 暗色背景系统 */
+            --bg-primary: #0a0a0a;
+            --bg-secondary: #1a1a1a;
+            --bg-tertiary: #2a2a2a;
+            --border-color: rgba(255, 255, 255, 0.1);
+
+            /* 极客特效色彩 */
+            --neon-glow: #00ff88;
+            --matrix-green: #00ff41;
+            --cyber-purple: #8a2be2;
+            --electric-blue: #0080ff;
+
+            /* 暗色毛玻璃效果 */
+            --dark-glass-blur: blur(20px) saturate(120%) brightness(1.2);
+            --dark-glass-blur-strong: blur(25px) saturate(140%) brightness(1.3);
+            --dark-glass-blur-light: blur(15px) saturate(110%) brightness(1.1);
+            --dark-glass-bg: rgba(42, 42, 42, 0.7);
+            --dark-glass-bg-hover: rgba(58, 58, 58, 0.8);
+            --dark-glass-bg-glow: rgba(0, 255, 136, 0.1);
+            --dark-glass-border: rgba(255, 255, 255, 0.15);
+            --dark-glass-border-glow: rgba(0, 255, 136, 0.3);
+            --dark-glass-shadow: 0 4px 25px rgba(0, 0, 0, 0.3);
+            --dark-glass-shadow-glow: 0 0 20px rgba(0, 255, 136, 0.2);
+            --dark-glass-inset: inset 0 1px 0 rgba(255, 255, 255, 0.1);
+
+            /* 极客特效增强 */
+            --neon-glow-shadow: 0 0 10px var(--neon-glow), 0 0 20px var(--neon-glow), 0 0 30px var(--neon-glow);
+            --matrix-text-shadow: 0 0 5px var(--matrix-green), 0 0 10px var(--matrix-green);
+        }
+
+        /* 基础样式重置 - 黑色主题 */
+        body {
+            background: var(--bg-primary);
+            color: var(--text-primary);
+        }
+
+        .reveal {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            font-size: 32px;
+            color: var(--text-primary);
+            background: var(--bg-primary);
+        }
+
+        .reveal .slides section {
+            max-height: 768px;
+            overflow: hidden;
+            text-align: left;
+            padding: 20px;
+            position: relative;
+            background: var(--bg-primary);
+        }
+
+        .reveal .slides section.title-slide {
+            overflow: visible;
+        }
+
+        /* 字体层级系统 - 768px优化 */
+        .reveal h1 {
+            font-size: 2.0em;
+            margin-bottom: 0.5em;
+            font-weight: 700;
+            color: var(--text-primary);
+        }
+
+        .reveal h2 {
+            font-size: 1.6em;
+            margin-bottom: 0.8em;
+            font-weight: 600;
+            background: linear-gradient(45deg, #ff2d92, #00ff88, #00d4ff, #c792ea);
+            background-size: 300% 100%;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: neonGradientFlow 3s ease-in-out infinite;
+            text-align: center;
+            margin-bottom: 1.2em;
+            text-shadow: var(--neon-glow-shadow);
+            position: relative;
+        }
+
+        .reveal h2::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, var(--neon-glow), transparent);
+            animation: underlineGlow 2s ease-in-out infinite alternate;
+        }
+
+        .reveal h3 {
+            font-size: 1.2em;
+            margin-bottom: 0.6em;
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+
+        .reveal h4 {
+            font-size: 1.0em;
+            margin-bottom: 0.5em;
+            font-weight: 500;
+            color: var(--text-primary);
+        }
+
+        .reveal p {
+            font-size: 0.85em;
+            line-height: 1.6;
+            margin-bottom: 1em;
+            color: var(--text-secondary);
+        }
+
+        .reveal li {
+            font-size: 0.85em;
+            line-height: 1.5;
+            margin-bottom: 0.3em;
+            color: var(--text-secondary);
+        }
+
+        /* 语义化颜色强调 - 霓虹色系 */
+        .keyword-highlight {
+            color: var(--keyword-highlight);
+            font-weight: 600;
+            text-shadow: 0 0 5px var(--keyword-highlight);
+        }
+
+        .success-highlight {
+            color: var(--success-highlight);
+            font-weight: 600;
+            text-shadow: 0 0 5px var(--success-highlight);
+        }
+
+        .info-highlight {
+            color: var(--info-highlight);
+            font-weight: 600;
+            text-shadow: 0 0 5px var(--info-highlight);
+        }
+
+        .warning-highlight {
+            color: var(--warning-highlight);
+            font-weight: 600;
+            text-shadow: 0 0 5px var(--warning-highlight);
+        }
+
+        .number-highlight {
+            color: var(--number-highlight);
+            font-weight: 700;
+            font-size: 1.1em;
+            text-shadow: 0 0 8px var(--number-highlight);
+        }
+
+        .code-highlight {
+            color: var(--code-highlight);
+            font-weight: 600;
+            text-shadow: 0 0 5px var(--code-highlight);
+        }
+
+        /* 标题页效果 - 极客赛博风格 */
+        .title-slide {
+            height: 100vh !important;
+            max-height: none !important;
+            background: radial-gradient(circle at 50% 50%,
+                    rgba(0, 255, 136, 0.1) 0%,
+                    rgba(10, 10, 10, 0.95) 50%,
+                    rgba(0, 0, 0, 1) 100%);
+            color: var(--text-primary);
+            overflow: visible;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 40px;
+        }
+
+        /* 背景网格效果 */
+        .title-slide::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image:
+                linear-gradient(rgba(0, 255, 136, 0.1) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(0, 255, 136, 0.1) 1px, transparent 1px);
+            background-size: 50px 50px;
+            animation: gridMove 20s linear infinite;
+            z-index: 1;
+        }
+
+        .title-container {
+            position: relative;
+            z-index: 10;
+            max-width: 800px;
+            background: radial-gradient(circle at center,
+                    rgba(0, 255, 136, 0.1) 0%,
+                    transparent 70%);
+            border: 1px solid rgba(0, 255, 136, 0.3);
+            border-radius: 20px;
+            padding: 40px;
+            backdrop-filter: var(--dark-glass-blur);
+            box-shadow:
+                inset 0 0 20px rgba(0, 255, 136, 0.1),
+                0 0 20px rgba(0, 255, 136, 0.2);
+        }
+
+        .title-main {
+            font-size: 3.5em;
+            font-weight: 700;
+            margin-bottom: 0.3em;
+            background: linear-gradient(45deg, #ff2d92, #00ff88, #00d4ff, #c792ea, #ff2d92);
+            background-size: 400% 100%;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: neonTextFlow 4s ease-in-out infinite, cyberFloat 6s ease-in-out infinite;
+            text-shadow:
+                0 0 5px currentColor,
+                0 0 10px currentColor,
+                0 0 15px currentColor,
+                0 0 20px var(--neon-glow);
+            position: relative;
+        }
+
+        .subtitle-main {
+            font-size: 1.5em;
+            font-weight: 500;
+            margin: 0.5em 0;
+            opacity: 0.95;
+            color: var(--text-primary);
+            text-shadow: var(--matrix-text-shadow);
+            animation: cyberFloat 6s ease-in-out infinite 0.5s;
+            position: relative;
+        }
+
+        .subtitle-main::after {
+            content: '|';
+            color: var(--neon-glow);
+            animation: blink 1s infinite;
+            margin-left: 4px;
+        }
+
+        .description-main {
+            font-size: 1.1em;
+            font-weight: 400;
+            margin-top: 1em;
+            opacity: 0.85;
+            line-height: 1.6;
+            color: var(--text-secondary);
+            text-shadow: 0 0 5px rgba(0, 255, 136, 0.3);
+            animation: cyberFloat 6s ease-in-out infinite 1s;
+            position: relative;
+        }
+
+        /* 主题切换按钮 */
+        .theme-switcher {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 1000;
+            display: flex;
+            gap: 10px;
+        }
+
+        .theme-btn {
+            padding: 8px 16px;
+            border: none;
+            border-radius: 20px;
+            cursor: pointer;
+            font-size: 14px;
+            transition: all 0.3s ease;
+            backdrop-filter: var(--dark-glass-blur);
+            border: 1px solid var(--dark-glass-border);
+        }
+
+        .white-btn {
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            color: white;
+        }
+
+        .dark-btn {
+            background: linear-gradient(45deg, #ff2d92, #00ff88);
+            color: black;
+            box-shadow: var(--neon-glow-shadow);
+        }
+
+        /* 极客动画效果 */
+        @keyframes cyberFloat {
+
+            0%,
+            100% {
+                transform: translateY(0px) rotateX(0deg);
+                filter: brightness(1);
+            }
+
+            33% {
+                transform: translateY(-5px) rotateX(2deg);
+                filter: brightness(1.1);
+            }
+
+            66% {
+                transform: translateY(-2px) rotateX(-1deg);
+                filter: brightness(0.95);
+            }
+        }
+
+        @keyframes neonTextFlow {
+
+            0%,
+            100% {
+                background-position: 0% 50%;
+            }
+
+            50% {
+                background-position: 100% 50%;
+            }
+        }
+
+        @keyframes neonGradientFlow {
+
+            0%,
+            100% {
+                background-position: 0% 50%;
+            }
+
+            50% {
+                background-position: 100% 50%;
+            }
+        }
+
+        @keyframes underlineGlow {
+            0% {
+                opacity: 0.5;
+                width: 40px;
+            }
+
+            100% {
+                opacity: 1;
+                width: 120px;
+            }
+        }
+
+        @keyframes gridMove {
+            0% {
+                transform: translate(0, 0);
+            }
+
+            100% {
+                transform: translate(50px, 50px);
+            }
+        }
+
+        @keyframes blink {
+
+            0%,
+            50% {
+                opacity: 1;
+            }
+
+            51%,
+            100% {
+                opacity: 0;
+            }
+        }
+
+        /* 背景装饰 - 霓虹粒子 */
+        .neon-particle {
+            position: absolute;
+            width: 8px;
+            height: 8px;
+            background: radial-gradient(circle, var(--neon-glow) 0%, transparent 70%);
+            border-radius: 50%;
+            box-shadow: var(--neon-glow-shadow);
+            animation: neonParticleFloat 6s ease-in-out infinite;
+        }
+
+        .neon-particle:nth-child(1) {
+            top: 15%;
+            left: 15%;
+            animation-delay: 0s;
+        }
+
+        .neon-particle:nth-child(2) {
+            top: 25%;
+            right: 15%;
+            animation-delay: 1s;
+        }
+
+        .neon-particle:nth-child(3) {
+            bottom: 25%;
+            left: 25%;
+            animation-delay: 2s;
+        }
+
+        .neon-particle:nth-child(4) {
+            bottom: 15%;
+            right: 25%;
+            animation-delay: 3s;
+        }
+
+        @keyframes neonParticleFloat {
+
+            0%,
+            100% {
+                transform: translateZ(20px) translateY(0px) scale(1);
+                opacity: 0.6;
+            }
+
+            50% {
+                transform: translateZ(40px) translateY(-15px) scale(1.2);
+                opacity: 1;
+            }
+        }
+
+        /* 高级毛玻璃卡片系统 - 黑色主题 */
+        .feature-card,
+        .tech-card,
+        .stat-card {
+            background: var(--dark-glass-bg);
+            backdrop-filter: var(--dark-glass-blur);
+            border: 1px solid var(--dark-glass-border);
+            border-radius: 12px;
+            padding: 16px;
+            margin-bottom: 16px;
+            box-shadow: var(--dark-glass-shadow);
+            transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .feature-card:hover,
+        .tech-card:hover,
+        .stat-card:hover {
+            transform: translateY(-5px) scale(1.02);
+            background: var(--dark-glass-bg-hover);
+            border-color: var(--dark-glass-border-glow);
+            backdrop-filter: var(--dark-glass-blur-strong);
+            box-shadow: var(--dark-glass-shadow-glow);
+        }
+
+        /* 霓虹扫光效果 */
+        .feature-card::before,
+        .tech-card::before,
+        .stat-card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(45deg,
+                    transparent,
+                    rgba(0, 255, 136, 0.3),
+                    rgba(0, 212, 255, 0.3),
+                    transparent);
+            opacity: 0;
+            transition: all 0.3s;
+        }
+
+        .feature-card:hover::before,
+        .tech-card:hover::before,
+        .stat-card:hover::before {
+            animation: neonSweep 1.5s ease-in-out;
+        }
+
+        @keyframes neonSweep {
+            0% {
+                transform: translateX(-100%) translateY(-100%);
+                opacity: 0;
+            }
+
+            50% {
+                opacity: 1;
+            }
+
+            100% {
+                transform: translateX(100%) translateY(100%);
+                opacity: 0;
+            }
+        }
+
+        /* 布局组件系统 */
+        .features-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin: 20px 0;
+        }
+
+        .tech-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 15px;
+            margin: 20px 0;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 15px;
+            margin: 20px 0;
+        }
+
+        /* 重点强调框 - 黑色主题 */
+        .highlight-box {
+            background: var(--dark-glass-bg);
+            backdrop-filter: var(--dark-glass-blur);
+            border: 1px solid var(--dark-glass-border-glow);
+            border-radius: 16px;
+            padding: 20px;
+            margin: 20px 0;
+            box-shadow: var(--dark-glass-shadow), var(--dark-glass-inset);
+            position: relative;
+        }
+
+
+        /* 代码块样式 - 黑色主题 */
+        .code-block {
+            background: var(--dark-glass-bg);
+            backdrop-filter: var(--dark-glass-blur);
+            border-radius: 12px;
+            padding: 16px;
+            margin: 20px 0;
+            position: relative;
+            overflow: hidden;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.8em;
+            border: 1px solid var(--dark-glass-border);
+        }
+
+        .code-block::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, #ff2d92, #00ff88, #00d4ff);
+            border-radius: 12px 12px 0 0;
+        }
+
+        /* 添加扫描线效果 */
+        .scan-lines::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: repeating-linear-gradient(0deg,
+                    transparent,
+                    transparent 2px,
+                    rgba(0, 255, 136, 0.03) 2px,
+                    rgba(0, 255, 136, 0.03) 4px);
+            animation: scanMove 2s linear infinite;
+            z-index: 1;
+        }
+
+        @keyframes scanMove {
+            0% {
+                transform: translateY(0);
+            }
+
+            100% {
+                transform: translateY(4px);
+            }
+        }
+
+        /* 步骤卡片和数字 - 黑色主题 */
+        .step-card {
+            border-left: 4px solid var(--info-highlight);
+            padding-left: 16px;
+            margin: 12px 0;
+            background: var(--dark-glass-bg);
+            backdrop-filter: var(--dark-glass-blur);
+            border-radius: 8px;
+            padding: 16px;
+        }
+
+        .step-number {
+            display: inline-block;
+            background: linear-gradient(45deg, var(--info-highlight), var(--success-highlight));
+            color: black;
+            border-radius: 50%;
+            width: 32px;
+            height: 32px;
+            line-height: 32px;
+            text-align: center;
+            font-weight: 700;
+            font-size: 0.9em;
+            margin-right: 12px;
+            animation: neonPulse 2s ease-in-out infinite;
+            box-shadow: var(--neon-glow-shadow);
+        }
+
+        @keyframes neonPulse {
+            0% {
+                transform: scale(1);
+                box-shadow: 0 0 10px var(--neon-glow), 0 0 20px var(--neon-glow);
+            }
+
+            50% {
+                transform: scale(1.05);
+                box-shadow: 0 0 15px var(--neon-glow), 0 0 30px var(--neon-glow), 0 0 40px var(--neon-glow);
+            }
+
+            100% {
+                transform: scale(1);
+                box-shadow: 0 0 10px var(--neon-glow), 0 0 20px var(--neon-glow);
+            }
+        }
+
+        /* 动画类型 */
+        .auto-animate {
+            animation: fadeInUp 0.5s ease-out;
+        }
+
+        .stagger-animation li:nth-child(1) {
+            animation: slideInLeft 0.4s ease-out 0.1s both;
+        }
+
+        .stagger-animation li:nth-child(2) {
+            animation: slideInLeft 0.4s ease-out 0.2s both;
+        }
+
+        .stagger-animation li:nth-child(3) {
+            animation: slideInLeft 0.4s ease-out 0.3s both;
+        }
+
+        .stagger-animation li:nth-child(4) {
+            animation: slideInLeft 0.4s ease-out 0.4s both;
+        }
+
+        .stagger-animation li:nth-child(5) {
+            animation: slideInLeft 0.4s ease-out 0.5s both;
+        }
+
+        .zoom-in-animation {
+            animation: zoomIn 0.5s ease-out 0.6s both;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes slideInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-30px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes zoomIn {
+            from {
+                opacity: 0;
+                transform: scale(0.8);
+            }
+
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        /* 背景粒子系统 - 黑色主题 */
+        .particles-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        .particle {
+            position: absolute;
+            width: 3px;
+            height: 3px;
+            background: radial-gradient(circle, var(--neon-glow), transparent);
+            border-radius: 50%;
+            animation: particleFloat 2s ease-in-out infinite;
+            box-shadow: 0 0 5px var(--neon-glow);
+        }
+
+        @keyframes particleFloat {
+
+            0%,
+            100% {
+                transform: translateY(0px) translateX(0px);
+                opacity: 0.3;
+            }
+
+            50% {
+                transform: translateY(-20px) translateX(10px);
+                opacity: 0.8;
+            }
+        }
+
+        /* 响应式优化 */
+        @media (max-width: 768px) {
+
+            .features-grid,
+            .tech-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .stats-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .reveal {
+                font-size: 28px;
+            }
+        }
+
+        /* 表格样式 - 黑色主题 */
+        .comparison-table {
+            background: var(--dark-glass-bg);
+            backdrop-filter: var(--dark-glass-blur);
+            border-radius: 12px;
+            padding: 16px;
+            margin: 20px 0;
+            overflow: hidden;
+            border: 1px solid var(--dark-glass-border);
+        }
+
+        .comparison-table table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.8em;
+        }
+
+        .comparison-table th,
+        .comparison-table td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid var(--dark-glass-border);
+            color: var(--text-secondary);
+        }
+
+        .comparison-table th {
+            background: var(--dark-glass-bg-glow);
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+
+        /* 故障效果 */
+        .cyber-glitch {
+            animation: glitch 0.3s infinite alternate;
+        }
+
+        @keyframes glitch {
+            0% {
+                transform: translate(0);
+            }
+
+            20% {
+                transform: translate(-2px, 2px);
+            }
+
+            40% {
+                transform: translate(-2px, -2px);
+            }
+
+            60% {
+                transform: translate(2px, 2px);
+            }
+
+            80% {
+                transform: translate(2px, -2px);
+            }
+
+            100% {
+                transform: translate(0);
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="reveal">
+        <div class="slides">
+            <!-- 标题页 - 极客风格 -->
+            <section class="title-slide" id="title-slide">
+                <!-- 霓虹粒子装饰 -->
+                <div class="neon-particle"></div>
+                <div class="neon-particle"></div>
+                <div class="neon-particle"></div>
+                <div class="neon-particle"></div>
+
+                <!-- 霓虹标题容器 -->
+                <div class="title-container">
+                    <h1 class="title-main">⚡ Claude Code PPT 极客设计系统教程</h1>
+                    <h4 class="subtitle-main">🤖 与 Claude Code 一起创建极客级演示文稿</h4>
+                    <p class="description-main scan-lines">使用 AI 的强大能力，在几分钟内创建视觉震撼的现代化演示文稿</p>
+                </div>
+
+                <!-- 主题切换按钮 -->
+                <div class="theme-switcher">
+                    <button onclick="switchTheme('white')" class="theme-btn white-btn">
+                        🌞 商务白
+                    </button>
+                    <button onclick="switchTheme('dark')" class="theme-btn dark-btn">
+                        🌙 极客黑
+                    </button>
+                </div>
+            </section>
+
+            <!-- 项目亮点 -->
+            <section>
+                <h2>🚀 项目核心亮点</h2>
+                <div class="features-grid auto-animate">
+                    <div class="feature-card">
+                        <h4>⚡ <span class="keyword-highlight">极致效率</span></h4>
+                        <ul class="stagger-animation">
+                            <li><span class="number-highlight">5分钟</span>创建完整演示文稿</li>
+                            <li><span class="success-highlight">零配置</span>直接打开HTML演示</li>
+                            <li><span class="info-highlight">一键生成</span>复杂设计需求</li>
+                        </ul>
+                    </div>
+                    <div class="feature-card">
+                        <h4>🎭 <span class="keyword-highlight">视觉震撼</span></h4>
+                        <ul class="stagger-animation">
+                            <li><span class="warning-highlight">霓虹标题页</span>极客动画效果</li>
+                            <li><span class="info-highlight">高级毛玻璃</span>暗色backdrop-filter</li>
+                            <li><span class="success-highlight">60fps</span>专业级动画体验</li>
+                        </ul>
+                    </div>
+                    <div class="feature-card">
+                        <h4>🎯 <span class="keyword-highlight">专业品质</span></h4>
+                        <ul class="stagger-animation">
+                            <li><span class="number-highlight">768px</span>黄金法则投影兼容</li>
+                            <li><span class="warning-highlight">霓虹色彩</span>六种极客强调</li>
+                            <li><span class="success-highlight">响应式设计</span>各种设备适配</li>
+                        </ul>
+                    </div>
+                    <div class="feature-card">
+                        <h4>🔧 <span class="keyword-highlight">技术先进</span></h4>
+                        <ul class="stagger-animation">
+                            <li><span class="info-highlight">Reveal.js 5.2.1</span>最新演示框架</li>
+                            <li><span class="warning-highlight">现代CSS3</span>硬件加速优化</li>
+                            <li><span class="success-highlight">jsDelivr CDN</span>国内访问优化</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Claude Code实战演示 -->
+            <section>
+                <h2>🎯 Claude Code 实战演示</h2>
+                <div class="highlight-box zoom-in-animation">
+                    <h4>💡 <span class="keyword-highlight">真实对话示例</span></h4>
+                    <p>用户提供需求 → Claude Code 分析理解 → <span class="success-highlight">自动生成</span>专业演示文稿</p>
+                </div>
+
+                <div class="features-grid auto-animate">
+                    <div class="feature-card">
+                        <h4>📋 <span class="info-highlight">用户需求</span></h4>
+                        <ul class="stagger-animation">
+                            <li>演示主题：Reveal.js PPT设计系统</li>
+                            <li>视觉要求：<span class="warning-highlight">极客效果</span> + 霓虹毛玻璃</li>
+                            <li>技术规范：<span class="number-highlight">768px</span>约束 + CDN</li>
+                            <li>内容结构：7-8页完整教程</li>
+                        </ul>
+                    </div>
+                    <div class="feature-card">
+                        <h4>🎬 <span class="success-highlight">生成结果</span></h4>
+                        <ul class="stagger-animation">
+                            <li><span class="keyword-highlight">完整HTML</span>演示文稿</li>
+                            <li><span class="info-highlight">霓虹视觉效果</span>全面实现</li>
+                            <li><span class="warning-highlight">极客设计</span>规范遵循</li>
+                            <li><span class="success-highlight">即开即用</span>零配置体验</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Claude Code使用指南 -->
+            <section>
+                <h2>🛠️ Claude Code 使用指南</h2>
+                <div class="tech-grid auto-animate">
+                    <div class="tech-card">
+                        <div class="step-number">1</div>
+                        <h4><span class="info-highlight">启动Claude Code</span></h4>
+                        <p>在项目目录运行 <span class="keyword-highlight">claude</span> 命令</p>
+                    </div>
+                    <div class="tech-card">
+                        <div class="step-number">2</div>
+                        <h4><span class="warning-highlight">描述需求</span></h4>
+                        <p>详细说明内容结构和视觉要求</p>
+                    </div>
+                    <div class="tech-card">
+                        <div class="step-number">3</div>
+                        <h4><span class="success-highlight">自动生成</span></h4>
+                        <p>Claude Code理解并创建演示文稿</p>
+                    </div>
+                </div>
+
+                <div class="code-block">
+                    <pre><code class="text">📋 极客提示词模板：
+
+请创建一个关于 [你的主题] 的极客风PPT演示文稿，严格遵循以下规范：
+
+🎯 设计系统要求：
+- 基于 CLAUDE.md 中的黑色极客主题设计系统
+- 768px黄金法则，确保所有内容完整显示
+- 黑色主题 + 霓虹毛玻璃效果
+
+🎭 视觉效果要求：
+- 霓虹标题页：赛博动画 + 网格背景
+- 霓虹扫光扫过效果
+- 故障动画和终端闪烁效果</code></pre>
+                </div>
+            </section>
+
+            <!-- 设计系统核心特性 -->
+            <section>
+                <h2>🎨 极客设计系统核心特性</h2>
+                <div class="features-grid auto-animate">
+                    <div class="feature-card">
+                        <h4>🌈 <span class="keyword-highlight">霓虹色彩系统</span></h4>
+                        <ul class="stagger-animation">
+                            <li><span class="keyword-highlight">霓虹粉</span> - 重要概念强调</li>
+                            <li><span class="success-highlight">霓虹绿</span> - 成功状态展示</li>
+                            <li><span class="info-highlight">霓虹青</span> - 技术术语说明</li>
+                            <li><span class="warning-highlight">霓虹橙</span> - 注意事项提醒</li>
+                            <li><span class="number-highlight">霓虹黄</span> - 统计数据突出</li>
+                            <li><span class="code-highlight">霓虹紫</span> - 代码内容专用</li>
+                        </ul>
+                    </div>
+                    <div class="feature-card">
+                        <h4>📐 <span class="warning-highlight">极客特效系统</span></h4>
+                        <ul class="stagger-animation">
+                            <li><span class="info-highlight">网格背景</span>：赛博朋克风格网格</li>
+                            <li><span class="success-highlight">故障动画</span>：CyberGlitch扭曲效果</li>
+                            <li><span class="keyword-highlight">终端光标</span>：模拟命令行闪烁</li>
+                            <li><span class="warning-highlight">扫描线</span>：老式CRT显示器效果</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="comparison-table">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>特效</th>
+                                <th>实现技术</th>
+                                <th>适用场景</th>
+                                <th>视觉效果</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><span class="info-highlight">霓虹扫光</span></td>
+                                <td>CSS动画 + 渐变</td>
+                                <td><span class="number-highlight">卡片悬停</span></td>
+                                <td>光线扫过效果</td>
+                            </tr>
+                            <tr>
+                                <td><span class="warning-highlight">故障效果</span></td>
+                                <td>Transform动画</td>
+                                <td><span class="number-highlight">文字特效</span></td>
+                                <td>赛博朋克扭曲</td>
+                            </tr>
+                            <tr>
+                                <td><span class="success-highlight">网格背景</span></td>
+                                <td>Linear-gradient</td>
+                                <td><span class="number-highlight">标题页</span></td>
+                                <td>Matrix风格网格</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <!-- 学习资源 -->
+            <section>
+                <h2>📚 学习资源与快速开始</h2>
+                <div class="features-grid auto-animate">
+                    <div class="feature-card">
+                        <h4>📖 <span class="info-highlight">项目文档</span></h4>
+                        <ul class="stagger-animation">
+                            <li><span class="keyword-highlight">CLAUDE.md</span> - 双主题设计系统指南</li>
+                            <li><span class="success-highlight">index.dark.html</span> - 极客演示文稿案例</li>
+                            <li><span class="warning-highlight">examples/</span> - 更多演示实例</li>
+                        </ul>
+                    </div>
+                    <div class="feature-card">
+                        <h4>🎯 <span class="success-highlight">最佳实践案例</span></h4>
+                        <ul class="stagger-animation">
+                            <li><span class="info-highlight">Claude Code演示</span> - AI编程助手</li>
+                            <li><span class="warning-highlight">DeepSeek介绍</span> - AI模型分享</li>
+                            <li><span class="keyword-highlight">Reveal.js演示</span> - 框架功能展示</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="stats-grid zoom-in-animation">
+                    <div class="stat-card">
+                        <div class="step-number">1</div>
+                        <h4>克隆项目</h4>
+                        <p><span class="info-highlight">git clone</span></p>
+                    </div>
+                    <div class="stat-card">
+                        <div class="step-number">2</div>
+                        <h4>启动Claude</h4>
+                        <p><span class="warning-highlight">claude</span></p>
+                    </div>
+                    <div class="stat-card">
+                        <div class="step-number">3</div>
+                        <h4>描述需求</h4>
+                        <p><span class="keyword-highlight">详细提示词</span></p>
+                    </div>
+                    <div class="stat-card">
+                        <div class="step-number">4</div>
+                        <h4>查看结果</h4>
+                        <p><span class="success-highlight">open html</span></p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 高级技巧与个性化 -->
+            <section>
+                <h2>🌟 高级技巧与个性化定制</h2>
+                <div class="highlight-box zoom-in-animation">
+                    <h4>💡 <span class="keyword-highlight">极客提示词优化技巧</span></h4>
+                    <p>具体化描述 + 霓虹特效 + 示例引导 + <span class="success-highlight">迭代改进</span></p>
+                </div>
+
+                <div class="features-grid auto-animate">
+                    <div class="feature-card">
+                        <h4>🎨 <span class="warning-highlight">极客风个性化</span></h4>
+                        <ul class="stagger-animation">
+                            <li><span class="keyword-highlight">自定义霓虹色</span>：品牌色彩适配</li>
+                            <li><span class="info-highlight">特殊字体</span>：Fira Code等编程字体</li>
+                            <li><span class="success-highlight">自定义特效</span>：Matrix雨等效果</li>
+                            <li><span class="warning-highlight">品牌元素</span>：Logo霓虹发光集成</li>
+                        </ul>
+                    </div>
+                    <div class="feature-card">
+                        <h4>🔧 <span class="success-highlight">性能优化</span></h4>
+                        <ul class="stagger-animation">
+                            <li><span class="info-highlight">特效优化</span>：GPU加速动画</li>
+                            <li><span class="keyword-highlight">发光优化</span>：box-shadow性能优化</li>
+                            <li><span class="warning-highlight">背景优化</span>：网格动画性能调优</li>
+                            <li><span class="success-highlight">代码压缩</span>：极客版本优化</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="tech-grid auto-animate">
+                    <div class="tech-card">
+                        <h4><span class="info-highlight">技术分享</span></h4>
+                        <p>极客风格，霓虹绿主色调，代码高亮</p>
+                    </div>
+                    <div class="tech-card">
+                        <h4><span class="warning-highlight">产品发布</span></h4>
+                        <p>科技感强，霓虹橙强调，创新展示</p>
+                    </div>
+                    <div class="tech-card">
+                        <h4><span class="success-highlight">游戏展示</span></h4>
+                        <p>赛博朋克，霓虹粉主色，视觉震撼</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 总结页 -->
+            <section>
+                <h2>🚀 开始你的 Claude Code 极客PPT 之旅</h2>
+                <div class="highlight-box zoom-in-animation">
+                    <h4>🎯 <span class="keyword-highlight">让AI成为你的极客设计伙伴</span></h4>
+                    <p>创造震撼级演示体验，让每个人都能做出视觉炸裂的极客PPT</p>
+                </div>
+
+                <div class="features-grid auto-animate">
+                    <div class="feature-card">
+                        <h4>✅ <span class="success-highlight">极客核心优势</span></h4>
+                        <ul class="stagger-animation">
+                            <li><span class="number-highlight">5分钟</span>从需求到极客成品</li>
+                            <li><span class="keyword-highlight">768px法则</span>投影完美适配</li>
+                            <li><span class="info-highlight">霓虹视觉效果</span>极客品质</li>
+                            <li><span class="warning-highlight">组件化设计</span>高效复用</li>
+                        </ul>
+                    </div>
+                    <div class="feature-card">
+                        <h4>🎯 <span class="keyword-highlight">立即行动</span></h4>
+                        <ul class="stagger-animation">
+                            <li><span class="info-highlight">启动Claude Code</span>开始极客创作</li>
+                            <li><span class="success-highlight">查看CLAUDE.md</span>掌握双主题</li>
+                            <li><span class="warning-highlight">探索examples</span>获取极客灵感</li>
+                            <li><span class="keyword-highlight">分享作品</span>展示极客成果</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="step-card zoom-in-animation cyber-glitch">
+                    <h4>🎨 让每个人都能创造出视觉震撼的极客演示文稿</h4>
+                    <p>通过Claude Code的AI能力，设计不再是障碍，极客创意才是关键。</p>
+                </div>
+            </section>
+        </div>
+    </div>
+
+    <!-- 背景粒子系统 -->
+    <div class="particles-container" id="particles"></div>
+
+    <!-- Reveal.js 脚本 -->
+    <script src="https://cdn.jsdelivr.net/npm/reveal.js@5.2.1/dist/reveal.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/reveal.js@5.2.1/plugin/highlight/highlight.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/reveal.js@5.2.1/plugin/markdown/markdown.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/reveal.js@5.2.1/plugin/notes/notes.js"></script>
+
+    <script>
+        // 主题切换函数
+        function switchTheme(theme) {
+            if (theme === 'white') {
+                window.location.href = 'index.html';
+            } else {
+                // 已经是黑色主题，不需要操作
+                console.log('当前已是黑色极客主题');
+            }
+        }
+
+        // Reveal.js 初始化
+        Reveal.initialize({
+            view: 'scroll', // 现代滚动模式
+            width: 1024,
+            height: 768,
+            margin: 0.05,
+            autoAnimateEasing: 'ease-in-out',
+            autoAnimateDuration: 1.0,
+            scrollProgress: true,
+            controls: true,
+            progress: true,
+            keyboard: true,
+            touch: true,
+            hash: true,
+            plugins: [RevealHighlight, RevealMarkdown, RevealNotes]
+        });
+
+        // 创建背景粒子系统 - 霓虹版本
+        function createParticles() {
+            const container = document.getElementById('particles');
+            const particleCount = 30;
+
+            for (let i = 0; i < particleCount; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'particle';
+                particle.style.left = Math.random() * 100 + '%';
+                particle.style.top = Math.random() * 100 + '%';
+                particle.style.animationDelay = Math.random() * 8 + 's';
+                particle.style.animationDuration = (Math.random() * 4 + 6) + 's';
+
+                // 随机霓虹颜色
+                const colors = ['#ff2d92', '#00ff88', '#00d4ff', '#c792ea', '#ff8c00'];
+                const color = colors[Math.floor(Math.random() * colors.length)];
+                particle.style.background = `radial-gradient(circle, ${color}, transparent)`;
+                particle.style.boxShadow = `0 0 5px ${color}`;
+
+                container.appendChild(particle);
+            }
+        }
+
+        // 标题页动画在初始化时自动启动
+        function initTitleAnimations() {
+            console.log('极客标题页动画已初始化');
+        }
+
+        // 粒子视差效果 - 霓虹增强版
+        function handleParticleMouseMove(event) {
+            const particles = document.querySelectorAll('.particle');
+            const mouseX = event.clientX / window.innerWidth - 0.5;
+            const mouseY = event.clientY / window.innerHeight - 0.5;
+
+            particles.forEach((particle, index) => {
+                const speed = (index % 3 + 1) * 0.8; // 增强移动效果
+                const x = mouseX * speed * 60;
+                const y = mouseY * speed * 60;
+                particle.style.transform = `translate(${x}px, ${y}px)`;
+            });
+        }
+
+        // 键盘快捷键
+        function handleKeyboard(event) {
+            switch (event.key.toLowerCase()) {
+                case 'f':
+                    // 全屏切换
+                    if (document.fullscreenElement) {
+                        document.exitFullscreen();
+                    } else {
+                        document.documentElement.requestFullscreen();
+                    }
+                    break;
+                case 'r':
+                    // 重新加载页面
+                    location.reload();
+                    break;
+                case '3':
+                    // 重置动画
+                    location.reload();
+                    break;
+                case 't':
+                    // 切换到白色主题
+                    switchTheme('white');
+                    break;
+            }
+        }
+
+        // 页面切换动画重置
+        Reveal.addEventListener('slidechanged', function () {
+            // 重置动画
+            const animations = document.querySelectorAll('.auto-animate, .stagger-animation, .zoom-in-animation');
+            animations.forEach(element => {
+                element.style.animation = 'none';
+                element.offsetHeight; // 触发重排
+                element.style.animation = null;
+            });
+        });
+
+        // 随机故障效果
+        function randomGlitch() {
+            const elements = document.querySelectorAll('.title-main, .subtitle-main');
+            elements.forEach(element => {
+                if (Math.random() < 0.1) { // 10% 概率触发故障
+                    element.classList.add('cyber-glitch');
+                    setTimeout(() => {
+                        element.classList.remove('cyber-glitch');
+                    }, 300);
+                }
+            });
+        }
+
+        // 初始化所有功能
+        document.addEventListener('DOMContentLoaded', function () {
+            createParticles();
+            initTitleAnimations();
+            document.addEventListener('mousemove', handleParticleMouseMove);
+            document.addEventListener('keydown', handleKeyboard);
+
+            // 定期触发随机故障效果
+            setInterval(randomGlitch, 5000);
+
+            // 动态添加粒子跟随鼠标的增强移动
+            const particles = document.querySelectorAll('.particle');
+            particles.forEach((particle, index) => {
+                const delay = index * 0.1;
+                particle.style.animationDelay = delay + 's';
+            });
+        });
+
+        // 性能优化：使用requestAnimationFrame
+        let ticking = false;
+        function optimizedMouseMove(event) {
+            if (!ticking) {
+                requestAnimationFrame(() => {
+                    handleParticleMouseMove(event);
+                    ticking = false;
+                });
+                ticking = true;
+            }
+        }
+
+        // 替换普通的mousemove监听器
+        document.addEventListener('DOMContentLoaded', function () {
+            document.removeEventListener('mousemove', handleParticleMouseMove);
+            document.addEventListener('mousemove', optimizedMouseMove);
+        });
+    </script>
+</body>
+
+</html>

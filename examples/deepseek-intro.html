@@ -1,0 +1,1545 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🌟 DeepSeek：重新定义AI的可能性</title>
+
+    <!-- Reveal.js CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5.2.1/dist/reveal.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5.2.1/dist/theme/white.css">
+
+    <!-- 代码高亮 -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5.2.1/plugin/highlight/monokai.css">
+
+    <!-- 字体 - 使用 jsDelivr CDN 最新版本 -->
+    <link href="https://cdn.jsdelivr.net/npm/@fontsource/inter@5.0.21/index.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/@fontsource/jetbrains-mono@5.0.21/index.css" rel="stylesheet">
+
+    <!-- 自定义样式 -->
+    <style>
+        /* 白色主题优化颜色变量 */
+        :root {
+            --glass-blur: blur(20px) saturate(120%);
+            --glass-blur-strong: blur(25px) saturate(140%);
+            --glass-blur-light: blur(10px) saturate(110%);
+            --glass-bg: rgba(255, 255, 255, 0.6);
+            --glass-bg-hover: rgba(255, 255, 255, 0.8);
+            --glass-border: rgba(255, 255, 255, 0.8);
+            --glass-border-hover: rgba(255, 255, 255, 0.9);
+            --glass-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+            --glass-shadow-hover: 0 6px 30px rgba(0, 0, 0, 0.08);
+            --glass-inset: inset 0 1px 0 rgba(255, 255, 255, 0.9);
+            --glass-inset-hover: inset 0 1px 0 rgba(255, 255, 255, 0.95);
+            --text-primary: #1a1a1a;
+            --text-secondary: #4a4a4a;
+            --text-light: #888888;
+        }
+
+        .reveal {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            font-size: 24px;
+            background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 50%, #ffffff 100%);
+            background-attachment: fixed;
+            position: relative;
+        }
+
+        .reveal::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            backdrop-filter: blur(0.5px) brightness(1.02);
+            z-index: -1;
+            pointer-events: none;
+        }
+
+        .reveal .slides section {
+            backdrop-filter: blur(20px) saturate(120%);
+            background: rgba(255, 255, 255, 0.7);
+            border-radius: 24px;
+            border: 1px solid rgba(255, 255, 255, 0.8);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05), inset 0 1px 0 rgba(255, 255, 255, 0.9);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            margin: 20px 0;
+        }
+
+        .reveal .slides section:hover {
+            transform: translateY(-2px);
+            backdrop-filter: blur(25px) saturate(130%);
+            background: rgba(255, 255, 255, 0.8);
+            box-shadow: 0 6px 30px rgba(0, 0, 0, 0.08), inset 0 1px 0 rgba(255, 255, 255, 0.95);
+        }
+
+        /* 第一页 3D 效果 */
+        .title-slide {
+            text-align: center !important;
+            background: rgba(255, 255, 255, 0.9) !important;
+            backdrop-filter: blur(30px) saturate(140%) !important;
+            position: relative;
+            perspective: 1000px;
+            transform-style: preserve-3d;
+            height: 100vh;
+            display: flex !important;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+        }
+
+        .title-3d {
+            transform: perspective(1000px) rotateX(20deg) rotateY(-5deg) translateZ(50px);
+            animation: float3D 6s ease-in-out infinite, titlePulse 4s ease-in-out infinite;
+            text-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+        }
+
+        .subtitle-3d {
+            transform: perspective(1000px) rotateX(15deg) translateZ(30px);
+            animation: float3D 6s ease-in-out infinite 0.5s;
+        }
+
+        .description-3d {
+            transform: perspective(1000px) rotateX(10deg) translateZ(20px);
+            animation: float3D 6s ease-in-out infinite 1s;
+        }
+
+        @keyframes float3D {
+            0%, 100% { 
+                transform: perspective(1000px) rotateX(20deg) rotateY(-5deg) translateZ(50px) translateY(0px);
+            }
+            50% { 
+                transform: perspective(1000px) rotateX(25deg) rotateY(-2deg) translateZ(60px) translateY(-10px);
+            }
+        }
+
+        @keyframes titlePulse {
+            0%, 100% { 
+                text-shadow: 0 20px 40px rgba(0, 0, 0, 0.1), 0 0 30px rgba(52, 152, 219, 0.3);
+            }
+            50% { 
+                text-shadow: 0 25px 50px rgba(0, 0, 0, 0.15), 0 0 50px rgba(52, 152, 219, 0.5);
+            }
+        }
+
+        /* 高级3D背景装饰 */
+        .rotating-light {
+            position: absolute;
+            top: 15%;
+            right: 8%;
+            width: 180px;
+            height: 180px;
+            background: conic-gradient(from 0deg,
+                transparent 0deg,
+                rgba(102, 126, 234, 0.3) 60deg,
+                rgba(118, 75, 162, 0.3) 120deg,
+                rgba(240, 147, 251, 0.3) 180deg,
+                rgba(255, 107, 107, 0.3) 240deg,
+                rgba(78, 205, 196, 0.3) 300deg,
+                transparent 360deg);
+            border-radius: 50%;
+            animation: lightRotate 6s linear infinite;
+            transform: perspective(1000px) rotateX(60deg);
+        }
+
+        .glow-effect {
+            position: absolute;
+            bottom: 15%;
+            left: 12%;
+            width: 120px;
+            height: 120px;
+            background: radial-gradient(circle, rgba(46, 204, 113, 0.3), rgba(52, 152, 219, 0.2), transparent);
+            border-radius: 50%;
+            animation: glowPulse 3s ease-in-out infinite alternate;
+            transform: perspective(1000px) rotateY(45deg);
+        }
+
+        @keyframes lightRotate {
+            0% { transform: perspective(1000px) rotateX(60deg) rotateZ(0deg); }
+            100% { transform: perspective(1000px) rotateX(60deg) rotateZ(360deg); }
+        }
+
+        @keyframes glowPulse {
+            0% { 
+                opacity: 0.4; 
+                transform: perspective(1000px) rotateY(45deg) scale(1);
+                filter: blur(0px);
+            }
+            100% { 
+                opacity: 0.8; 
+                transform: perspective(1000px) rotateY(45deg) scale(1.3);
+                filter: blur(2px);
+            }
+        }
+
+        /* 高级3D浮动粒子 */
+        .particle-3d {
+            position: absolute;
+            width: 6px;
+            height: 6px;
+            background: radial-gradient(circle, rgba(255, 255, 255, 0.9) 0%, rgba(52, 152, 219, 0.7) 50%, transparent 70%);
+            border-radius: 50%;
+            box-shadow: 0 0 10px rgba(52, 152, 219, 0.5);
+            animation: particle3DFloat 8s ease-in-out infinite;
+        }
+
+        .particle-3d:nth-child(4) {
+            top: 12%;
+            left: 82%;
+            animation-delay: 0s;
+            transform: perspective(1000px) translateZ(80px);
+            --z: 80px;
+        }
+
+        .particle-3d:nth-child(5) {
+            top: 65%;
+            left: 88%;
+            animation-delay: 2s;
+            transform: perspective(1000px) translateZ(60px);
+            --z: 60px;
+        }
+
+        .particle-3d:nth-child(6) {
+            top: 25%;
+            left: 8%;
+            animation-delay: 4s;
+            transform: perspective(1000px) translateZ(100px);
+            --z: 100px;
+        }
+
+        .particle-3d:nth-child(7) {
+            top: 75%;
+            left: 18%;
+            animation-delay: 6s;
+            transform: perspective(1000px) translateZ(40px);
+            --z: 40px;
+        }
+
+        @keyframes particle3DFloat {
+            0%, 100% { 
+                transform: perspective(1000px) translateZ(var(--z, 80px)) translateY(0px) rotateY(0deg) scale(1);
+                opacity: 0.4;
+                filter: blur(0px);
+            }
+            25% { 
+                transform: perspective(1000px) translateZ(var(--z, 80px)) translateY(-15px) rotateY(90deg) scale(1.2);
+                opacity: 0.9;
+                filter: blur(1px);
+            }
+            50% { 
+                transform: perspective(1000px) translateZ(var(--z, 80px)) translateY(-25px) rotateY(180deg) scale(1.4);
+                opacity: 1;
+                filter: blur(0px);
+            }
+            75% { 
+                transform: perspective(1000px) translateZ(var(--z, 80px)) translateY(-15px) rotateY(270deg) scale(1.2);
+                opacity: 0.9;
+                filter: blur(1px);
+            }
+        }
+
+        /* 增强型鼠标交互 3D 效果 */
+        .title-slide.mouse-active .title-3d {
+            transform: perspective(1000px) rotateX(35deg) rotateY(15deg) translateZ(100px) scale(1.05);
+            text-shadow: 0 10px 20px rgba(0, 0, 0, 0.3), 0 0 40px rgba(52, 152, 219, 0.5);
+        }
+
+        .title-slide.mouse-active .subtitle-3d {
+            transform: perspective(1000px) rotateX(25deg) rotateY(8deg) translateZ(70px) scale(1.03);
+            text-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+        }
+
+        .title-slide.mouse-active .description-3d {
+            transform: perspective(1000px) rotateX(20deg) rotateY(5deg) translateZ(50px) scale(1.02);
+            text-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+        }
+
+        .reveal h1,
+        .reveal h2,
+        .reveal h3 {
+            text-transform: none;
+            color: var(--text-primary);
+            margin-bottom: 15px;
+            text-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+            background: linear-gradient(45deg, #3498db, #e74c3c, #2ecc71, #f39c12);
+            background-size: 300% 300%;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: gradientShift 4s ease infinite;
+        }
+
+        @keyframes gradientShift {
+            0% { background-position: 0% 50%; }
+            25% { background-position: 100% 50%; }
+            50% { background-position: 50% 100%; }
+            75% { background-position: 0% 50%; }
+            100% { background-position: 50% 0%; }
+        }
+
+        .reveal h1 { font-size: 2.0em; }
+        .reveal h2 { font-size: 1.6em; }
+        .reveal h3 { font-size: 1.2em; }
+        .reveal h4 {
+            font-size: 1.0em;
+            color: #2c3e50;
+            text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+            font-weight: 600;
+        }
+
+        .reveal p {
+            font-size: 0.85em;
+            line-height: 1.5;
+            color: var(--text-secondary);
+            font-weight: 400;
+        }
+
+        .reveal .slides section {
+            text-align: left;
+            padding: 16px;
+            color: var(--text-primary);
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 16px;
+            margin: 12px 0;
+        }
+
+        .tech-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 12px;
+            margin: 12px 0;
+        }
+
+        .tech-card, .feature-card {
+            backdrop-filter: var(--glass-blur);
+            background: linear-gradient(145deg, var(--glass-bg), rgba(255, 255, 255, 0.8));
+            border-radius: 12px;
+            padding: 12px;
+            text-align: center;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            border: 1px solid var(--glass-border);
+            position: relative;
+            overflow: hidden;
+            box-shadow: var(--glass-shadow), var(--glass-inset);
+            color: var(--text-primary);
+        }
+
+        .tech-card:hover, .feature-card:hover {
+            transform: translateY(-5px) scale(1.02);
+            backdrop-filter: var(--glass-blur-strong);
+            background: linear-gradient(145deg, var(--glass-bg-hover), rgba(255, 255, 255, 0.9));
+            box-shadow: var(--glass-shadow-hover), var(--glass-inset-hover);
+        }
+
+        .highlight-box {
+            backdrop-filter: var(--glass-blur);
+            background: linear-gradient(135deg, rgba(52, 152, 219, 0.2), rgba(155, 89, 182, 0.2));
+            border-radius: 16px;
+            padding: 16px;
+            margin: 12px 0;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            border: 1px solid rgba(255, 255, 255, 0.7);
+            box-shadow: var(--glass-shadow), var(--glass-inset);
+            color: var(--text-primary);
+        }
+
+        .step-card {
+            backdrop-filter: var(--glass-blur-light);
+            background: rgba(255, 255, 255, 0.7);
+            border-radius: 8px;
+            padding: 8px;
+            margin: 4px 0;
+            border-left: 3px solid #3498db;
+            border: 1px solid rgba(255, 255, 255, 0.8);
+            box-shadow: var(--glass-shadow), var(--glass-inset);
+            color: var(--text-primary);
+        }
+
+        .step-number {
+            display: inline-block;
+            width: 28px;
+            height: 28px;
+            backdrop-filter: var(--glass-blur-light);
+            background: linear-gradient(135deg, rgba(52, 152, 219, 0.9), rgba(41, 128, 185, 0.9));
+            border-radius: 50%;
+            text-align: center;
+            line-height: 28px;
+            font-weight: bold;
+            margin-right: 8px;
+            font-size: 0.8em;
+            color: white;
+            border: 1px solid rgba(52, 152, 219, 0.2);
+            box-shadow: 0 4px 15px rgba(52, 152, 219, 0.3), var(--glass-inset);
+        }
+
+        .code-block {
+            backdrop-filter: var(--glass-blur-light);
+            background: rgba(248, 249, 250, 0.9);
+            border-radius: 12px;
+            padding: 10px;
+            margin: 10px 0;
+            font-family: 'JetBrains Mono', 'Consolas', 'Monaco', monospace;
+            font-size: 0.8em;
+            position: relative;
+            border: 1px solid rgba(52, 152, 219, 0.2);
+            box-shadow: var(--glass-shadow), var(--glass-inset);
+        }
+
+        .code-block::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, #667eea, #764ba2, #f093fb);
+            border-radius: 12px 12px 0 0;
+        }
+
+        .advantages-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 6px;
+            margin: 10px 0;
+        }
+
+        .advantage-item {
+            backdrop-filter: var(--glass-blur-light);
+            background: rgba(255, 193, 7, 0.15);
+            padding: 6px;
+            border-radius: 6px;
+            border-left: 3px solid #f39c12;
+            font-size: 0.8em;
+            color: #2c3e50;
+            border: 1px solid rgba(255, 193, 7, 0.3);
+            box-shadow: var(--glass-shadow), var(--glass-inset);
+        }
+
+        /* 动画类 - 优化时序 */
+        .auto-animate {
+            opacity: 0;
+            transform: translateY(15px);
+            animation: fadeInUp 0.5s ease-out forwards;
+        }
+
+        .auto-animate:nth-child(1) { animation-delay: 0.1s; }
+        .auto-animate:nth-child(2) { animation-delay: 0.2s; }
+        .auto-animate:nth-child(3) { animation-delay: 0.3s; }
+        .auto-animate:nth-child(4) { animation-delay: 0.4s; }
+        .auto-animate:nth-child(5) { animation-delay: 0.5s; }
+
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(15px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .stagger-animation > * {
+            opacity: 0;
+            transform: translateX(-20px);
+            animation: slideInLeft 0.4s ease-out forwards;
+        }
+
+        .stagger-animation > *:nth-child(1) { animation-delay: 0.1s; }
+        .stagger-animation > *:nth-child(2) { animation-delay: 0.2s; }
+        .stagger-animation > *:nth-child(3) { animation-delay: 0.3s; }
+        .stagger-animation > *:nth-child(4) { animation-delay: 0.4s; }
+        .stagger-animation > *:nth-child(5) { animation-delay: 0.5s; }
+
+        @keyframes slideInLeft {
+            from { opacity: 0; transform: translateX(-20px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+
+        .zoom-in-animation {
+            opacity: 0;
+            transform: scale(0.9);
+            animation: zoomIn 0.5s ease-out forwards;
+        }
+
+        @keyframes zoomIn {
+            from { opacity: 0; transform: scale(0.9); }
+            to { opacity: 1; transform: scale(1); }
+        }
+
+        /* 颜色高亮类 */
+        .keyword-highlight {
+            color: #e74c3c;
+            font-weight: 600;
+            text-shadow: none;
+            background: linear-gradient(45deg, #e74c3c, #c0392b);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .number-highlight {
+            color: #f39c12;
+            font-weight: 700;
+            text-shadow: none;
+            background: linear-gradient(45deg, #f39c12, #e67e22);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .success-highlight {
+            color: #27ae60;
+            font-weight: 600;
+            text-shadow: none;
+            background: linear-gradient(45deg, #27ae60, #2ecc71);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .warning-highlight {
+            color: #e67e22;
+            font-weight: 600;
+            text-shadow: none;
+            background: linear-gradient(45deg, #e67e22, #d35400);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .info-highlight {
+            color: #3498db;
+            font-weight: 600;
+            text-shadow: none;
+            background: linear-gradient(45deg, #3498db, #2980b9);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .floating-particles {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+            backdrop-filter: blur(0.5px);
+        }
+
+        .particle {
+            position: absolute;
+            width: 3px;
+            height: 3px;
+            background: rgba(52, 152, 219, 0.3);
+            border-radius: 50%;
+            animation: float 6s linear infinite;
+            backdrop-filter: blur(1px);
+            box-shadow: 0 0 6px rgba(52, 152, 219, 0.2);
+        }
+
+        @keyframes float {
+            0% { transform: translateY(100vh) rotate(0deg); opacity: 0; }
+            10% { opacity: 1; }
+            90% { opacity: 1; }
+            100% { transform: translateY(-100px) rotate(360deg); opacity: 0; }
+        }
+
+        /* Shimmer 闪光效果 */
+        .tech-card::before, .feature-card::before {
+            content: '';
+            position: absolute;
+            top: -50%; left: -50%;
+            width: 200%; height: 200%;
+            background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transform: rotate(45deg);
+            opacity: 0;
+            transition: all 0.5s;
+        }
+        
+        .tech-card:hover::before, .feature-card:hover::before {
+            animation: shimmer 0.5s ease-in-out;
+        }
+        
+        @keyframes shimmer {
+            0% { transform: translateX(-100%) translateY(-100%) rotate(45deg); opacity: 0; }
+            50% { opacity: 1; }
+            100% { transform: translateX(100%) translateY(100%) rotate(45deg); opacity: 0; }
+        }
+
+        /* 脉冲效果优化 */
+        .step-number {
+            animation: pulse 1.5s ease-in-out infinite;
+        }
+        
+        @keyframes pulse {
+            0% { transform: scale(1); box-shadow: 0 4px 15px rgba(52, 152, 219, 0.4); }
+            50% { transform: scale(1.05); box-shadow: 0 6px 20px rgba(52, 152, 219, 0.6); }
+            100% { transform: scale(1); box-shadow: 0 4px 15px rgba(52, 152, 219, 0.4); }
+        }
+
+        /* 彩虹旋转边框 */
+        .highlight-box::before {
+            content: '';
+            position: absolute;
+            top: -2px; left: -2px; right: -2px; bottom: -2px;
+            background: linear-gradient(45deg, #667eea, #764ba2, #f093fb, #ff6b6b, #4ecdc4);
+            background-size: 300% 300%;
+            border-radius: 18px;
+            z-index: -1;
+            animation: rainbowRotate 4s linear infinite;
+        }
+        
+        @keyframes rainbowRotate {
+            0% { background-position: 0% 50%; }
+            25% { background-position: 100% 50%; }
+            50% { background-position: 50% 100%; }
+            75% { background-position: 0% 50%; }
+            100% { background-position: 50% 0%; }
+        }
+
+        /* 渐变背景覆盖 */
+        .tech-card::after, .feature-card::after {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: linear-gradient(45deg, rgba(255, 107, 53, 0.05), rgba(78, 205, 196, 0.05));
+            border-radius: 12px;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            pointer-events: none;
+        }
+        
+        .tech-card:hover::after, .feature-card:hover::after {
+            opacity: 1;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="floating-particles" id="particles"></div>
+    <div class="reveal">
+        <div class="slides">
+
+            <!-- 封面页 -->
+            <section class="title-slide">
+                <div class="rotating-light"></div>
+                <div class="glow-effect"></div>
+                <div class="particle-3d"></div>
+                <div class="particle-3d"></div>
+                <div class="particle-3d"></div>
+                <div class="particle-3d"></div>
+                <div class="particle-3d"></div>
+                <div class="particle-3d"></div>
+                
+                <h1 class="title-3d">🌟 DeepSeek</h1>
+                <h3 class="subtitle-3d">重新定义AI的可能性</h3>
+                <p class="description-3d">中国AI新星的技术突破与开源革命</p>
+                <aside class="notes">
+                    <h3>演讲者备注 - DeepSeek介绍开场</h3>
+                    <ul>
+                        <li>欢迎大家了解DeepSeek这个改变AI游戏规则的产品</li>
+                        <li>2025年1月刚刚发布，已经引起全球AI界的震动</li>
+                        <li>今天将从技术、成本、影响三个维度来介绍DeepSeek</li>
+                        <li>重点关注其如何以极低成本实现顶级性能</li>
+                        <li>这不仅是技术突破，更是AI民主化的里程碑</li>
+                    </ul>
+                </aside>
+            </section>
+
+            <!-- 第1页：公司简介 -->
+            <section>
+                <h2>🏢 DeepSeek：中国AI新星的崛起</h2>
+                <div class="features-grid">
+                    <div class="feature-card auto-animate">
+                        <h4>公司背景</h4>
+                        <div class="stagger-animation">
+                            <div class="step-card">
+                                <strong class="info-highlight">成立时间：</strong><span class="number-highlight">2023年</span>
+                            </div>
+                            <div class="step-card">
+                                <strong class="info-highlight">注册资本：</strong><span class="number-highlight">1000万</span>人民币
+                            </div>
+                            <div class="step-card">
+                                <strong class="info-highlight">母公司：</strong><span class="success-highlight">幻方量化</span>
+                            </div>
+                            <div class="step-card">
+                                <strong class="info-highlight">正式发布：</strong><span class="keyword-highlight">2025年1月15日</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="feature-card auto-animate">
+                        <h4>核心理念</h4>
+                        <div class="stagger-animation">
+                            <div class="step-card">
+                                <strong class="success-highlight">开源优先</strong><br>
+                                <small>让AI像水电一样触手可及</small>
+                            </div>
+                            <div class="step-card">
+                                <strong class="info-highlight">成本革命</strong><br>
+                                <small>用更少资源实现更好效果</small>
+                            </div>
+                            <div class="step-card">
+                                <strong class="keyword-highlight">技术创新</strong><br>
+                                <small>混合专家架构的突破</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="highlight-box zoom-in-animation" style="animation-delay: 1.5s;">
+                    <h4>🎯 使命：<span class="success-highlight">AI普及化</span>的推动者</h4>
+                    <p>以<span class="keyword-highlight">开源</span>+<span class="info-highlight">低成本</span>的方式，打破AI技术壁垒</p>
+                </div>
+                <aside class="notes">
+                    <h3>演讲者备注 - 公司背景介绍</h3>
+                    <ul>
+                        <li><strong>幻方量化背景</strong>：国内顶级量化投资公司，技术实力雄厚</li>
+                        <li><strong>注册资本</strong>：相比其他AI公司，资本投入相对较少</li>
+                        <li><strong>发布时间</strong>：刚刚发布就引起轰动，证明技术实力</li>
+                        <li><strong>开源策略</strong>：与封闭模型形成鲜明对比</li>
+                        <li><strong>成本优势</strong>：这是最大的竞争优势</li>
+                        <li><strong>过渡</strong>：接下来介绍创始团队的技术背景</li>
+                    </ul>
+                </aside>
+            </section>
+
+            <!-- 第2页：创始团队 -->
+            <section>
+                <h2>👨‍💼 梁文锋：技术驱动的AI先锋</h2>
+                <div class="features-grid">
+                    <div class="feature-card auto-animate">
+                        <h4>创始人背景</h4>
+                        <div class="stagger-animation">
+                            <div class="step-card">
+                                <strong class="info-highlight">姓名：</strong>梁文锋
+                            </div>
+                            <div class="step-card">
+                                <strong class="info-highlight">出生：</strong><span class="number-highlight">1985年</span>广东
+                            </div>
+                            <div class="step-card">
+                                <strong class="info-highlight">学历：</strong>浙江大学<span class="success-highlight">信息与电子工程系</span>
+                            </div>
+                            <div class="step-card">
+                                <strong class="info-highlight">学位：</strong><span class="keyword-highlight">学士+硕士</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="feature-card auto-animate">
+                        <h4>团队特色</h4>
+                        <div class="stagger-animation">
+                            <div class="step-card">
+                                <strong class="success-highlight">人才构成</strong><br>
+                                <small>中国顶尖高校应届毕业生</small>
+                            </div>
+                            <div class="step-card">
+                                <strong class="info-highlight">技术理念</strong><br>
+                                <small>强调生态化发展路径</small>
+                            </div>
+                            <div class="step-card">
+                                <strong class="keyword-highlight">量化背景</strong><br>
+                                <small>幻方量化的技术基因</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="highlight-box zoom-in-animation" style="animation-delay: 1.2s;">
+                    <h4>💡 核心观点</h4>
+                    <p>"<span class="keyword-highlight">英伟达的领先</span>是整个西方技术社区和产业共同努力的结果，<span class="success-highlight">中国AI的发展</span>需要类似的<span class="info-highlight">生态合作</span>"</p>
+                </div>
+                <aside class="notes">
+                    <h3>演讲者备注 - 创始团队介绍</h3>
+                    <ul>
+                        <li><strong>年轻有为</strong>：40岁不到就有如此成就</li>
+                        <li><strong>教育背景</strong>：浙大工科背景，技术功底扎实</li>
+                        <li><strong>团队特点</strong>：年轻化，都是应届毕业生</li>
+                        <li><strong>生态思维</strong>：不是闭门造车，强调开放合作</li>
+                        <li><strong>量化基因</strong>：对算法和效率有极致追求</li>
+                        <li><strong>下一步</strong>：介绍DeepSeek的核心产品</li>
+                    </ul>
+                </aside>
+            </section>
+
+            <!-- 第3页：核心产品 -->
+            <section>
+                <h2>🚀 DeepSeek产品矩阵：三大王牌模型</h2>
+                <div class="tech-grid">
+                    <div class="tech-card auto-animate">
+                        <h4><span class="keyword-highlight">DeepSeek-V3</span></h4>
+                        <div class="code-block">
+                            <pre><code>总参数：671B
+激活参数：37B
+架构：MoE混合专家
+长上下文：128K
+生成速度：60 TPS</code></pre>
+                        </div>
+                        <p><span class="success-highlight">通用大语言模型</span></p>
+                    </div>
+                    <div class="tech-card auto-animate">
+                        <h4><span class="info-highlight">DeepSeek-R1</span></h4>
+                        <div class="code-block">
+                            <pre><code>基于：V3-Base
+训练：强化学习
+专长：推理能力
+优势：数学编程
+特色：逻辑思维</code></pre>
+                        </div>
+                        <p><span class="keyword-highlight">推理专用模型</span></p>
+                    </div>
+                    <div class="tech-card auto-animate">
+                        <h4><span class="warning-highlight">DeepSeek-VL2</span></h4>
+                        <div class="code-block">
+                            <pre><code>版本：Tiny/Small/标准
+参数：1.0B/2.8B/4.5B
+功能：视觉+语言
+能力：多模态理解
+应用：图像分析</code></pre>
+                        </div>
+                        <p><span class="success-highlight">多模态模型</span></p>
+                    </div>
+                </div>
+                <div class="highlight-box zoom-in-animation" style="animation-delay: 1.5s;">
+                    <h4>🎯 核心能力覆盖</h4>
+                    <p><span class="info-highlight">自然语言处理</span> + <span class="success-highlight">数学推理</span> + <span class="keyword-highlight">代码生成</span> + <span class="warning-highlight">视觉理解</span></p>
+                </div>
+                <aside class="notes">
+                    <h3>演讲者备注 - 产品矩阵介绍</h3>
+                    <ul>
+                        <li><strong>V3是基础</strong>：671B参数但只激活37B，效率极高</li>
+                        <li><strong>R1是亮点</strong>：专门针对推理能力优化</li>
+                        <li><strong>VL2是补充</strong>：多模态能力的体现</li>
+                        <li><strong>参数效率</strong>：MoE架构的优势明显</li>
+                        <li><strong>应用场景</strong>：覆盖了AI的主要应用领域</li>
+                        <li><strong>下一页重点</strong>：技术架构的创新之处</li>
+                    </ul>
+                </aside>
+            </section>
+
+            <!-- 第4页：技术突破 -->
+            <section>
+                <h2>⚡ 混合专家架构：技术创新的核心</h2>
+                <div class="features-grid">
+                    <div class="feature-card auto-animate">
+                        <h4>🧠 混合专家（MoE）架构</h4>
+                        <div class="stagger-animation">
+                            <div class="step-card">
+                                <span class="step-number">1</span>
+                                <strong class="success-highlight">智能激活</strong><br>
+                                <small>根据问题类型激活特定专家</small>
+                            </div>
+                            <div class="step-card">
+                                <span class="step-number">2</span>
+                                <strong class="info-highlight">参数效率</strong><br>
+                                <small>671B总参数，仅激活37B</small>
+                            </div>
+                            <div class="step-card">
+                                <span class="step-number">3</span>
+                                <strong class="keyword-highlight">专业分工</strong><br>
+                                <small>医疗、法律、编程等专家系统</small>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="feature-card auto-animate">
+                        <h4>🔧 关键技术创新</h4>
+                        <div class="stagger-animation">
+                            <div class="step-card">
+                                <strong class="warning-highlight">MLA技术</strong><br>
+                                <small>多头隐式注意力，内存压缩1/4</small>
+                            </div>
+                            <div class="step-card">
+                                <strong class="success-highlight">推理优化</strong><br>
+                                <small>延迟大幅降低，速度显著提升</small>
+                            </div>
+                            <div class="step-card">
+                                <strong class="info-highlight">长上下文</strong><br>
+                                <small>支持128K token的超长对话</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="code-block zoom-in-animation" style="animation-delay: 1.2s;">
+                    <pre><code class="python"># 混合专家工作原理示意
+当用户问医疗问题时:
+  激活: 医疗专家模块 (5B参数)
+  
+当用户问编程问题时:
+  激活: 编程专家模块 (6B参数)
+  
+当用户问数学问题时:
+  激活: 数学专家模块 (4B参数)
+  
+# 总计671B参数，但每次只用37B</code></pre>
+                </div>
+                <aside class="notes">
+                    <h3>演讲者备注 - 技术架构详解</h3>
+                    <ul>
+                        <li><strong>MoE优势</strong>：按需激活，避免浪费计算资源</li>
+                        <li><strong>专家系统</strong>：每个领域都有专门的参数组</li>
+                        <li><strong>MLA技术</strong>：内存优化是关键创新</li>
+                        <li><strong>实际效果</strong>：性能不降低，成本大幅下降</li>
+                        <li><strong>对比</strong>：传统模型要激活全部参数</li>
+                        <li><strong>过渡</strong>：接下来讲最震撼的成本数据</li>
+                    </ul>
+                </aside>
+            </section>
+
+            <!-- 第5页：成本优势 -->
+            <section>
+                <h2>💰 成本革命：560万 vs 数十亿的奇迹</h2>
+                <div class="highlight-box auto-animate">
+                    <h4><span class="number-highlight">560万美元</span> vs <span class="keyword-highlight">数十亿美元</span></h4>
+                    <p>DeepSeek-R1训练成本仅为竞争对手的<span class="success-highlight">1/500</span></p>
+                </div>
+                <div class="features-grid">
+                    <div class="feature-card auto-animate">
+                        <h4>🏭 硬件配置</h4>
+                        <div class="stagger-animation">
+                            <div class="step-card">
+                                <strong class="info-highlight">GPU数量：</strong><span class="number-highlight">2000块</span>
+                            </div>
+                            <div class="step-card">
+                                <strong class="info-highlight">GPU型号：</strong><span class="keyword-highlight">英伟达H800</span>
+                            </div>
+                            <div class="step-card">
+                                <strong class="info-highlight">总成本：</strong><span class="success-highlight">557.6万美元</span>
+                            </div>
+                            <div class="step-card">
+                                <strong class="warning-highlight">对比：</strong>OpenAI需要<span class="keyword-highlight">数十亿美元</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="feature-card auto-animate">
+                        <h4>⚡ 效率分析</h4>
+                        <div class="advantages-grid">
+                            <div class="advantage-item">• <span class="success-highlight">算法优化</span>：混合专家架构</div>
+                            <div class="advantage-item">• <span class="info-highlight">硬件利用</span>：H800芯片高效使用</div>
+                            <div class="advantage-item">• <span class="keyword-highlight">训练策略</span>：渐进式训练方法</div>
+                            <div class="advantage-item">• <span class="warning-highlight">成本控制</span>：精确的资源规划</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="zoom-in-animation" style="animation-delay: 1.3s;">
+                    <div class="code-block">
+                        <pre><code class="text">成本对比（训练一个顶级模型）：
+┌─────────────┬────────────────┬──────────────┐
+│   公司      │    训练成本    │   GPU数量    │
+├─────────────┼────────────────┼──────────────┤
+│ DeepSeek    │   560万美元    │   2,000块    │
+│ OpenAI      │   数十亿美元   │   25,000块+  │
+│ Google      │   数十亿美元   │   30,000块+  │
+│ Meta        │   数十亿美元   │   24,000块+  │
+└─────────────┴────────────────┴──────────────┘
+效率提升：500-1000倍</code></pre>
+                    </div>
+                </div>
+                <aside class="notes">
+                    <h3>演讲者备注 - 成本优势分析</h3>
+                    <ul>
+                        <li><strong>震撼数据</strong>：560万对比数十亿，差距巨大</li>
+                        <li><strong>硬件效率</strong>：用更少GPU实现相同效果</li>
+                        <li><strong>算法创新</strong>：MoE架构是关键</li>
+                        <li><strong>训练策略</strong>：渐进式而非暴力堆叠</li>
+                        <li><strong>意义重大</strong>：降低AI门槛，促进普及</li>
+                        <li><strong>下一步</strong>：看实际性能表现如何</li>
+                    </ul>
+                </aside>
+            </section>
+
+            <!-- 第6页：性能对比 -->
+            <section>
+                <h2>📊 性能表现：比肩GPT-4o的实力证明</h2>
+                <div class="tech-grid">
+                    <div class="tech-card auto-animate">
+                        <h4>数学推理</h4>
+                        <div class="code-block">
+                            <pre><code class="text">AIME 2024测试：
+DeepSeek-R1: 79.2%
+GPT-4o:      74.4%
+Claude-3.5:  60.1%</code></pre>
+                        </div>
+                        <p><span class="success-highlight">领先业界</span></p>
+                    </div>
+                    <div class="tech-card auto-animate">
+                        <h4>代码生成</h4>
+                        <div class="code-block">
+                            <pre><code class="text">HumanEval测试：
+DeepSeek-R1: 96.3%
+GPT-4o:      90.2%
+Claude-3.5:  92.4%</code></pre>
+                        </div>
+                        <p><span class="keyword-highlight">显著优势</span></p>
+                    </div>
+                    <div class="tech-card auto-animate">
+                        <h4>综合能力</h4>
+                        <div class="code-block">
+                            <pre><code class="text">MMLU测试：
+DeepSeek-R1: 90.8%
+GPT-4o:      88.7%
+Claude-3.5:  88.3%</code></pre>
+                        </div>
+                        <p><span class="info-highlight">全面领先</span></p>
+                    </div>
+                </div>
+                <div class="features-grid">
+                    <div class="feature-card auto-animate">
+                        <h4>🎯 关键优势领域</h4>
+                        <div class="stagger-animation">
+                            <div class="step-card">
+                                <strong class="success-highlight">数学推理</strong><br>
+                                <small>复杂数学问题求解能力突出</small>
+                            </div>
+                            <div class="step-card">
+                                <strong class="info-highlight">代码生成</strong><br>
+                                <small>编程任务完成度极高</small>
+                            </div>
+                            <div class="step-card">
+                                <strong class="keyword-highlight">逻辑推理</strong><br>
+                                <small>多步推理能力显著</small>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="feature-card auto-animate">
+                        <h4>🚀 性能特点</h4>
+                        <div class="stagger-animation">
+                            <div class="step-card">
+                                <strong class="warning-highlight">推理速度</strong><br>
+                                <small>60 TPS，响应迅速</small>
+                            </div>
+                            <div class="step-card">
+                                <strong class="success-highlight">长上下文</strong><br>
+                                <small>128K token，记忆力强</small>
+                            </div>
+                            <div class="step-card">
+                                <strong class="info-highlight">多语言</strong><br>
+                                <small>中英文表现均衡</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <aside class="notes">
+                    <h3>演讲者备注 - 性能对比分析</h3>
+                    <ul>
+                        <li><strong>数据可靠</strong>：第三方基准测试结果</li>
+                        <li><strong>数学突出</strong>：AIME是美国数学竞赛，很有权威性</li>
+                        <li><strong>代码能力</strong>：HumanEval是业界标准测试</li>
+                        <li><strong>综合评估</strong>：MMLU涵盖多个学科领域</li>
+                        <li><strong>全面领先</strong>：不是某个方面强，而是全面超越</li>
+                        <li><strong>成本效益</strong>：性能不输，成本却是1/500</li>
+                    </ul>
+                </aside>
+            </section>
+
+            <!-- 第7页：开源策略 -->
+            <section>
+                <h2>🌐 开源革命：让AI像水电一样触手可及</h2>
+                <div class="highlight-box auto-animate">
+                    <h4>🔓 <span class="success-highlight">全面开源</span>的突破性策略</h4>
+                    <p>在美国巨头<span class="keyword-highlight">闭源垄断</span>的背景下，DeepSeek选择<span class="info-highlight">完全开放</span></p>
+                </div>
+                <div class="features-grid">
+                    <div class="feature-card auto-animate">
+                        <h4>📦 开源内容</h4>
+                        <div class="stagger-animation">
+                            <div class="step-card">
+                                <strong class="success-highlight">模型权重</strong><br>
+                                <small>完整的模型参数文件</small>
+                            </div>
+                            <div class="step-card">
+                                <strong class="info-highlight">训练代码</strong><br>
+                                <small>详细的训练脚本和配置</small>
+                            </div>
+                            <div class="step-card">
+                                <strong class="keyword-highlight">技术文档</strong><br>
+                                <small>完整的技术说明和教程</small>
+                            </div>
+                            <div class="step-card">
+                                <strong class="warning-highlight">部署指南</strong><br>
+                                <small>从下载到部署的全流程</small>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="feature-card auto-animate">
+                        <h4>🎯 开源价值</h4>
+                        <div class="stagger-animation">
+                            <div class="step-card">
+                                <strong class="success-highlight">技术普及</strong><br>
+                                <small>降低AI应用门槛</small>
+                            </div>
+                            <div class="step-card">
+                                <strong class="info-highlight">创新加速</strong><br>
+                                <small>全球开发者共同改进</small>
+                            </div>
+                            <div class="step-card">
+                                <strong class="keyword-highlight">生态建设</strong><br>
+                                <small>构建开放AI生态</small>
+                            </div>
+                            <div class="step-card">
+                                <strong class="warning-highlight">成本降低</strong><br>
+                                <small>企业无需从零开发</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="zoom-in-animation" style="animation-delay: 1.2s;">
+                    <div class="code-block">
+                        <pre><code class="bash"># DeepSeek 模型下载和使用
+# 1. 下载模型
+git clone https://huggingface.co/deepseek-ai/DeepSeek-V3
+
+# 2. 安装依赖
+pip install torch transformers
+
+# 3. 快速开始
+from transformers import AutoTokenizer, AutoModelForCausalLM
+model = AutoModelForCausalLM.from_pretrained("deepseek-ai/DeepSeek-V3")
+tokenizer = AutoTokenizer.from_pretrained("deepseek-ai/DeepSeek-V3")
+
+# 4. 开始对话
+response = model.chat("你好，请介绍一下自己")</code></pre>
+                    </div>
+                </div>
+                <aside class="notes">
+                    <h3>演讲者备注 - 开源策略意义</h3>
+                    <ul>
+                        <li><strong>对比闭源</strong>：GPT、Claude等都是闭源的</li>
+                        <li><strong>Meta例外</strong>：只有Meta的Llama是开源的</li>
+                        <li><strong>破局者</strong>：DeepSeek成为新的开源力量</li>
+                        <li><strong>技术民主化</strong>：任何人都能使用顶级AI</li>
+                        <li><strong>生态效应</strong>：开源推动整个行业发展</li>
+                        <li><strong>中国贡献</strong>：向全球贡献开源AI技术</li>
+                    </ul>
+                </aside>
+            </section>
+
+            <!-- 第8页：市场影响 -->
+            <section>
+                <h2>🌍 全球热潮：1.1亿下载量的现象级成功</h2>
+                <div class="features-grid">
+                    <div class="feature-card auto-animate">
+                        <h4>📱 下载数据</h4>
+                        <div class="stagger-animation">
+                            <div class="step-card">
+                                <span class="step-number">📊</span>
+                                <strong class="number-highlight">1.1亿</strong> 累计下载量<br>
+                                <small>2025年1月15日上线至2月9日</small>
+                            </div>
+                            <div class="step-card">
+                                <span class="step-number">👥</span>
+                                <strong class="number-highlight">9700万</strong> 周活跃用户<br>
+                                <small>峰值时期的活跃度</small>
+                            </div>
+                            <div class="step-card">
+                                <span class="step-number">🏆</span>
+                                <strong class="number-highlight">第1名</strong> 应用商店排名<br>
+                                <small>美英澳加新加坡中国</small>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="feature-card auto-animate">
+                        <h4>💼 产业影响</h4>
+                        <div class="stagger-animation">
+                            <div class="step-card">
+                                <strong class="keyword-highlight">AI股价震动</strong><br>
+                                <small>美股AI概念股大幅波动</small>
+                            </div>
+                            <div class="step-card">
+                                <strong class="success-highlight">技术路径重塑</strong><br>
+                                <small>证明高效低成本的可能性</small>
+                            </div>
+                            <div class="step-card">
+                                <strong class="info-highlight">竞争格局改变</strong><br>
+                                <small>中国AI崛起的标志性事件</small>
+                            </div>
+                            <div class="step-card">
+                                <strong class="warning-highlight">开源生态推动</strong><br>
+                                <small>激发更多开源AI项目</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="tech-grid zoom-in-animation" style="animation-delay: 1.0s;">
+                    <div class="tech-card">
+                        <h4>🇺🇸 美国</h4>
+                        <div class="code-block">
+                            <pre><code class="text">App Store排名：#1
+下载量：160万+
+媒体关注：持续报道
+影响：技术路径反思</code></pre>
+                        </div>
+                    </div>
+                    <div class="tech-card">
+                        <h4>🇨🇳 中国</h4>
+                        <div class="code-block">
+                            <pre><code class="text">应用商店：第一名
+用户增长：爆发式
+行业评价：极高
+生态建设：加速</code></pre>
+                        </div>
+                    </div>
+                    <div class="tech-card">
+                        <h4>🌏 全球</h4>
+                        <div class="code-block">
+                            <pre><code class="text">多国排名：Top 1
+技术影响：深远
+开源贡献：巨大
+未来潜力：无限</code></pre>
+                        </div>
+                    </div>
+                </div>
+                <aside class="notes">
+                    <h3>演讲者备注 - 市场反响分析</h3>
+                    <ul>
+                        <li><strong>数据惊人</strong>：1.1亿下载量，25天时间</li>
+                        <li><strong>全球现象</strong>：不只是中国，全球都在关注</li>
+                        <li><strong>排名第一</strong>：在多个发达国家应用商店登顶</li>
+                        <li><strong>产业震动</strong>：AI股价波动说明影响深远</li>
+                        <li><strong>技术意义</strong>：证明了另一条技术路径</li>
+                        <li><strong>中国力量</strong>：展现了中国AI的技术实力</li>
+                    </ul>
+                </aside>
+            </section>
+
+            <!-- 第9页：核心应用场景 -->
+            <section>
+                <h2>🎯 DeepSeek核心应用：八大能力领域</h2>
+                <div class="tech-grid">
+                    <div class="tech-card auto-animate">
+                        <h4>💬 智能对话</h4>
+                        <p><span class="success-highlight">多轮对话</span><br>上下文理解</p>
+                    </div>
+                    <div class="tech-card auto-animate">
+                        <h4>🧮 数学计算</h4>
+                        <p><span class="keyword-highlight">复杂推理</span><br>逻辑证明</p>
+                    </div>
+                    <div class="tech-card auto-animate">
+                        <h4>💻 代码生成</h4>
+                        <p><span class="info-highlight">编程助手</span><br>代码优化</p>
+                    </div>
+                </div>
+                <div class="features-grid">
+                    <div class="feature-card auto-animate">
+                        <h4>🎨 创意写作</h4>
+                        <div class="stagger-animation">
+                            <div class="step-card">
+                                <strong class="success-highlight">文章创作</strong><br>
+                                <small>长篇内容生成能力</small>
+                            </div>
+                            <div class="step-card">
+                                <strong class="info-highlight">风格适配</strong><br>
+                                <small>多种文体和语言风格</small>
+                            </div>
+                            <div class="step-card">
+                                <strong class="keyword-highlight">创意策划</strong><br>
+                                <small>营销文案和创意方案</small>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="feature-card auto-animate">
+                        <h4>🔍 专业分析</h4>
+                        <div class="stagger-animation">
+                            <div class="step-card">
+                                <strong class="warning-highlight">法律咨询</strong><br>
+                                <small>法条解读和案例分析</small>
+                            </div>
+                            <div class="step-card">
+                                <strong class="success-highlight">医疗健康</strong><br>
+                                <small>症状分析和健康建议</small>
+                            </div>
+                            <div class="step-card">
+                                <strong class="info-highlight">学术研究</strong><br>
+                                <small>文献综述和研究辅助</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="highlight-box zoom-in-animation" style="animation-delay: 1.2s;">
+                    <h4>🌟 <span class="success-highlight">混合专家</span>的独特优势</h4>
+                    <p>根据问题类型<span class="keyword-highlight">智能切换</span>专业模块，每个领域都有<span class="info-highlight">专家级表现</span></p>
+                </div>
+                <aside class="notes">
+                    <h3>演讲者备注 - 应用场景介绍</h3>
+                    <ul>
+                        <li><strong>八大领域</strong>：覆盖了AI的主要应用场景</li>
+                        <li><strong>智能对话</strong>：基础但重要的交互能力</li>
+                        <li><strong>数学推理</strong>：这是DeepSeek的强项</li>
+                        <li><strong>代码生成</strong>：程序员的好助手</li>
+                        <li><strong>专业领域</strong>：法律、医疗等需要专业知识</li>
+                        <li><strong>混合专家</strong>：这是技术优势的体现</li>
+                    </ul>
+                </aside>
+            </section>
+
+            <!-- 第10页：未来展望 -->
+            <section>
+                <h2>🚀 AI普及化的新时代</h2>
+                <div class="features-grid">
+                    <div class="feature-card auto-animate">
+                        <h4>🌟 短期影响</h4>
+                        <div class="stagger-animation">
+                            <div class="step-card">
+                                <strong class="success-highlight">成本降低</strong><br>
+                                <small>AI应用成本大幅下降</small>
+                            </div>
+                            <div class="step-card">
+                                <strong class="info-highlight">技术普及</strong><br>
+                                <small>更多企业能够使用AI</small>
+                            </div>
+                            <div class="step-card">
+                                <strong class="keyword-highlight">创新加速</strong><br>
+                                <small>开源推动技术迭代</small>
+                            </div>
+                            <div class="step-card">
+                                <strong class="warning-highlight">竞争激化</strong><br>
+                                <small>AI领域竞争更加激烈</small>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="feature-card auto-animate">
+                        <h4>🔮 长期愿景</h4>
+                        <div class="stagger-animation">
+                            <div class="step-card">
+                                <strong class="success-highlight">AI民主化</strong><br>
+                                <small>人人都能使用顶级AI</small>
+                            </div>
+                            <div class="step-card">
+                                <strong class="info-highlight">生态繁荣</strong><br>
+                                <small>开源生态蓬勃发展</small>
+                            </div>
+                            <div class="step-card">
+                                <strong class="keyword-highlight">技术融合</strong><br>
+                                <small>AI与各行各业深度结合</small>
+                            </div>
+                            <div class="step-card">
+                                <strong class="warning-highlight">全球合作</strong><br>
+                                <small>技术无国界的合作模式</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="highlight-box zoom-in-animation" style="animation-delay: 1.5s;">
+                    <h4>💡 DeepSeek的历史意义</h4>
+                    <p><span class="keyword-highlight">证明了</span>AI不必是<span class="warning-highlight">昂贵的奢侈品</span>，而可以成为<span class="success-highlight">普惠的基础设施</span></p>
+                </div>
+                <div class="code-block zoom-in-animation" style="animation-delay: 1.8s;">
+                    <pre><code class="text">"DeepSeek开源之举将使AI像水、电和网络一样触手可及。
+开源化、轻量化将大力推动'人工智能+'，广阔场景已经呈现。"
+                        —— 浙江大学人工智能研究所所长 吴飞</code></pre>
+                </div>
+                <aside class="notes">
+                    <h3>演讲者备注 - 未来展望总结</h3>
+                    <ul>
+                        <li><strong>短期影响</strong>：立竿见影的成本和技术优势</li>
+                        <li><strong>长期愿景</strong>：AI真正成为基础设施</li>
+                        <li><strong>历史意义</strong>：从奢侈品到普惠工具的转变</li>
+                        <li><strong>专家观点</strong>：权威学者的认可</li>
+                        <li><strong>中国贡献</strong>：向全球贡献AI技术</li>
+                        <li><strong>结束语</strong>：感谢聆听，开启AI新时代</li>
+                    </ul>
+                </aside>
+            </section>
+
+        </div>
+    </div>
+
+    <!-- Reveal.js JavaScript -->
+    <script src="https://cdn.jsdelivr.net/npm/reveal.js@5.2.1/dist/reveal.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/reveal.js@5.2.1/plugin/notes/notes.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/reveal.js@5.2.1/plugin/markdown/markdown.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/reveal.js@5.2.1/plugin/highlight/highlight.js"></script>
+
+    <script>
+        // Reveal.js 初始化
+        Reveal.initialize({
+            hash: true,
+            controls: true,
+            progress: true,
+            center: false,
+            transition: 'slide',
+            showNotes: false,
+            width: 1024,
+            height: 768,
+            margin: 0.05,
+
+            plugins: [RevealMarkdown, RevealHighlight, RevealNotes],
+
+            keyboard: {
+                39: 'next',
+                37: 'prev',
+                32: 'next',
+            },
+
+            touch: true,
+            loop: false,
+            autoSlide: 0,
+            preloadIframes: false,
+            viewDistance: 3,
+            mobileViewDistance: 2,
+
+            view: 'scroll',
+            scrollProgress: true,
+            autoAnimateEasing: 'ease-in-out',
+            autoAnimateDuration: 1.0,
+            autoAnimateUnmatched: false,
+
+            disableLayout: false,
+            embedded: false,
+            rtl: false,
+            navigationMode: 'default',
+            preloadIframes: null,
+            autoSlideMethod: null,
+            parallaxBackgroundImage: '',
+            parallaxBackgroundSize: '',
+            parallaxBackgroundHorizontal: null,
+            parallaxBackgroundVertical: null
+        });
+
+        // 增强型键盘事件
+        document.addEventListener('keydown', function (event) {
+            if (event.key === 'f' || event.key === 'F') {
+                if (document.fullscreenElement) {
+                    document.exitFullscreen();
+                } else {
+                    document.documentElement.requestFullscreen();
+                }
+            }
+
+            if (event.key === 'r' || event.key === 'R') {
+                Reveal.slide(0);
+            }
+            
+            // 3D效果重置
+            if (event.key === '3') {
+                const titleSlide = document.querySelector('.title-slide');
+                if (titleSlide) {
+                    titleSlide.classList.remove('mouse-active');
+                    const titleElements = titleSlide.querySelectorAll('.title-3d, .subtitle-3d, .description-3d');
+                    titleElements.forEach((element, index) => {
+                        const zTranslation = 50 + (index * 15);
+                        element.style.transform = `perspective(1000px) rotateX(20deg) rotateY(-5deg) translateZ(${zTranslation}px) scale(1)`;
+                    });
+                }
+            }
+        });
+
+        // 创建浮动粒子效果
+        function createParticles() {
+            const particleContainer = document.getElementById('particles');
+            const particleCount = 30;
+
+            for (let i = 0; i < particleCount; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'particle';
+                particle.style.left = Math.random() * 100 + '%';
+                particle.style.animationDelay = Math.random() * 6 + 's';
+                particle.style.animationDuration = (Math.random() * 3 + 3) + 's';
+                particleContainer.appendChild(particle);
+            }
+        }
+
+        // 页面切换动画
+        Reveal.addEventListener('slidechanged', function (event) {
+            const currentSlide = event.currentSlide;
+            currentSlide.style.animation = 'slideIn 0.6s ease-out';
+
+            // 重置并重新触发所有动画
+            const autoAnimateElements = currentSlide.querySelectorAll('.auto-animate');
+            autoAnimateElements.forEach((element, index) => {
+                element.style.animation = 'none';
+                element.style.opacity = '0';
+                element.offsetHeight;
+                element.style.animation = `fadeInUp 0.5s ease-out forwards`;
+                element.style.animationDelay = `${0.1 + index * 0.1}s`;
+            });
+
+            const staggerContainers = currentSlide.querySelectorAll('.stagger-animation');
+            staggerContainers.forEach((container) => {
+                const children = container.children;
+                Array.from(children).forEach((child, index) => {
+                    child.style.animation = 'none';
+                    child.style.opacity = '0';
+                    child.offsetHeight;
+                    child.style.animation = `slideInLeft 0.4s ease-out forwards`;
+                    child.style.animationDelay = `${0.1 + index * 0.1}s`;
+                });
+            });
+
+            const zoomElements = currentSlide.querySelectorAll('.zoom-in-animation');
+            zoomElements.forEach((element, index) => {
+                element.style.animation = 'none';
+                element.style.opacity = '0';
+                element.offsetHeight;
+                element.style.animation = `zoomIn 0.5s ease-out forwards`;
+                element.style.animationDelay = `${0.6 + index * 0.2}s`;
+            });
+
+            setTimeout(() => {
+                currentSlide.style.animation = '';
+            }, 600);
+        });
+
+        // 增强型鼠标移动视差效果
+        document.addEventListener('mousemove', function (e) {
+            const mouseX = e.clientX / window.innerWidth;
+            const mouseY = e.clientY / window.innerHeight;
+
+            const particles = document.querySelectorAll('.particle');
+            particles.forEach((particle, index) => {
+                const speed = (index % 3 + 1) * 0.8;
+                const x = (mouseX - 0.5) * speed * 2;
+                const y = (mouseY - 0.5) * speed * 2;
+                particle.style.transform += ` translate(${x}px, ${y}px)`;
+            });
+
+            // 增强型 3D 鼠标跟随效果
+            const titleSlide = document.querySelector('.title-slide');
+            if (titleSlide) {
+                const titleElements = titleSlide.querySelectorAll('.title-3d, .subtitle-3d, .description-3d');
+                const mouseDistance = Math.sqrt(Math.pow(mouseX - 0.5, 2) + Math.pow(mouseY - 0.5, 2));
+                
+                if (mouseDistance < 0.3) {
+                    titleSlide.classList.add('mouse-active');
+                } else {
+                    titleSlide.classList.remove('mouse-active');
+                }
+                
+                titleElements.forEach((element, index) => {
+                    const intensity = (3 - index) * 3;
+                    const xRotation = (mouseY - 0.5) * intensity * 1.5;
+                    const yRotation = (mouseX - 0.5) * intensity * 1.5;
+                    const zTranslation = 50 + (index * 15) + (mouseDistance * 30);
+                    const scale = 1 + (mouseDistance < 0.3 ? 0.05 : 0);
+                    
+                    element.style.transform = `perspective(1000px) rotateX(${20 + xRotation}deg) rotateY(${-5 + yRotation}deg) translateZ(${zTranslation}px) scale(${scale})`;
+                });
+            }
+        });
+
+        // 初始化
+        createParticles();
+
+        Reveal.addEventListener('ready', function (event) {
+            const firstSlide = event.currentSlide;
+
+            const autoAnimateElements = firstSlide.querySelectorAll('.auto-animate');
+            autoAnimateElements.forEach((element, index) => {
+                element.style.animationDelay = `${0.1 + index * 0.1}s`;
+            });
+
+            const staggerContainers = firstSlide.querySelectorAll('.stagger-animation');
+            staggerContainers.forEach((container) => {
+                const children = container.children;
+                Array.from(children).forEach((child, index) => {
+                    child.style.animationDelay = `${0.1 + index * 0.1}s`;
+                });
+            });
+
+            const zoomElements = firstSlide.querySelectorAll('.zoom-in-animation');
+            zoomElements.forEach((element, index) => {
+                element.style.animationDelay = `${0.6 + index * 0.2}s`;
+            });
+        });
+    </script>
+</body>
+
+</html>

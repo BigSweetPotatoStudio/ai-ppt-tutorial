@@ -1,0 +1,1579 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🤖 AI编程最佳实践规范</title>
+
+    <!-- Reveal.js CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5.2.1/dist/reveal.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5.2.1/dist/theme/black.css">
+
+    <!-- 代码高亮 -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5.2.1/plugin/highlight/monokai.css">
+
+    <!-- 字体 -->
+    <link
+        href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Inter:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+
+    <!-- 自定义样式 -->
+    <style>
+        /* 白色主题优化颜色变量 */
+        :root {
+            --glass-blur: blur(20px) saturate(120%);
+            --glass-blur-strong: blur(25px) saturate(140%);
+            --glass-blur-light: blur(10px) saturate(110%);
+            --glass-bg: rgba(255, 255, 255, 0.6);
+            --glass-bg-hover: rgba(255, 255, 255, 0.8);
+            --glass-border: rgba(255, 255, 255, 0.8);
+            --glass-border-hover: rgba(255, 255, 255, 0.9);
+            --glass-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+            --glass-shadow-hover: 0 6px 30px rgba(0, 0, 0, 0.08);
+            --glass-inset: inset 0 1px 0 rgba(255, 255, 255, 0.9);
+            --glass-inset-hover: inset 0 1px 0 rgba(255, 255, 255, 0.95);
+            --text-primary: #1a1a1a;
+            --text-secondary: #4a4a4a;
+            --text-light: #888888;
+        }
+
+        .reveal {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            font-size: 28px;
+            background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 50%, #ffffff 100%);
+            background-attachment: fixed;
+            position: relative;
+        }
+
+        .reveal::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            backdrop-filter: blur(0.5px) brightness(1.02);
+            z-index: -1;
+            pointer-events: none;
+        }
+
+        /* scroll 模式不需要 slides 动画 */
+
+        /* scroll 模式不需要 slideIn 动画 */
+
+        .reveal .slides section {
+            backdrop-filter: blur(20px) saturate(120%);
+            background: rgba(255, 255, 255, 0.7);
+            border-radius: 24px;
+            border: 1px solid rgba(255, 255, 255, 0.8);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05), inset 0 1px 0 rgba(255, 255, 255, 0.9);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            margin: 20px 0;
+        }
+
+        .reveal .slides section:hover {
+            transform: translateY(-2px);
+            backdrop-filter: blur(25px) saturate(130%);
+            background: rgba(255, 255, 255, 0.8);
+            box-shadow: 0 6px 30px rgba(0, 0, 0, 0.08), inset 0 1px 0 rgba(255, 255, 255, 0.95);
+        }
+
+        .reveal h1,
+        .reveal h2,
+        .reveal h3 {
+            text-transform: none;
+            color: var(--text-primary);
+            margin-bottom: 15px;
+            text-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+            background: linear-gradient(45deg, #3498db, #e74c3c, #2ecc71, #f39c12);
+            background-size: 300% 300%;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: gradientShift 4s ease infinite;
+        }
+
+        @keyframes gradientShift {
+            0% {
+                background-position: 0% 50%;
+            }
+
+            25% {
+                background-position: 100% 50%;
+            }
+
+            50% {
+                background-position: 50% 100%;
+            }
+
+            75% {
+                background-position: 0% 50%;
+            }
+
+            100% {
+                background-position: 50% 0%;
+            }
+        }
+
+        .reveal h1 {
+            font-size: 2.2em;
+        }
+
+        .reveal h2 {
+            font-size: 1.8em;
+        }
+
+        .reveal h3 {
+            font-size: 1.3em;
+        }
+
+        .reveal h4 {
+            font-size: 1.1em;
+            color: #2c3e50;
+            text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+            font-weight: 600;
+        }
+
+        .reveal p {
+            font-size: 0.9em;
+            line-height: 1.6;
+            color: var(--text-secondary);
+            font-weight: 400;
+        }
+
+        .reveal strong {
+            color: #2980b9;
+            text-shadow: none;
+            font-weight: 600;
+        }
+
+        .reveal small {
+            color: var(--text-light);
+            font-weight: 400;
+        }
+
+        .reveal small {
+            font-size: 0.8em;
+            color: var(--text-light);
+            font-weight: 400;
+        }
+
+        .reveal .slides section {
+            text-align: left;
+            padding: 20px;
+            color: var(--text-primary);
+        }
+
+        .reveal .title-slide {
+            text-align: center;
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(30px) saturate(140%);
+        }
+
+        .tech-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
+            margin: 15px 0;
+        }
+
+        .tech-card {
+            backdrop-filter: var(--glass-blur);
+            background: linear-gradient(145deg, var(--glass-bg), rgba(255, 255, 255, 0.8));
+            border-radius: 16px;
+            padding: 12px;
+            text-align: center;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            border: 1px solid var(--glass-border);
+            position: relative;
+            overflow: hidden;
+            box-shadow: var(--glass-shadow), var(--glass-inset);
+            color: var(--text-primary);
+        }
+
+        .tech-card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+            transform: rotate(45deg);
+            transition: all 0.5s;
+            opacity: 0;
+        }
+
+        .tech-card:hover::before {
+            animation: shimmer 0.8s ease-in-out;
+        }
+
+        @keyframes shimmer {
+            0% {
+                transform: translateX(-100%) translateY(-100%) rotate(45deg);
+                opacity: 0;
+            }
+
+            50% {
+                opacity: 1;
+            }
+
+            100% {
+                transform: translateX(100%) translateY(100%) rotate(45deg);
+                opacity: 0;
+            }
+        }
+
+        .tech-card:hover {
+            transform: translateY(-5px) scale(1.01);
+            backdrop-filter: var(--glass-blur-strong);
+            background: linear-gradient(145deg, var(--glass-bg-hover), rgba(255, 255, 255, 0.9));
+            box-shadow: var(--glass-shadow-hover), var(--glass-inset-hover);
+        }
+
+        .tech-item {
+            backdrop-filter: var(--glass-blur-light);
+            background: rgba(255, 255, 255, 0.7);
+            padding: 8px;
+            margin: 3px 0;
+            border-radius: 8px;
+            border-left: 4px solid #3498db;
+            border: 1px solid var(--glass-border);
+            box-shadow: var(--glass-shadow), var(--glass-inset);
+            color: var(--text-primary);
+        }
+
+        .tech-item strong {
+            color: #2c3e50;
+            font-weight: 600;
+        }
+
+        .tech-item small {
+            color: var(--text-light);
+        }
+
+        .highlight-box {
+            backdrop-filter: var(--glass-blur);
+            background: linear-gradient(135deg, rgba(52, 152, 219, 0.2), rgba(155, 89, 182, 0.2));
+            border-radius: 20px;
+            padding: 20px;
+            margin: 15px 0;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            border: 1px solid rgba(255, 255, 255, 0.7);
+            box-shadow: var(--glass-shadow), var(--glass-inset);
+            color: var(--text-primary);
+        }
+
+        .highlight-box::before {
+            content: '';
+            position: absolute;
+            top: -2px;
+            left: -2px;
+            right: -2px;
+            bottom: -2px;
+            background: linear-gradient(45deg, #ff6b6b, #4ecdc4, #45b7d1, #96ceb4, #feca57);
+            border-radius: 18px;
+            z-index: -1;
+            animation: rotate 4s linear infinite;
+        }
+
+        @keyframes rotate {
+            0% {
+                transform: rotate(0deg);
+            }
+
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
+        .highlight-box::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 16px;
+            z-index: -1;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+            margin: 15px 0;
+        }
+
+        .feature-card {
+            backdrop-filter: var(--glass-blur);
+            background: linear-gradient(145deg, var(--glass-bg), rgba(255, 255, 255, 0.8));
+            border-radius: 16px;
+            padding: 15px;
+            border-left: 4px solid #3498db;
+            position: relative;
+            transition: all 0.3s ease;
+            border: 1px solid var(--glass-border);
+            box-shadow: var(--glass-shadow), var(--glass-inset);
+            color: var(--text-primary);
+        }
+
+        .feature-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(45deg, rgba(0, 212, 255, 0.1), rgba(255, 107, 107, 0.1));
+            border-radius: 12px;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .feature-card:hover::before {
+            opacity: 1;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-2px);
+            backdrop-filter: var(--glass-blur-strong);
+            background: linear-gradient(145deg, var(--glass-bg-hover), rgba(255, 255, 255, 0.9));
+            box-shadow: 0 8px 25px rgba(52, 152, 219, 0.1), var(--glass-inset-hover);
+        }
+
+        .step-card {
+            backdrop-filter: var(--glass-blur-light);
+            background: rgba(255, 255, 255, 0.7);
+            border-radius: 12px;
+            padding: 10px;
+            margin: 6px 0;
+            border-left: 3px solid #3498db;
+            border: 1px solid rgba(255, 255, 255, 0.8);
+            box-shadow: var(--glass-shadow), var(--glass-inset);
+            color: var(--text-primary);
+        }
+
+        .step-card strong {
+            color: #2c3e50;
+            text-shadow: none;
+            font-weight: 600;
+        }
+
+        .step-card small {
+            color: var(--text-light);
+        }
+
+        .step-number {
+            display: inline-block;
+            width: 28px;
+            height: 28px;
+            backdrop-filter: var(--glass-blur-light);
+            background: linear-gradient(135deg, rgba(52, 152, 219, 0.9), rgba(41, 128, 185, 0.9));
+            border-radius: 50%;
+            text-align: center;
+            line-height: 28px;
+            font-weight: bold;
+            margin-right: 8px;
+            font-size: 0.8em;
+            color: white;
+            border: 1px solid rgba(52, 152, 219, 0.2);
+            box-shadow: 0 4px 15px rgba(52, 152, 219, 0.3), var(--glass-inset);
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% {
+                transform: scale(1);
+                box-shadow: 0 4px 15px rgba(52, 152, 219, 0.4);
+            }
+
+            50% {
+                transform: scale(1.05);
+                box-shadow: 0 6px 20px rgba(52, 152, 219, 0.6);
+            }
+
+            100% {
+                transform: scale(1);
+                box-shadow: 0 4px 15px rgba(52, 152, 219, 0.4);
+            }
+        }
+
+        .code-block {
+            backdrop-filter: var(--glass-blur-light);
+            background: rgba(248, 249, 250, 0.9);
+            border-radius: 16px;
+            padding: 12px;
+            margin: 12px 0;
+            font-family: 'JetBrains Mono', 'Consolas', 'Monaco', monospace;
+            font-size: 0.85em;
+            position: relative;
+            border: 1px solid rgba(52, 152, 219, 0.2);
+            box-shadow: var(--glass-shadow), var(--glass-inset);
+        }
+
+        .code-block::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, #3498db, #e74c3c, #2ecc71);
+            border-radius: 12px 12px 0 0;
+        }
+
+        .code-block pre {
+            margin: 0;
+            font-family: 'JetBrains Mono', 'Consolas', 'Monaco', monospace;
+            color: #2c3e50;
+        }
+
+        .code-block .hljs-keyword {
+            color: #9b59b6;
+            font-weight: 600;
+        }
+
+        .code-block .hljs-string {
+            color: #27ae60;
+            font-weight: 500;
+        }
+
+        .code-block .hljs-number {
+            color: #e67e22;
+            font-weight: 600;
+        }
+
+        .code-block .hljs-comment {
+            color: #95a5a6;
+            font-style: italic;
+        }
+
+        .advantages-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 8px;
+            margin: 12px 0;
+        }
+
+        .advantage-item {
+            backdrop-filter: var(--glass-blur-light);
+            background: rgba(255, 193, 7, 0.15);
+            padding: 8px;
+            border-radius: 8px;
+            border-left: 3px solid #f39c12;
+            font-size: 0.9em;
+            color: #2c3e50;
+            border: 1px solid rgba(255, 193, 7, 0.3);
+            box-shadow: var(--glass-shadow), var(--glass-inset);
+        }
+
+        .advantage-item strong {
+            color: #ffc107;
+        }
+
+        .auto-animate {
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeInUp 0.8s ease-out forwards;
+        }
+
+        .auto-animate:nth-child(1) {
+            animation-delay: 0.1s;
+        }
+
+        .auto-animate:nth-child(2) {
+            animation-delay: 0.3s;
+        }
+
+        .auto-animate:nth-child(3) {
+            animation-delay: 0.5s;
+        }
+
+        .auto-animate:nth-child(4) {
+            animation-delay: 0.7s;
+        }
+
+        .auto-animate:nth-child(5) {
+            animation-delay: 0.9s;
+        }
+
+        .auto-animate:nth-child(6) {
+            animation-delay: 1.1s;
+        }
+
+        .auto-animate:nth-child(7) {
+            animation-delay: 1.3s;
+        }
+
+        .auto-animate:nth-child(8) {
+            animation-delay: 1.5s;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .stagger-animation>* {
+            opacity: 0;
+            transform: translateX(-30px);
+            animation: slideInLeft 0.6s ease-out forwards;
+        }
+
+        .stagger-animation>*:nth-child(1) {
+            animation-delay: 0.2s;
+        }
+
+        .stagger-animation>*:nth-child(2) {
+            animation-delay: 0.4s;
+        }
+
+        .stagger-animation>*:nth-child(3) {
+            animation-delay: 0.6s;
+        }
+
+        .stagger-animation>*:nth-child(4) {
+            animation-delay: 0.8s;
+        }
+
+        .stagger-animation>*:nth-child(5) {
+            animation-delay: 1.0s;
+        }
+
+        .stagger-animation>*:nth-child(6) {
+            animation-delay: 1.2s;
+        }
+
+        @keyframes slideInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-30px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        .zoom-in-animation {
+            opacity: 0;
+            transform: scale(0.8);
+            animation: zoomIn 0.8s ease-out forwards;
+        }
+
+        @keyframes zoomIn {
+            from {
+                opacity: 0;
+                transform: scale(0.8);
+            }
+
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        .emoji {
+            font-size: 1.1em;
+            margin-right: 8px;
+            display: inline-block;
+            animation: bounce 2s infinite;
+            backdrop-filter: var(--glass-blur-light);
+            background: rgba(255, 255, 255, 0.6);
+            border-radius: 50%;
+            padding: 4px;
+            box-shadow: 0 2px 10px rgba(52, 152, 219, 0.1);
+        }
+
+        @keyframes bounce {
+
+            0%,
+            20%,
+            50%,
+            80%,
+            100% {
+                transform: translateY(0);
+            }
+
+            40% {
+                transform: translateY(-10px);
+            }
+
+            60% {
+                transform: translateY(-5px);
+            }
+        }
+
+        .floating-particles {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+            backdrop-filter: blur(0.5px);
+        }
+
+        .particle {
+            position: absolute;
+            width: 3px;
+            height: 3px;
+            background: rgba(52, 152, 219, 0.3);
+            border-radius: 50%;
+            animation: float 6s linear infinite;
+            backdrop-filter: blur(1px);
+            box-shadow: 0 0 6px rgba(52, 152, 219, 0.2);
+        }
+
+        @keyframes float {
+            0% {
+                transform: translateY(100vh) rotate(0deg);
+                opacity: 0;
+            }
+
+            10% {
+                opacity: 1;
+            }
+
+            90% {
+                opacity: 1;
+            }
+
+            100% {
+                transform: translateY(-100px) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        .reveal .progress {
+            height: 6px;
+            background: linear-gradient(90deg, #3498db, #e74c3c, #2ecc71);
+            border-radius: 3px;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 2px 8px rgba(52, 152, 219, 0.3);
+        }
+
+        .reveal .controls {
+            bottom: 20px;
+            right: 20px;
+        }
+
+        .reveal .controls .navigate-left,
+        .reveal .controls .navigate-right,
+        .reveal .controls .navigate-up,
+        .reveal .controls .navigate-down {
+            border: 2px solid rgba(52, 152, 219, 0.2);
+            border-radius: 10px;
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: var(--glass-blur-light);
+            transition: all 0.3s ease;
+            box-shadow: var(--glass-shadow), var(--glass-inset);
+            color: var(--text-primary);
+        }
+
+        .reveal .controls .navigate-left:hover,
+        .reveal .controls .navigate-right:hover,
+        .reveal .controls .navigate-up:hover,
+        .reveal .controls .navigate-down:hover {
+            background: rgba(52, 152, 219, 0.2);
+            border-color: #3498db;
+            backdrop-filter: var(--glass-blur);
+            box-shadow: 0 0 20px rgba(52, 152, 219, 0.3), var(--glass-inset-hover);
+            color: white;
+        }
+
+        /* 白色主题特殊关键词颜色 */
+        .keyword-highlight {
+            color: #e74c3c;
+            font-weight: 600;
+            text-shadow: none;
+            background: linear-gradient(45deg, #e74c3c, #c0392b);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .number-highlight {
+            color: #f39c12;
+            font-weight: 700;
+            text-shadow: none;
+            background: linear-gradient(45deg, #f39c12, #e67e22);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .success-highlight {
+            color: #27ae60;
+            font-weight: 600;
+            text-shadow: none;
+            background: linear-gradient(45deg, #27ae60, #2ecc71);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .warning-highlight {
+            color: #e67e22;
+            font-weight: 600;
+            text-shadow: none;
+            background: linear-gradient(45deg, #e67e22, #d35400);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .info-highlight {
+            color: #3498db;
+            font-weight: 600;
+            text-shadow: none;
+            background: linear-gradient(45deg, #3498db, #2980b9);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="floating-particles" id="particles"></div>
+    <div class="reveal">
+        <div class="slides">
+
+            <!-- 封面页 -->
+            <section class="title-slide">
+                <h1>🤖 AI编程最佳实践规范</h1>
+                <h4>数据驱动型开发的新时代</h4>
+                <p>让AI理解数据结构，实现真正的智能编程</p>
+                <aside class="notes">
+                    <h3>演讲者备注 - 开场白</h3>
+                    <ul>
+                        <li>欢迎大家来到AI编程最佳实践的分享</li>
+                        <li>今天我们将探讨数据驱动型开发的新范式</li>
+                        <li>重点介绍98%错误消除法则和全栈开发新思路</li>
+                        <li>这不是传统的编程教学，而是AI时代的开发方法论</li>
+                        <li>建议大家记笔记，稍后会有实战案例</li>
+                    </ul>
+                </aside>
+            </section>
+
+            <!-- 第1页：AI编程的核心 -->
+            <section>
+                <h2>📊 AI编程的核心：数据驱动型开发</h2>
+                <div class="features-grid">
+                    <div class="feature-card">
+                        <h3>传统开发 vs AI编程</h3>
+                        <div class="auto-animate">
+                            <div style="color: #ff6b6b; margin: 10px 0;">
+                                <strong class="keyword-highlight">传统方式：</strong> 功能驱动 → 数据适配
+                            </div>
+                        </div>
+                        <div class="auto-animate">
+                            <div style="color: #51cf66; margin: 10px 0;">
+                                <strong class="success-highlight">AI时代：</strong> 数据结构 → 功能生成
+                            </div>
+                        </div>
+                    </div>
+                    <div class="feature-card">
+                        <h3>为什么数据驱动？</h3>
+                        <div class="stagger-animation">
+                            <div>• AI理解数据结构胜过理解业务逻辑</div>
+                            <div>• 类型系统提供强约束和智能提示</div>
+                            <div>• 数据验证确保运行时安全</div>
+                        </div>
+                    </div>
+                </div>
+                <aside class="notes">
+                    <h3>演讲者备注 - 数据驱动的重要性</h3>
+                    <ul>
+                        <li><strong>强调对比</strong>：传统开发先想功能，再考虑数据存储</li>
+                        <li><strong>AI的优势</strong>：AI更擅长理解结构化数据，而非复杂业务逻辑</li>
+                        <li><strong>举例说明</strong>：设计用户系统时，先定义User类型，AI就能自动生成注册、登录、权限等功能</li>
+                        <li><strong>类型系统</strong>：TypeScript的类型检查能在编译时发现70%的错误</li>
+                        <li><strong>过渡提醒</strong>：下一页我们将详细介绍98%错误消除法则</li>
+                    </ul>
+                </aside>
+            </section>
+
+            <!-- 第2页：98%错误消除法则 -->
+            <section>
+                <h2>🎯 98%错误消除法则</h2>
+                <div class="highlight-box">
+                    <h4><span class="number-highlight">70%</span> + <span class="number-highlight">28%</span> = <span
+                            class="success-highlight">98%</span></h4>
+                    <p><span class="info-highlight">编译时</span> + <span class="warning-highlight">运行时</span> = <span
+                            class="success-highlight">几乎零错误</span></p>
+                </div>
+                <div class="features-grid">
+                    <div class="feature-card">
+                        <h4><span class="number-highlight">70%</span> - <span class="info-highlight">编译时错误发现</span></h4>
+                        <div class="code-block">
+                            <pre><code class="typescript">interface User {
+  id: number;
+  name: string;
+  email: string;
+}</code></pre>
+                        </div>
+                        <p><span class="keyword-highlight">类型不匹配</span>、<span
+                                class="keyword-highlight">属性缺失</span>、<span class="keyword-highlight">方法调用错误</span> -
+                            <span class="success-highlight">编译时全部捕获</span>
+                        </p>
+                    </div>
+                    <div class="feature-card">
+                        <h4><span class="number-highlight">28%</span> - <span class="warning-highlight">运行时错误发现</span>
+                        </h4>
+                        <div class="code-block">
+                            <pre><code class="typescript">const UserSchema = z.object({
+  id: z.number().positive(),
+  name: z.string().min(2),
+  email: z.string().email(),
+});</code></pre>
+                        </div>
+                        <p><span class="warning-highlight">数据格式</span>、<span class="warning-highlight">业务规则</span>、<span
+                                class="warning-highlight">边界条件</span> - <span class="success-highlight">运行时实时验证</span>
+                        </p>
+                    </div>
+                </div>
+                <aside class="notes">
+                    <h3>演讲者备注 - 98%错误消除法则</h3>
+                    <ul>
+                        <li><strong>数据来源</strong>：这个数据基于多年的工程实践统计</li>
+                        <li><strong>70%编译时</strong>：TypeScript类型检查、ESLint规则检查、类型推导</li>
+                        <li><strong>28%运行时</strong>：Zod数据验证、业务规则校验、边界条件检查</li>
+                        <li><strong>剩余2%</strong>：极少数的逻辑错误和边缘情况</li>
+                        <li><strong>实际效果</strong>：使用这套方法后，生产环境错误率降低95%以上</li>
+                        <li><strong>成本效益</strong>：前期投入类型定义，后期维护成本大幅降低</li>
+                    </ul>
+                </aside>
+            </section>
+
+            <!-- 第3页：数据结构先行的开发流程 -->
+            <section>
+                <h2>🏗️ 数据结构先行的开发流程</h2>
+                <div class="highlight-box">
+                    <h4><span class="info-highlight">Schema First</span> → <span class="success-highlight">AI Code
+                            Generation</span></h4>
+                </div>
+                <div class="tech-grid">
+                    <div class="tech-card auto-animate">
+                        <div style="font-size: 1.8em; margin-bottom: 8px;">📋</div>
+                        <h4>1. 定义Schema</h4>
+                        <p>Zod + TypeScript</p>
+                    </div>
+                    <div class="tech-card auto-animate">
+                        <div style="font-size: 1.8em; margin-bottom: 8px;">🤖</div>
+                        <h4>2. AI理解结构</h4>
+                        <p>上下文感知</p>
+                    </div>
+                    <div class="tech-card auto-animate">
+                        <div style="font-size: 1.8em; margin-bottom: 8px;">⚡</div>
+                        <h4>3. 生成代码</h4>
+                        <p>CRUD + 业务逻辑</p>
+                    </div>
+                </div>
+                <div class="zoom-in-animation" style="animation-delay: 1.2s;">
+                    <div class="step-card">
+                        <strong>实践案例：</strong>
+                        定义用户数据结构 → AI自动生成：用户注册、登录、个人信息管理、权限控制等完整功能模块
+                    </div>
+                </div>
+                <aside class="notes">
+                    <h3>演讲者备注 - Schema First开发流程</h3>
+                    <ul>
+                        <li><strong>传统流程</strong>：需求分析→界面设计→后端开发→前端开发→联调测试</li>
+                        <li><strong>Schema First</strong>：数据结构定义→AI自动生成→快速验证→迭代优化</li>
+                        <li><strong>核心优势</strong>：AI理解数据结构后，可以生成完整的CRUD操作</li>
+                        <li><strong>实际演示</strong>：展示如何从User Schema生成完整的用户管理系统</li>
+                        <li><strong>时间对比</strong>：传统开发需要2周，Schema First只需要2天</li>
+                        <li><strong>质量保证</strong>：生成的代码天然具备类型安全和数据验证</li>
+                    </ul>
+                </aside>
+            </section>
+
+            <!-- 第4页：全栈开发新范式 -->
+            <section>
+                <h2>🌐 全栈开发：AI时代的新范式</h2>
+                <div class="highlight-box">
+                    <h4><span class="success-highlight">AI时代</span><span class="keyword-highlight">没有前后端分工</span></h4>
+                    <p><span class="info-highlight">学习成本的降低</span>让<span class="success-highlight">全栈开发成为可能</span></p>
+                </div>
+                <div class="features-grid">
+                    <div class="feature-card">
+                        <h4><span class="keyword-highlight">传统分工</span>的原因</h4>
+                        <div class="stagger-animation">
+                            <div class="step-card">
+                                <span class="step-number">1</span>
+                                <strong class="keyword-highlight">学习成本高</strong> - 需要<span
+                                    class="number-highlight">5年</span>才能成为领域专家
+                            </div>
+                            <div class="step-card">
+                                <span class="step-number">2</span>
+                                <strong class="keyword-highlight">技术栈复杂</strong> - <span
+                                    class="info-highlight">前端</span>、<span class="warning-highlight">后端</span>、<span
+                                    class="success-highlight">数据库</span>各有体系
+                            </div>
+                            <div class="step-card">
+                                <span class="step-number">3</span>
+                                <strong class="keyword-highlight">沟通成本</strong> - <span
+                                    class="info-highlight">接口定义</span>、<span class="warning-highlight">数据格式协调</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="feature-card">
+                        <h4><span class="success-highlight">AI时代</span>的优势</h4>
+                        <div class="stagger-animation">
+                            <div class="step-card">
+                                <span class="step-number">1</span>
+                                <strong class="success-highlight">AI降低学习成本</strong> - <span
+                                    class="number-highlight">几天内</span>掌握新技术栈
+                            </div>
+                            <div class="step-card">
+                                <span class="step-number">2</span>
+                                <strong class="success-highlight">统一数据模型</strong> - <span
+                                    class="info-highlight">前后端共享Schema</span>
+                            </div>
+                            <div class="step-card">
+                                <span class="step-number">3</span>
+                                <strong class="success-highlight">零沟通成本</strong> - <span
+                                    class="number-highlight">一个人</span>完成端到端开发
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <aside class="notes">
+                    <h3>演讲者备注 - 全栈开发新范式</h3>
+                    <ul>
+                        <li><strong>历史背景</strong>：传统前后端分工是因为技术复杂度和学习成本</li>
+                        <li><strong>AI的转变</strong>：AI助手可以快速学习新技术栈，降低学习门槛</li>
+                        <li><strong>实际案例</strong>：一个后端开发者通过AI助手，3天内掌握React开发</li>
+                        <li><strong>经济效益</strong>：团队规模从6人减少到2人，效率提升300%</li>
+                        <li><strong>技能要求</strong>：重点是理解数据结构和业务逻辑，而非语法细节</li>
+                        <li><strong>未来趋势</strong>：全栈开发者将成为主流，专业分工将在更高层次展开</li>
+                    </ul>
+                </aside>
+            </section>
+
+            <!-- 第5页：技术栈选择 -->
+            <section>
+                <h2>🔧 AI编程的技术栈选择</h2>
+                <div class="tech-grid">
+                    <div class="tech-card">
+                        <h4>类型系统</h4>
+                        <div class="tech-item auto-animate">
+                            <strong>TypeScript</strong><br>
+                            <small>编译时类型检查</small>
+                        </div>
+                        <div class="tech-item auto-animate">
+                            <strong>Rust</strong><br>
+                            <small>内存安全 + 性能</small>
+                        </div>
+                        <div class="tech-item auto-animate">
+                            <strong>Go</strong><br>
+                            <small>简洁语法 + 强类型</small>
+                        </div>
+                    </div>
+                    <div class="tech-card">
+                        <h4>数据验证</h4>
+                        <div class="tech-item auto-animate">
+                            <strong>Zod</strong><br>
+                            <small>TypeScript优先</small>
+                        </div>
+                        <div class="tech-item auto-animate">
+                            <strong>Yup</strong><br>
+                            <small>对象验证库</small>
+                        </div>
+                        <div class="tech-item auto-animate">
+                            <strong>Joi</strong><br>
+                            <small>Node.js验证</small>
+                        </div>
+                    </div>
+                    <div class="tech-card">
+                        <h4>全栈框架</h4>
+                        <div class="tech-item auto-animate">
+                            <strong>Next.js</strong><br>
+                            <small>React全栈</small>
+                        </div>
+                        <div class="tech-item auto-animate">
+                            <strong>SvelteKit</strong><br>
+                            <small>Svelte全栈</small>
+                        </div>
+                        <div class="tech-item auto-animate">
+                            <strong>Nuxt.js</strong><br>
+                            <small>Vue全栈</small>
+                        </div>
+                    </div>
+                </div>
+                <div class="highlight-box zoom-in-animation" style="animation-delay: 1.5s;">
+                    <h4>🚀 推荐组合</h4>
+                    <p>Next.js + TypeScript + Zod + Prisma + tRPC</p>
+                </div>
+                <aside class="notes">
+                    <h3>演讲者备注 - 技术栈选择原则</h3>
+                    <ul>
+                        <li><strong>类型系统优先</strong>：TypeScript是首选，Rust适合性能要求高的场景</li>
+                        <li><strong>数据验证</strong>：Zod与TypeScript完美结合，运行时验证</li>
+                        <li><strong>全栈框架</strong>：Next.js生态最成熟，SvelteKit性能最优</li>
+                        <li><strong>推荐组合说明</strong>：这个组合经过实战验证，覆盖了所有核心需求</li>
+                        <li><strong>学习路径</strong>：建议先掌握TypeScript，再学习其他工具</li>
+                        <li><strong>迁移策略</strong>：现有项目可以逐步引入，不需要完全重写</li>
+                    </ul>
+                </aside>
+            </section>
+
+            <!-- 第6页：实战案例 -->
+            <section>
+                <h2>🎨 AI编程的实战案例</h2>
+                <div class="highlight-box">
+                    <h4>从Schema到完整应用</h4>
+                    <p><span class="number-highlight">10分钟</span>构建一个<span class="success-highlight">博客系统</span></p>
+                </div>
+                <div class="features-grid">
+                    <div class="feature-card">
+                        <h4>1. 定义数据模型</h4>
+                        <div class="code-block">
+                            <pre><code class="typescript">const PostSchema = z.object({
+  id: z.string().uuid(),
+  title: z.string().min(1),
+  content: z.string(),
+  author: UserSchema,
+  tags: z.array(z.string()),
+  createdAt: z.date(),
+});</code></pre>
+                        </div>
+                    </div>
+                    <div class="feature-card">
+                        <h4>2. AI自动生成</h4>
+                        <div class="stagger-animation">
+                            <div>• <span class="success-highlight">数据库模型</span> (Prisma)</div>
+                            <div>• <span class="info-highlight">API路由</span> (tRPC)</div>
+                            <div>• <span class="keyword-highlight">前端组件</span> (React)</div>
+                            <div>• <span class="warning-highlight">表单验证</span> (React Hook Form)</div>
+                            <div>• <span class="info-highlight">权限控制</span> (NextAuth)</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="advantages-grid zoom-in-animation" style="animation-delay: 1.0s;">
+                    <div class="advantage-item">• <span class="success-highlight">类型安全</span>：前后端共享类型定义</div>
+                    <div class="advantage-item">• <span class="warning-highlight">自动验证</span>：输入数据自动校验</div>
+                    <div class="advantage-item">• <span class="info-highlight">智能提示</span>：IDE完整智能提示</div>
+                    <div class="advantage-item">• <span class="keyword-highlight">重构友好</span>：类型变更自动传播</div>
+                </div>
+                <aside class="notes">
+                    <h3>演讲者备注 - 实战案例详解</h3>
+                    <ul>
+                        <li><strong>现场演示</strong>：建议准备一个实际的代码演示</li>
+                        <li><strong>PostSchema解析</strong>：解释每个字段的验证规则和业务含义</li>
+                        <li><strong>生成过程</strong>：展示AI如何从Schema生成完整的功能模块</li>
+                        <li><strong>时间对比</strong>：传统开发需要2-3天，AI辅助只需要10分钟</li>
+                        <li><strong>代码质量</strong>：生成的代码遵循最佳实践，包含错误处理</li>
+                        <li><strong>扩展性</strong>：后续添加评论、点赞功能只需要修改Schema</li>
+                    </ul>
+                </aside>
+            </section>
+
+            <!-- 第7页：未来展望 -->
+            <section>
+                <h2>🚀 AI编程的未来展望</h2>
+                <div class="features-grid">
+                    <div class="feature-card">
+                        <h4>短期发展</h4>
+                        <div class="auto-animate">
+                            <div class="step-card">
+                                <span class="emoji">🤖</span>
+                                <strong>智能Schema生成</strong><br>
+                                <small>AI根据需求自动生成数据模型</small>
+                            </div>
+                        </div>
+                        <div class="auto-animate">
+                            <div class="step-card">
+                                <span class="emoji">🔗</span>
+                                <strong>端到端类型推导</strong><br>
+                                <small>从数据库到前端的完整类型链</small>
+                            </div>
+                        </div>
+                        <div class="auto-animate">
+                            <div class="step-card">
+                                <span class="emoji">⚙️</span>
+                                <strong>自动化测试生成</strong><br>
+                                <small>基于Schema自动生成测试用例</small>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="feature-card">
+                        <h4>长期愿景</h4>
+                        <div class="auto-animate">
+                            <div class="step-card">
+                                <span class="emoji">💬</span>
+                                <strong>自然语言编程</strong><br>
+                                <small>描述需求，AI生成完整应用</small>
+                            </div>
+                        </div>
+                        <div class="auto-animate">
+                            <div class="step-card">
+                                <span class="emoji">🏧</span>
+                                <strong>智能架构演进</strong><br>
+                                <small>AI自动优化系统架构</small>
+                            </div>
+                        </div>
+                        <div class="auto-animate">
+                            <div class="step-card">
+                                <span class="emoji">✨</span>
+                                <strong>零代码开发</strong><br>
+                                <small>配置驱动的应用开发</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="highlight-box zoom-in-animation" style="animation-delay: 1.5s;">
+                    <h4>🌟 <span class="success-highlight">数据驱动</span>的开发范式</h4>
+                    <p>将成为<span class="info-highlight">软件开发的主流方式</span>，开发者的角色将从<span
+                            class="keyword-highlight">编码者</span>转变为<span class="success-highlight">架构师</span></p>
+                </div>
+                <aside class="notes">
+                    <h3>演讲者备注 - 未来展望</h3>
+                    <ul>
+                        <li><strong>短期发展</strong>：6-12个月内可能实现的技术进步</li>
+                        <li><strong>智能Schema生成</strong>：GPT-4已经能够根据需求生成基本的数据模型</li>
+                        <li><strong>端到端类型推导</strong>：tRPC已经实现了部分功能，未来会更完善</li>
+                        <li><strong>自动化测试</strong>：基于Schema生成测试用例，覆盖度可达90%</li>
+                        <li><strong>长期愿景</strong>：3-5年的技术发展方向</li>
+                        <li><strong>角色转变</strong>：开发者将更多关注架构设计和业务逻辑</li>
+                    </ul>
+                </aside>
+            </section>
+
+            <!-- 第8页：Claude Code - AI编程的实际工具 -->
+            <section>
+                <h2>🛠️ Claude Code：AI编程的实际工具</h2>
+                <div class="highlight-box">
+                    <h4><span class="keyword-highlight">Anthropic</span> 的 <span class="success-highlight">代理式编程工具</span></h4>
+                    <p>将<span class="info-highlight">创意</span>转化为<span class="success-highlight">代码</span>，让AI助手直接在<span class="warning-highlight">终端</span>中工作</p>
+                </div>
+                <div class="features-grid">
+                    <div class="feature-card">
+                        <h4>🚀 核心特性</h4>
+                        <div class="stagger-animation">
+                            <div class="step-card">
+                                <strong class="success-highlight">终端原生</strong><br>
+                                <small>直接在开发环境中工作</small>
+                            </div>
+                            <div class="step-card">
+                                <strong class="info-highlight">智能理解</strong><br>
+                                <small>理解整个代码库上下文</small>
+                            </div>
+                            <div class="step-card">
+                                <strong class="keyword-highlight">直接操作</strong><br>
+                                <small>编辑文件、运行命令、创建提交</small>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="feature-card">
+                        <h4>💡 实际能力</h4>
+                        <div class="stagger-animation">
+                            <div class="step-card">
+                                <strong class="info-highlight">功能开发</strong><br>
+                                <small>从描述到完整功能实现</small>
+                            </div>
+                            <div class="step-card">
+                                <strong class="warning-highlight">调试修复</strong><br>
+                                <small>快速定位和解决代码问题</small>
+                            </div>
+                            <div class="step-card">
+                                <strong class="success-highlight">自动化任务</strong><br>
+                                <small>处理重复性开发工作</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="code-block zoom-in-animation" style="animation-delay: 1.2s;">
+                    <pre><code class="bash"># 安装 Claude Code
+npm install -g @anthropic-ai/claude-code
+cd your-awesome-project
+claude</code></pre>
+                </div>
+                <aside class="notes">
+                    <h3>演讲者备注 - Claude Code 介绍</h3>
+                    <ul>
+                        <li><strong>定位说明</strong>：Claude Code 是 Anthropic 官方的编程助手工具</li>
+                        <li><strong>终端原生</strong>：不需要切换到 Web 界面，直接在开发环境中使用</li>
+                        <li><strong>智能理解</strong>：能够理解整个项目结构，不仅仅是单个文件</li>
+                        <li><strong>直接操作</strong>：可以直接修改文件、运行测试、创建 Git 提交</li>
+                        <li><strong>安装简单</strong>：通过 npm 全局安装，需要 Node.js 18+</li>
+                        <li><strong>使用场景</strong>：适合从个人项目到企业级开发的各种场景</li>
+                    </ul>
+                </aside>
+            </section>
+
+            <!-- 第9页：Claude Code 在数据驱动开发中的应用 -->
+            <section>
+                <h2>🔄 Claude Code + 数据驱动开发</h2>
+                <div class="highlight-box">
+                    <h4><span class="success-highlight">Schema First</span> + <span class="info-highlight">Claude Code</span> = <span class="keyword-highlight">开发效率提升10倍</span></h4>
+                </div>
+                <div class="features-grid">
+                    <div class="feature-card">
+                        <h4>📋 工作流程</h4>
+                        <div class="stagger-animation">
+                            <div class="step-card">
+                                <span class="step-number">1</span>
+                                <strong class="info-highlight">定义 Schema</strong><br>
+                                <small>用自然语言描述数据结构</small>
+                            </div>
+                            <div class="step-card">
+                                <span class="step-number">2</span>
+                                <strong class="success-highlight">Claude Code 理解</strong><br>
+                                <small>分析数据关系和业务逻辑</small>
+                            </div>
+                            <div class="step-card">
+                                <span class="step-number">3</span>
+                                <strong class="keyword-highlight">生成完整代码</strong><br>
+                                <small>前后端、数据库、API 一次性生成</small>
+                            </div>
+                            <div class="step-card">
+                                <span class="step-number">4</span>
+                                <strong class="warning-highlight">测试和优化</strong><br>
+                                <small>自动生成测试用例和优化建议</small>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="feature-card">
+                        <h4>🎯 实际案例</h4>
+                        <div class="code-block">
+                            <pre><code class="bash"># 对 Claude Code 说
+"帮我创建一个用户管理系统，包含用户注册、
+登录、个人信息管理和权限控制。用户需要有
+姓名、邮箱、角色等基本信息。"
+
+# Claude Code 会自动：
+# 1. 生成 TypeScript 类型定义
+# 2. 创建 Zod 验证 Schema
+# 3. 生成 Prisma 数据库模型
+# 4. 创建 API 路由和业务逻辑
+# 5. 生成前端组件和表单
+# 6. 添加测试用例</code></pre>
+                        </div>
+                        <div class="advantages-grid">
+                            <div class="advantage-item">• <span class="success-highlight">10分钟</span>完成传统2天的工作</div>
+                            <div class="advantage-item">• <span class="info-highlight">类型安全</span>贯穿整个应用</div>
+                            <div class="advantage-item">• <span class="keyword-highlight">自动测试</span>覆盖主要功能</div>
+                            <div class="advantage-item">• <span class="warning-highlight">最佳实践</span>自动应用</div>
+                        </div>
+                    </div>
+                </div>
+                <aside class="notes">
+                    <h3>演讲者备注 - Claude Code 实际应用</h3>
+                    <ul>
+                        <li><strong>工作流程</strong>：展示如何将 Schema First 与 Claude Code 结合</li>
+                        <li><strong>自然语言</strong>：可以用中文描述需求，Claude Code 能够理解</li>
+                        <li><strong>全栈生成</strong>：从数据模型到前端界面，一次性生成</li>
+                        <li><strong>代码质量</strong>：生成的代码遵循最佳实践，包含错误处理</li>
+                        <li><strong>效率提升</strong>：真实案例显示效率提升 10 倍不是夸张</li>
+                        <li><strong>学习价值</strong>：通过阅读生成的代码，可以学习最佳实践</li>
+                    </ul>
+                </aside>
+            </section>
+
+            <!-- 第10页：行动呼吁 -->
+            <section>
+                <h2>🎯 立即开始你的AI编程之旅</h2>
+                <div class="features-grid">
+                    <div class="feature-card">
+                        <h4>实践步骤</h4>
+                        <div class="stagger-animation">
+                            <div class="step-card">
+                                <span class="step-number">1</span>
+                                <strong>安装 Claude Code</strong><br>
+                                <small>npm install -g @anthropic-ai/claude-code</small>
+                            </div>
+                            <div class="step-card">
+                                <span class="step-number">2</span>
+                                <strong>学习TypeScript + Zod</strong><br>
+                                <small>掌握类型系统和数据验证</small>
+                            </div>
+                            <div class="step-card">
+                                <span class="step-number">3</span>
+                                <strong>选择全栈框架</strong><br>
+                                <small>Next.js、SvelteKit或Nuxt.js</small>
+                            </div>
+                            <div class="step-card">
+                                <span class="step-number">4</span>
+                                <strong>设计数据模型</strong><br>
+                                <small>Schema先行，AI跟随</small>
+                            </div>
+                            <div class="step-card">
+                                <span class="step-number">5</span>
+                                <strong>让 Claude Code 生成代码</strong><br>
+                                <small>基于Schema的智能编程</small>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="feature-card">
+                        <h4>核心理念</h4>
+                        <div class="stagger-animation">
+                            <div class="step-card">
+                                <strong>数据驱动一切</strong><br>
+                                <small>数据结构决定应用架构</small>
+                            </div>
+                            <div class="step-card">
+                                <strong>类型安全至上</strong><br>
+                                <small>70%错误编译时发现</small>
+                            </div>
+                            <div class="step-card">
+                                <strong>验证无处不在</strong><br>
+                                <small>28%错误运行时拦截</small>
+                            </div>
+                            <div class="step-card">
+                                <strong>Claude Code 赋能</strong><br>
+                                <small>AI助手直接参与开发</small>
+                            </div>
+                            <div class="step-card">
+                                <strong>全栈思维</strong><br>
+                                <small>端到端的开发体验</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="highlight-box zoom-in-animation" style="animation-delay: 1.5s;">
+                    <h4>🚀 开始你的<span class="success-highlight">数据驱动</span><span class="info-highlight">AI编程</span>之旅
+                    </h4>
+                    <p><span class="keyword-highlight">拥抱新范式</span>，让<span
+                            class="success-highlight">Claude Code</span>成为你最强大的<span class="info-highlight">编程伙伴</span></p>
+                </div>
+                <aside class="notes">
+                    <h3>演讲者备注 - 行动呼吁</h3>
+                    <ul>
+                        <li><strong>学习建议</strong>：推荐的学习资源和路径</li>
+                        <li><strong>实践项目</strong>：建议从一个简单的ToDo应用开始</li>
+                        <li><strong>社区资源</strong>：推荐相关的开源项目和社区</li>
+                        <li><strong>持续学习</strong>：AI技术发展迅速，需要持续关注</li>
+                        <li><strong>分享经验</strong>：鼓励听众分享自己的实践经验</li>
+                        <li><strong>结束语</strong>：感谢大家的聆听，欢迎后续交流</li>
+                    </ul>
+                </aside>
+            </section>
+
+        </div>
+    </div>
+
+    <!-- Reveal.js JavaScript -->
+    <script src="https://cdn.jsdelivr.net/npm/reveal.js@5.2.1/dist/reveal.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/reveal.js@5.2.1/plugin/notes/notes.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/reveal.js@5.2.1/plugin/markdown/markdown.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/reveal.js@5.2.1/plugin/highlight/highlight.js"></script>
+
+    <script>
+        // Reveal.js 初始化
+        Reveal.initialize({
+            // 基础配置
+            hash: true,
+            controls: true,
+            progress: true,
+            center: false,
+            transition: 'slide', // none/fade/slide/convex/concave/zoom
+            showNotes: false, // 显示演讲者备注
+            // 调整视图尺寸，避免滚动条
+            width: 1024,
+            height: 768,
+            margin: 0.05,
+
+            // 插件配置 (Reveal.js 5.x 语法)
+            plugins: [RevealMarkdown, RevealHighlight, RevealNotes],
+
+            // 键盘快捷键
+            keyboard: {
+                39: 'next', // 右箭头
+                37: 'prev', // 左箭头
+                32: 'next', // 空格键
+            },
+
+            // 触摸导航
+            touch: true,
+
+            // 循环播放
+            loop: false,
+
+            // 自动播放
+            autoSlide: 0,
+
+            // 预加载
+            preloadIframes: false,
+
+            // 视图距离
+            viewDistance: 3,
+
+            // 移动设备优化
+            mobileViewDistance: 2,
+
+            // Reveal.js 5.x 新特性：滚动视图
+            view: 'scroll', // 'slide' 或 'scroll' - 使用scroll模式，现代化体验
+            scrollProgress: true,
+
+            // 新增：自动动画
+            autoAnimateEasing: 'ease-in-out',
+            autoAnimateDuration: 1.0,
+            autoAnimateUnmatched: false,
+
+            // 新增：媒体查询支持
+            disableLayout: false,
+
+            // 新增：更好的移动支持
+            embedded: false,
+
+            // 新增：更好的可访问性
+            rtl: false,
+            navigationMode: 'default',
+
+            // 新增：更好的性能
+            preloadIframes: null,
+            autoSlideMethod: null,
+
+            // 新增：更好的主题支持
+            parallaxBackgroundImage: '',
+            parallaxBackgroundSize: '',
+            parallaxBackgroundHorizontal: null,
+            parallaxBackgroundVertical: null
+        });
+
+        // 自定义键盘事件
+        document.addEventListener('keydown', function (event) {
+            // F键进入/退出全屏
+            if (event.key === 'f' || event.key === 'F') {
+                if (document.fullscreenElement) {
+                    document.exitFullscreen();
+                } else {
+                    document.documentElement.requestFullscreen();
+                }
+            }
+
+            // R键重新开始
+            if (event.key === 'r' || event.key === 'R') {
+                Reveal.slide(0);
+            }
+        });
+
+        // 创建浮动粒子效果
+        function createParticles() {
+            const particleContainer = document.getElementById('particles');
+            const particleCount = 30;
+
+            for (let i = 0; i < particleCount; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'particle';
+                particle.style.left = Math.random() * 100 + '%';
+                particle.style.animationDelay = Math.random() * 6 + 's';
+                particle.style.animationDuration = (Math.random() * 3 + 3) + 's';
+                particleContainer.appendChild(particle);
+            }
+        }
+
+        // 添加一些交互效果
+        Reveal.addEventListener('slidechanged', function (event) {
+            // 页面切换动画
+            const currentSlide = event.currentSlide;
+            currentSlide.style.animation = 'slideIn 0.6s ease-out';
+
+            // 重置并重新触发所有动画
+            const animatedElements = currentSlide.querySelectorAll('.auto-animate, .stagger-animation > *, .zoom-in-animation');
+
+            // 处理 auto-animate 元素
+            const autoAnimateElements = currentSlide.querySelectorAll('.auto-animate');
+            autoAnimateElements.forEach((element, index) => {
+                element.style.animation = 'none';
+                element.style.opacity = '0';
+                element.offsetHeight;
+                element.style.animation = `fadeInUp 0.8s ease-out forwards`;
+                element.style.animationDelay = `${0.1 + index * 0.2}s`;
+            });
+
+            // 处理 stagger-animation 容器
+            const staggerContainers = currentSlide.querySelectorAll('.stagger-animation');
+            staggerContainers.forEach((container) => {
+                const children = container.children;
+                Array.from(children).forEach((child, index) => {
+                    child.style.animation = 'none';
+                    child.style.opacity = '0';
+                    child.offsetHeight;
+                    child.style.animation = `slideInLeft 0.6s ease-out forwards`;
+                    child.style.animationDelay = `${0.2 + index * 0.2}s`;
+                });
+            });
+
+            // 处理 zoom-in-animation 元素
+            const zoomElements = currentSlide.querySelectorAll('.zoom-in-animation');
+            zoomElements.forEach((element, index) => {
+                element.style.animation = 'none';
+                element.style.opacity = '0';
+                element.offsetHeight;
+                element.style.animation = `zoomIn 0.8s ease-out forwards`;
+                element.style.animationDelay = `${1.0 + index * 0.3}s`;
+            });
+
+            // 重置页面动画
+            setTimeout(() => {
+                currentSlide.style.animation = '';
+            }, 600);
+
+            console.log('当前页面：', event.indexh);
+        });
+
+        // 添加鼠标移动视差效果
+        document.addEventListener('mousemove', function (e) {
+            const mouseX = e.clientX / window.innerWidth;
+            const mouseY = e.clientY / window.innerHeight;
+
+            const particles = document.querySelectorAll('.particle');
+            particles.forEach((particle, index) => {
+                const speed = (index % 3 + 1) * 0.5;
+                const x = (mouseX - 0.5) * speed;
+                const y = (mouseY - 0.5) * speed;
+                particle.style.transform += ` translate(${x}px, ${y}px)`;
+            });
+        });
+
+        // 初始化粒子效果
+        createParticles();
+
+        // 初始化第一页的动画
+        Reveal.addEventListener('ready', function (event) {
+            // 触发第一页的动画
+            const firstSlide = event.currentSlide;
+
+            // 处理 auto-animate 元素
+            const autoAnimateElements = firstSlide.querySelectorAll('.auto-animate');
+            autoAnimateElements.forEach((element, index) => {
+                element.style.animationDelay = `${0.1 + index * 0.2}s`;
+            });
+
+            // 处理 stagger-animation 容器
+            const staggerContainers = firstSlide.querySelectorAll('.stagger-animation');
+            staggerContainers.forEach((container) => {
+                const children = container.children;
+                Array.from(children).forEach((child, index) => {
+                    child.style.animationDelay = `${0.2 + index * 0.2}s`;
+                });
+            });
+
+            // 处理 zoom-in-animation 元素
+            const zoomElements = firstSlide.querySelectorAll('.zoom-in-animation');
+            zoomElements.forEach((element, index) => {
+                element.style.animationDelay = `${1.0 + index * 0.3}s`;
+            });
+        });
+    </script>
+</body>
+
+</html>
