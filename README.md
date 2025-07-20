@@ -6,7 +6,7 @@
 
 [![Reveal.js](https://img.shields.io/badge/Reveal.js-5.2.1-ff6b6b?style=for-the-badge&logo=reveal.js)](https://revealjs.com/)
 [![主题系统](https://img.shields.io/badge/双主题系统-Ready-4ECDC4?style=for-the-badge&logo=palette)](./themes/)
-[![Demo](https://img.shields.io/badge/Live_Demo-Ready-27ae60?style=for-the-badge&logo=googlechrome)](./index.html)
+[![Demo](https://img.shields.io/badge/Live_Demo-在线演示-27ae60?style=for-the-badge&logo=googlechrome)](https://bigsweetpotatostudio.github.io/ai-ppt-tutorial/)
 
 *一套代码，双重体验 | 商务演示与技术分享的完美解决方案*
 
@@ -134,17 +134,21 @@ ai-ppt-tutorial/
 - **技术炫酷** → 查看 [`themes/dark-theme.md`](./themes/dark-theme.md)
 - **混合使用** → 查看主配置 [`CLAUDE.md`](./CLAUDE.md)
 
-### 2️⃣ **直接预览**
+### 2️⃣ **在线预览**
 
+**🌐 GitHub Pages 在线演示**
+- **[🌞 白色商务主题](https://bigsweetpotatostudio.github.io/ai-ppt-tutorial/index.html)** - 专业商务演示
+- **[🌙 黑色极客主题](https://bigsweetpotatostudio.github.io/ai-ppt-tutorial/index.dark.html)** - 炫酷技术分享  
+- **[🎨 Claude Code演示](https://bigsweetpotatostudio.github.io/ai-ppt-tutorial/examples/claude-code-demo.html)** - AI编程功能展示
+
+**💻 本地预览**
 ```bash
-# 白色商务主题演示
+# 克隆项目
+git clone https://github.com/BigSweetPotatoStudio/ai-ppt-tutorial.git
+cd ai-ppt-tutorial
+
+# 直接打开HTML文件即可预览
 open index.html
-
-# 黑色极客主题演示  
-open index.dark.html
-
-# 查看更多案例
-open examples/claude-code-demo.html
 ```
 
 ### 3️⃣ **开始创建**
@@ -229,11 +233,11 @@ open examples/claude-code-demo.html
 - **[白色主题规范](./themes/white-theme.md)** - 商务演示完整指南  
 - **[黑色主题规范](./themes/dark-theme.md)** - 技术分享完整指南
 
-### 🎯 **实战案例**
+### 🎯 **实战案例** 
 
-1. **[Claude Code演示](./examples/claude-code-demo.html)** - AI编程助手功能展示
-2. **[DeepSeek介绍](./examples/deepseek-intro.html)** - AI模型技术分享案例
-3. **[Reveal.js演示](./examples/reveal-demo.html)** - 框架特性全面展示
+1. **[🎨 Claude Code演示](https://bigsweetpotatostudio.github.io/ai-ppt-tutorial/examples/claude-code-demo.html)** - AI编程助手功能展示
+2. **[🌞 白色商务主题](https://bigsweetpotatostudio.github.io/ai-ppt-tutorial/index.html)** - 商务演示模板案例
+3. **[🌙 黑色极客主题](https://bigsweetpotatostudio.github.io/ai-ppt-tutorial/index.dark.html)** - 技术分享模板案例
 
 ### 🎬 **主题切换演示**
 
