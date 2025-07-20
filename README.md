@@ -1,55 +1,103 @@
-# 🎨 Claude Code PPT 设计系统教程
+# 🎨 Reveal.js 双主题演示系统
 
 <div align="center">
 
-**🤖 与 Claude Code 一起创建专业级演示文稿**
+**🌞 白色商务 + 🌙 黑色极客 | 专为不同场景设计的现代化演示系统**
 
 [![Reveal.js](https://img.shields.io/badge/Reveal.js-5.2.1-ff6b6b?style=for-the-badge&logo=reveal.js)](https://revealjs.com/)
-[![Claude Code](https://img.shields.io/badge/Claude_Code-Latest-4ECDC4?style=for-the-badge&logo=anthropic)](https://claude.ai/code)
+[![主题系统](https://img.shields.io/badge/双主题系统-Ready-4ECDC4?style=for-the-badge&logo=palette)](./themes/)
 [![Demo](https://img.shields.io/badge/Live_Demo-Ready-27ae60?style=for-the-badge&logo=googlechrome)](./index.html)
 
-*使用 Claude Code 的强大能力，在几分钟内创建视觉震撼的现代化演示文稿*
+*一套代码，双重体验 | 商务演示与技术分享的完美解决方案*
 
 </div>
 
 ---
 
-## 🚀 项目亮点
+## 🎯 主题选择系统
+
+<table>
+<tr>
+<td width="50%" align="center">
+
+### 🌞 **白色商务主题**
+
+**适用场景**
+- 商务演示、学术演讲
+- 培训教学、投影环境
+- 正式会议、客户汇报
+
+**设计特色**
+- 毛玻璃效果、专业正式
+- 语义化色彩、投影兼容
+- Shimmer扫光、粒子浮动
+
+[📖 详细规范](./themes/white-theme.md)
+
+</td>
+<td width="50%" align="center">
+
+### 🌙 **黑色极客主题**
+
+**适用场景**
+- 技术分享、产品发布
+- 创意展示、暗场环境
+- 开发者大会、科技产品
+
+**设计特色**
+- 霓虹发光、赛博网格
+- 故障效果、终端风格
+- 量子浮动、扫描线
+
+[📖 详细规范](./themes/dark-theme.md)
+
+</td>
+</tr>
+</table>
+
+### 📋 **智能主题选择**
+
+```
+商务演示 → 🌞 白色主题 → 专业权威
+技术分享 → 🌙 黑色主题 → 科技炫酷
+通用场景 → 🔄 主题切换 → 用户自选
+品牌适配 → 📊 VI匹配 → 场景定制
+```
+
+---
+
+## 🚀 系统亮点
 
 <table>
 <tr>
 <td width="50%">
 
-### ⚡ **极致效率**
-- **5分钟创建**: 从需求到成品的完整演示文稿
-- **零配置**: 直接打开HTML文件即可演示
-- **一键生成**: Claude Code理解并执行复杂设计需求
+### ⚡ **双主题架构**
+- **模块化设计**: 独立主题文档管理
+- **一键切换**: 无缝主题切换体验
+- **场景适配**: 精准匹配不同演示环境
+- **易于扩展**: 支持自定义主题开发
+
+### 🎯 **专业品质**
+- **768px黄金法则**: 确保投影设备完美显示
+- **语义化色彩**: 双主题共享的色彩系统
+- **响应式设计**: 完美适配各种设备尺寸
+- **性能优化**: 60fps流畅动画体验
 
 </td>
 <td width="50%">
 
 ### 🎭 **视觉震撼**
-- **3D标题页**: 鼠标交互+粒子动画系统
-- **高级毛玻璃**: backdrop-filter + 彩虹边框效果
-- **流畅动画**: 60fps的专业级动画体验
-
-</td>
-</tr>
-<tr>
-<td>
-
-### 🎯 **专业品质**
-- **768px黄金法则**: 确保投影设备完美显示
-- **语义化色彩**: 五种专业强调色系统
-- **响应式设计**: 完美适配各种设备尺寸
-
-</td>
-<td>
+- **🌞 白色特效**: Shimmer扫光、毛玻璃、粒子浮动
+- **🌙 黑色特效**: 霓虹发光、赛博网格、故障动画
+- **3D交互**: 鼠标视差、量子浮动、终端光标
+- **高级动画**: 渐变文字、扫描线、发光脉冲
 
 ### 🔧 **技术先进**
 - **Reveal.js 5.2.1**: 最新版本演示框架
-- **现代CSS3**: 硬件加速+毛玻璃效果
-- **jsDelivr CDN**: 国内访问优化
+- **现代CSS3**: backdrop-filter、clip-path特效
+- **jsDelivr CDN**: 国内访问优化加载
+- **组件化系统**: 标准化布局和交互组件
 
 </td>
 </tr>
@@ -57,290 +105,201 @@
 
 ---
 
-## 🎯 Claude Code 实战演示
+## 📁 项目结构
 
-### 📋 **真实对话示例**
-
-```text
-🧑 用户：
-请创建一个关于"Reveal.js PPT设计系统"的现代化演示文稿，要求：
-
-📝 内容结构：
-- 标题页：3D效果 + 设计系统介绍
-- 核心约束原则：768px黄金法则
-- 设计规范：颜色、字体、组件系统
-- 内容规划：页面模板和布局组件
-- 质量检查：完整的检查清单
-- 设计理念：深度解析设计决策
-
-🎨 视觉要求：
-- 白色主题 + 高级毛玻璃效果
-- 3D标题页：旋转光线 + 4个浮动粒子
-- Shimmer闪光扫过效果
-- 彩虹旋转边框强调框
-- 30个背景粒子 + 鼠标视差
-
-💻 技术规范：
-- 基于Reveal.js 5.2.1
-- 768px高度约束，无滚动条
-- 使用jsDelivr CDN
-- 现代浏览器兼容
 ```
-
-```text
-🤖 Claude Code：
-我来为你创建一个专业的Reveal.js PPT设计系统演示文稿。
-
-首先，我会分析项目结构，然后按照你的需求创建包含高级视觉效果的演示文稿...
-
-[Claude Code 开始工作，创建完整的HTML文件]
+ai-ppt-tutorial/
+├── 📄 CLAUDE.md           # 主配置文件和使用指南
+├── 📁 themes/             # 主题规范文档
+│   ├── 🌞 white-theme.md  # 白色商务主题详细规范
+│   └── 🌙 dark-theme.md   # 黑色极客主题详细规范
+├── 📁 examples/           # 演示文稿实例
+│   ├── claude-code-demo.html    # Claude Code功能演示
+│   ├── deepseek-intro.html      # 技术产品介绍案例
+│   └── reveal-demo.html         # 框架特性展示
+├── 🌞 index.html          # 白色主题演示文稿
+├── 🌙 index.dark.html     # 黑色主题演示文稿
+└── 📖 README.md           # 项目说明文档
 ```
-
-### 🎬 **生成结果展示**
-
-👆 **查看实际效果**：打开 [`index.html`](./index.html) 文件
-
-![Claude Code PPT Demo](https://via.placeholder.com/800x450/4ECDC4/FFFFFF?text=🎨+Claude+Code+PPT+演示文稿)
 
 ---
 
-## 🛠️ Claude Code 使用指南
+## 🛠️ 快速开始
 
-### 1️⃣ **启动 Claude Code**
+### 1️⃣ **选择主题**
+
+根据你的演示场景选择合适的主题：
+
+- **商务正式** → 查看 [`themes/white-theme.md`](./themes/white-theme.md)
+- **技术炫酷** → 查看 [`themes/dark-theme.md`](./themes/dark-theme.md)
+- **混合使用** → 查看主配置 [`CLAUDE.md`](./CLAUDE.md)
+
+### 2️⃣ **直接预览**
 
 ```bash
-# 安装 Claude Code (如果还没有)
-npm install -g @anthropic-ai/claude-code
+# 白色商务主题演示
+open index.html
 
-# 在项目目录中启动
-claude
+# 黑色极客主题演示  
+open index.dark.html
+
+# 查看更多案例
+open examples/claude-code-demo.html
 ```
 
+### 3️⃣ **开始创建**
 
+使用主题规范创建你的演示文稿：
+
+```html
+<!-- 白色主题基础模板 -->
+<html class="white-theme">
+<section>
+    <h2>页面标题</h2>
+    <div class="features-grid auto-animate">
+        <div class="feature-card">
+            <h4><span class="keyword-highlight">重点内容</span></h4>
+            <p>详细说明文字</p>
+        </div>
+    </div>
+</section>
+</html>
 ```
-
-### 2️⃣ **使用专业提示词模板**
-
-```text
-📋 Claude Code 提示词模板：
-
-请创建一个关于 [你的主题] 的现代化PPT演示文稿，严格遵循以下规范：
-
-🎯 设计系统要求：
-- 基于 CLAUDE.md 中的高级设计系统
-- 768px黄金法则，确保所有内容完整显示
-- 白色主题 + 高级毛玻璃效果
-- 语义化色彩系统 (keyword/success/info/warning/number)
-
-🎭 视觉效果要求：
-- 3D标题页：鼠标交互 + 粒子系统
-- Shimmer闪光扫过效果 (卡片悬停)
-- 彩虹旋转边框 (highlight-box)
-- 梯度渐变文字 (所有标题)
-- 30个背景粒子 + 视差效果
-
-📝 内容结构：
-- 标题页 + 6-8个内容页 + 总结页
-- 每页3-5个要点，符合3-7信息法则
-- 使用 features-grid, tech-grid, stats-grid 组件
-
-💻 技术规范：
-- Reveal.js 5.2.1 + jsDelivr CDN
-- Inter + JetBrains Mono 字体
-- 自动动画，禁用fragment
-- 响应式设计，现代浏览器兼容
-
-具体内容：[详细描述你的需求...]
-```
-
-### 3️⃣ **快速开始模板**
-
-<details>
-<summary><strong>📊 商业汇报PPT</strong></summary>
-
-```text
-创建商业季度汇报PPT，包含：
-- 标题页：Q4业绩报告
-- 业绩概览：使用stats-grid展示核心数据
-- 增长亮点：features-grid对比分析
-- 市场表现：comparison-table数据对比
-- 产品成果：tech-grid展示新功能
-- 挑战与机遇：highlight-box重点说明
-- 下季度计划：step-card展示路线图
-- 总结页：行动号召
-
-视觉风格：专业商务，蓝色主色调，数据可视化
-```
-</details>
-
-<details>
-<summary><strong>🎓 技术分享PPT</strong></summary>
-
-```text
-创建技术架构分享PPT，包含：
-- 标题页：微服务架构实践
-- 背景问题：传统架构痛点分析
-- 解决方案：微服务核心概念
-- 技术选型：tech-grid展示技术栈
-- 实施案例：code-block代码示例
-- 性能对比：stats-grid数据展示
-- 最佳实践：features-grid经验总结
-- 总结页：技术演进路线
-
-视觉风格：现代科技，绿色强调，代码高亮
-```
-</details>
-
-<details>
-<summary><strong>🚀 产品发布PPT</strong></summary>
-
-```text
-创建产品发布会PPT，包含：
-- 标题页：革新性AI助手发布
-- 市场现状：痛点分析和机会
-- 产品介绍：核心功能展示  
-- 技术优势：features-grid竞争对比
-- 用户体验：实际使用场景演示
-- 商业模式：定价策略和目标市场
-- 发展规划：roadmap时间轴
-- 总结页：立即体验号召
-
-视觉风格：创新活力，橙色主色调，产品展示
-```
-</details>
 
 ---
 
-## 🎨 设计系统核心特性
+## 🎨 核心设计理念
 
-### 🌈 **语义化色彩系统**
+### 💡 **为什么选择双主题系统？**
 
-```css
-/* 专业强调色彩 */
---keyword-highlight: #e74c3c;    /* 🔴 关键词和重要概念 */
---success-highlight: #27ae60;    /* 🟢 成功状态和积极概念 */
---info-highlight: #3498db;       /* 🔵 信息和技术术语 */
---warning-highlight: #e67e22;    /* 🟠 警告和注意事项 */
---number-highlight: #f39c12;     /* 🟡 数字和统计数据 */
-```
+1. **🎯 场景适配**: 不同环境需要不同的视觉风格
+2. **👥 受众偏好**: 商务场合 vs 技术场合的审美差异  
+3. **🌓 环境友好**: 明亮环境 vs 暗场环境的最佳体验
+4. **🎨 品牌灵活**: 支持企业根据VI选择主题风格
 
 ### 📐 **768px黄金法则**
 
 > **为什么是768px？**
-> 1. **投影兼容**: 确保在主流投影仪(1024x768)上完整显示
-> 2. **注意力管理**: 限制内容量，强迫精简信息
-> 3. **演示流畅**: 避免滚动操作干扰
-> 4. **标准统一**: 建立一致的设计约束
+> 
+> ✅ **投影兼容**: 确保在主流投影仪(1024x768)完整显示  
+> ✅ **注意力管理**: 限制内容量，强迫精简信息  
+> ✅ **演示流畅**: 避免滚动操作干扰演示节奏  
+> ✅ **标准统一**: 建立一致的设计约束体系
 
-### 🧩 **组件化布局系统**
+### 🌈 **颜色语义系统**
 
-| 组件 | 用途 | 列数 | 适用场景 |
-|------|------|------|----------|
-| `features-grid` | 特性对比 | 2列 | 优势劣势、前后对比 |
-| `tech-grid` | 技术展示 | 3列 | 技术栈、工具介绍 |
-| `stats-grid` | 数据统计 | 4列 | KPI指标、数据看板 |
-| `highlight-box` | 重点强调 | 全宽 | 核心观点、重要提醒 |
-| `code-block` | 代码展示 | 全宽 | 代码示例、配置文件 |
+| 颜色类型 | 🌞 白色主题 | 🌙 黑色主题 | 使用场景 |
+|---------|------------|------------|----------|
+| `keyword-highlight` | #e74c3c 红色 | #ff2d92 霓虹粉 | 关键词、重要概念 |
+| `success-highlight` | #27ae60 绿色 | #00ff88 霓虹绿 | 成功状态、积极概念 |
+| `info-highlight` | #3498db 蓝色 | #00d4ff 霓虹青 | 信息、技术术语 |
+| `warning-highlight` | #e67e22 橙色 | #ff8c00 霓虹橙 | 警告、注意事项 |
+| `number-highlight` | #f39c12 黄色 | #ffff00 霓虹黄 | 数字、统计数据 |
+
+---
+
+## 🧩 组件系统
+
+### 📊 **布局组件**
+
+| 组件名称 | 列数 | 适用场景 | 主题支持 |
+|---------|------|----------|----------|
+| `features-grid` | 2列 | 特性对比、优劣分析 | 🌞🌙 双主题 |
+| `tech-grid` | 3列 | 技术栈、工具展示 | 🌞🌙 双主题 |
+| `stats-grid` | 4列 | 数据统计、KPI展示 | 🌞🌙 双主题 |
+| `highlight-box` | 全宽 | 重点强调、核心观点 | 🌞🌙 双主题 |
+| `code-block` | 全宽 | 代码示例、配置展示 | 🌞🌙 双主题 |
+
+### 🎭 **动画组件**
+
+| 动画类型 | 🌞 白色效果 | 🌙 黑色效果 | 触发方式 |
+|---------|------------|------------|----------|
+| `auto-animate` | 淡入上升 | 淡入上升 | 页面加载 |
+| `stagger-animation` | 交错左滑 | 交错左滑 | 列表展示 |
+| `zoom-in-animation` | 缩放淡入 | 缩放淡入 | 重点强调 |
+| 悬停特效 | Shimmer扫光 | 霓虹扫光 | 鼠标悬停 |
 
 ---
 
 ## 📚 学习资源
 
-### 📖 **项目文档**
+### 📖 **核心文档**
 
-- [`CLAUDE.md`](./CLAUDE.md) - 完整的设计系统指南
-- [`index.html`](./index.html) - 实际演示文稿案例
-- [`examples/`](./examples/) - 更多演示文稿实例
+- **[主配置指南](./CLAUDE.md)** - 系统概述和快速上手
+- **[白色主题规范](./themes/white-theme.md)** - 商务演示完整指南  
+- **[黑色主题规范](./themes/dark-theme.md)** - 技术分享完整指南
 
-### 🎯 **最佳实践案例**
+### 🎯 **实战案例**
 
-1. **[Claude Code 演示](./examples/claude-code-demo.html)** - AI编程助手介绍
-2. **[DeepSeek 介绍](./examples/deepseek-intro.html)** - AI模型技术分享
-3. **[Reveal.js 演示](./examples/reveal-demo.html)** - 框架功能展示
+1. **[Claude Code演示](./examples/claude-code-demo.html)** - AI编程助手功能展示
+2. **[DeepSeek介绍](./examples/deepseek-intro.html)** - AI模型技术分享案例
+3. **[Reveal.js演示](./examples/reveal-demo.html)** - 框架特性全面展示
 
-### 🔗 **相关链接**
+### 🎬 **主题切换演示**
 
-- [Reveal.js 官方文档](https://revealjs.com/) - 了解更多框架特性
-- [Claude Code 官方文档](https://docs.anthropic.com/claude-code) - 深入学习AI编程
-- [jsDelivr CDN](https://www.jsdelivr.com/) - 了解资源加载优化
+```html
+<!-- 主题切换按钮 -->
+<div class="theme-switcher">
+    <button onclick="switchTheme('white-theme')">🌞 商务白</button>
+    <button onclick="switchTheme('dark-theme')">🌙 极客黑</button>
+</div>
+```
 
 ---
 
-## 🎯 快速上手步骤
+## ✅ 质量保证
 
-### 🚀 **3分钟快速开始**
+### 🔍 **检查清单**
 
-```bash
-# 1️⃣ 克隆项目 (可选)
-git clone <repository-url>
-cd ai-ppt-tutorial
+- [ ] **768px限制**: 内容完整显示，无滚动条
+- [ ] **主题适配**: 白色/黑色主题正常切换  
+- [ ] **动画流畅**: 特效运行正常，无卡顿
+- [ ] **投影兼容**: 1024x768分辨率完整显示
+- [ ] **语义色彩**: 正确使用highlight色彩系统
+- [ ] **响应式**: 移动设备正常显示和交互
 
-# 2️⃣ 启动 Claude Code
-claude
+### 🎯 **最佳实践**
 
-# 3️⃣ 使用提示词创建PPT
-"请基于CLAUDE.md创建一个关于[你的主题]的演示文稿"
-
-# 4️⃣ 在浏览器中查看结果
-open new-presentation.html
-```
-
-### 📋 **检查清单**
-
-在开始之前，确保你有：
-
-- [ ] **Claude Code 账号** - 用于AI生成PPT
-- [ ] **现代浏览器** - Chrome 80+ / Safari 13+ / Firefox 75+
-- [ ] **演示主题** - 明确的内容大纲和目标
-- [ ] **设计需求** - 色彩偏好和视觉风格要求
-
----
-
-## 🌟 高级技巧
-
-### 💡 **提示词优化技巧**
-
-1. **具体化描述**: 详细说明内容结构和视觉需求
-2. **引用规范**: 明确提及"基于CLAUDE.md设计系统"
-3. **示例引导**: 参考examples目录中的成功案例
-4. **迭代改进**: 基于生成结果进行细节调整
-
-### 🎨 **个性化定制**
-
-```text
-高级定制提示词示例：
-
-在标准设计系统基础上，增加以下个性化元素：
-- 企业品牌色：将info-highlight改为 #FF6B35
-- 特殊字体：标题使用 Montserrat 字体
-- 自定义动画：增加数字计数动画效果
-- 品牌元素：在标题页添加公司Logo占位符
-```
-
-### 🔧 **性能优化**
-
-- **资源预加载**: 使用 `<link rel="preload">` 优化字体加载
-- **动画优化**: 合理使用 `transform` 替代 `layout` 属性
-- **图片优化**: 使用 WebP 格式和适当尺寸
-- **代码压缩**: 生产环境压缩CSS和JavaScript
+1. **内容密度**: 每页3-7个要点，避免信息过载
+2. **主题选择**: 根据演示场景选择合适主题
+3. **色彩使用**: 合理使用语义化强调色彩
+4. **动画适度**: 保证视觉效果不干扰内容传达
 
 ---
 
 ## 🤝 贡献指南
 
-### 📝 **如何贡献**
+### 🎨 **如何贡献**
 
-1. **Fork 项目** - 创建你的功能分支
-2. **添加案例** - 在 `examples/` 目录添加新的演示文稿
-3. **优化规范** - 改进 `CLAUDE.md` 中的设计指南
-4. **提交 PR** - 详细描述你的改进内容
+1. **Fork项目** - 创建你的功能分支
+2. **选择方向**:
+   - 🌈 **新主题开发**: 添加新的主题风格
+   - 🧩 **组件扩展**: 开发新的布局组件
+   - 📖 **文档改进**: 完善主题规范文档
+   - 🎭 **特效创新**: 创建新的视觉效果
 
-### 🎯 **贡献方向**
+3. **提交规范**:
+   ```
+   🎨 feat(theme): 添加紫色创意主题
+   📝 docs(white): 完善商务主题组件说明  
+   🐛 fix(dark): 修复霓虹扫光动画问题
+   ⚡ perf(core): 优化主题切换性能
+   ```
 
-- 🎨 **新的视觉效果** - 创新的CSS动画和交互
-- 📱 **移动端优化** - 改进响应式设计
-- 🌐 **国际化支持** - 多语言演示模板
-- 📊 **数据可视化** - 图表和信息图表组件
+### 🌟 **贡献方向**
+
+- **🎨 新主题**: 深蓝科技、橙色创意、绿色自然
+- **📱 移动优化**: 改进小屏设备体验
+- **🌐 国际化**: 多语言主题模板
+- **📊 数据可视化**: 图表组件集成
+
+---
+
+## 🔗 相关链接
+
+- [Reveal.js官方文档](https://revealjs.com/) - 了解更多框架特性
+- [CSS backdrop-filter](https://developer.mozilla.org/en-US/docs/Web/CSS/backdrop-filter) - 毛玻璃效果技术
+- [jsDelivr CDN](https://www.jsdelivr.com/) - 了解资源加载优化
 
 ---
 
@@ -348,28 +307,22 @@ open new-presentation.html
 
 本项目采用 [MIT License](LICENSE) 开源协议。
 
-## 🙏 致谢
-
-感谢以下项目和团队：
-
-- [Reveal.js](https://revealjs.com/) - 优秀的演示框架
-- [Anthropic](https://www.anthropic.com/) - Claude Code AI助手
-- [jsDelivr](https://www.jsdelivr.com/) - 可靠的CDN服务
-
 ---
 
 <div align="center">
 
-### 🚀 开始你的 Claude Code PPT 之旅
+### 🚀 开始你的双主题演示之旅
 
-**让AI成为你的设计伙伴，创造专业级演示体验**
+**🌞 商务专业 | 🌙 技术炫酷 | 🔄 一键切换**
 
-[![开始使用](https://img.shields.io/badge/开始使用-立即体验-4ECDC4?style=for-the-badge&logo=rocket)](./index.html)
-[![查看文档](https://img.shields.io/badge/查看文档-设计规范-27ae60?style=for-the-badge&logo=book)](./CLAUDE.md)
-[![下载项目](https://img.shields.io/badge/下载项目-GitHub-333?style=for-the-badge&logo=github)](https://github.com/your-repo)
+[![🌞 白色主题](https://img.shields.io/badge/🌞_白色主题-商务演示-667eea?style=for-the-badge)](./themes/white-theme.md)
+[![🌙 黑色主题](https://img.shields.io/badge/🌙_黑色主题-技术分享-00ff88?style=for-the-badge)](./themes/dark-theme.md)
+[![📖 查看文档](https://img.shields.io/badge/📖_查看文档-使用指南-27ae60?style=for-the-badge)](./CLAUDE.md)
 
 ---
 
-*🎨 让每个人都能创造出视觉震撼的专业演示文稿*
+*🎨 让每个演示都能精准匹配场景，创造最佳视觉体验*
+
+**基于 claude-code-demo.html 成功实践 | 专为多场景演示设计的现代化主题系统**
 
 </div>
