@@ -1,0 +1,1249 @@
+<!DOCTYPE html>
+<html lang="zh-CN" class="white-theme">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🌙 Kimi K2：突破万亿参数，重塑AI智能体新时代</title>
+
+    <!-- Reveal.js CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5.2.1/dist/reveal.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5.2.1/dist/theme/white.css">
+
+    <!-- 代码高亮 -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5.2.1/plugin/highlight/monokai.css">
+
+    <!-- 字体 -->
+    <link href="https://cdn.jsdelivr.net/npm/@fontsource/inter@5.0.21/index.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/@fontsource/jetbrains-mono@5.0.21/index.css" rel="stylesheet">
+
+    <!-- 自定义样式 -->
+    <style>
+        /* Kimi K2 主题色彩变量 */
+        :root {
+            --kimi-primary: #667eea;
+            --kimi-secondary: #764ba2;
+            --kimi-accent: #f093fb;
+            --kimi-success: #4ecdc4;
+            --kimi-warning: #f39c12;
+            --kimi-danger: #e74c3c;
+            --kimi-info: #3498db;
+            --glass-blur: blur(20px) saturate(120%);
+            --glass-blur-strong: blur(25px) saturate(140%);
+            --glass-blur-light: blur(10px) saturate(110%);
+            --glass-bg: rgba(255, 255, 255, 0.6);
+            --glass-bg-hover: rgba(255, 255, 255, 0.8);
+            --glass-border: rgba(255, 255, 255, 0.8);
+            --glass-border-hover: rgba(255, 255, 255, 0.9);
+            --glass-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+            --glass-shadow-hover: 0 6px 30px rgba(0, 0, 0, 0.08);
+            --glass-inset: inset 0 1px 0 rgba(255, 255, 255, 0.9);
+            --glass-inset-hover: inset 0 1px 0 rgba(255, 255, 255, 0.95);
+            --text-primary: #1a1a1a;
+            --text-secondary: #4a4a4a;
+            --text-light: #888888;
+        }
+
+        .reveal {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            font-size: 24px;
+            background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 50%, #ffffff 100%);
+            background-attachment: fixed;
+            position: relative;
+        }
+
+        .reveal::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            backdrop-filter: blur(0.5px) brightness(1.02);
+            z-index: -1;
+            pointer-events: none;
+        }
+
+        .reveal .slides section {
+            backdrop-filter: var(--glass-blur);
+            background: rgba(255, 255, 255, 0.7);
+            border-radius: 24px;
+            border: 1px solid var(--glass-border);
+            box-shadow: var(--glass-shadow), var(--glass-inset);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            margin: 20px 0;
+            color: var(--text-primary);
+        }
+
+        .reveal .slides section:hover {
+            transform: translateY(-2px);
+            backdrop-filter: var(--glass-blur-strong);
+            background: rgba(255, 255, 255, 0.8);
+            box-shadow: var(--glass-shadow-hover), var(--glass-inset-hover);
+        }
+
+        .reveal h1,
+        .reveal h2,
+        .reveal h3 {
+            text-transform: none;
+            color: var(--text-primary);
+            margin-bottom: 15px;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+            background: linear-gradient(45deg, var(--kimi-primary), var(--kimi-secondary), var(--kimi-accent));
+            background-size: 300% 300%;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: gradientShift 4s ease infinite;
+        }
+
+        @keyframes gradientShift {
+            0% { background-position: 0% 50%; }
+            25% { background-position: 100% 50%; }
+            50% { background-position: 50% 100%; }
+            75% { background-position: 0% 50%; }
+            100% { background-position: 50% 0%; }
+        }
+
+        .reveal h1 { font-size: 2.0em; }
+        .reveal h2 { font-size: 1.6em; }
+        .reveal h3 { font-size: 1.2em; }
+        .reveal h4 { font-size: 1.0em; color: #2c3e50; text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1); font-weight: 600; }
+        .reveal p { font-size: 0.85em; line-height: 1.5; color: var(--text-secondary); font-weight: 400; }
+
+        .reveal .slides section { text-align: left; padding: 18px; }
+
+        .reveal .title-slide {
+            text-align: center;
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(30px) saturate(140%);
+            perspective: 1000px;
+            transform-style: preserve-3d;
+            position: relative;
+            overflow: hidden;
+            height: 100vh !important;
+            padding: 80px 40px !important;
+        }
+
+        /* 3D标题容器 */
+        .title-3d-container {
+            position: relative;
+            transform-style: preserve-3d;
+            perspective: 1200px;
+            margin: 30px 0;
+            text-align: center;
+        }
+
+        .title-3d-container h1 {
+            transform: rotateX(20deg) rotateY(-5deg) translateZ(50px);
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+            animation: float3D 6s ease-in-out infinite, titlePulse 4s ease-in-out infinite;
+            transition: all 0.3s ease;
+            text-align: center;
+            margin: 0 auto;
+            display: inline-block;
+        }
+
+        @keyframes float3D {
+            0%, 100% { transform: rotateX(20deg) rotateY(-5deg) translateZ(50px) translateY(0px); }
+            33% { transform: rotateX(25deg) rotateY(0deg) translateZ(60px) translateY(-10px); }
+            66% { transform: rotateX(15deg) rotateY(5deg) translateZ(40px) translateY(5px); }
+        }
+
+        @keyframes titlePulse {
+            0%, 100% { filter: brightness(1) hue-rotate(0deg); }
+            50% { filter: brightness(1.2) hue-rotate(10deg); }
+        }
+
+        .subtitle-3d {
+            transform: rotateX(15deg) translateZ(30px);
+            text-shadow: 0 0 15px rgba(102, 126, 234, 0.6), 0 2px 4px rgba(0, 0, 0, 0.3);
+            animation: subtitleFloat 4s ease-in-out infinite;
+            text-align: center;
+        }
+
+        @keyframes subtitleFloat {
+            0%, 100% { transform: rotateX(15deg) translateZ(30px) translateY(0px); }
+            50% { transform: rotateX(20deg) translateZ(35px) translateY(-5px); }
+        }
+
+        .description-3d {
+            transform: rotateX(10deg) translateZ(20px);
+            text-shadow: 0 0 10px rgba(118, 75, 162, 0.4);
+            animation: descriptionFloat 5s ease-in-out infinite;
+            text-align: center;
+        }
+
+        @keyframes descriptionFloat {
+            0%, 100% { transform: rotateX(10deg) translateZ(20px) translateY(0px); }
+            50% { transform: rotateX(15deg) translateZ(25px) translateY(-3px); }
+        }
+
+        /* 主题切换按钮 */
+        .theme-switcher {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 1000;
+            display: flex;
+            gap: 8px;
+        }
+
+        .theme-btn {
+            padding: 8px 12px;
+            border: none;
+            border-radius: 8px;
+            font-size: 0.8em;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            backdrop-filter: var(--glass-blur-light);
+            background: var(--glass-bg);
+            color: var(--text-primary);
+            border: 1px solid var(--glass-border);
+        }
+
+        .theme-btn:hover {
+            background: var(--glass-bg-hover);
+            transform: translateY(-2px);
+        }
+
+        .tech-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 12px;
+            margin: 12px 0;
+        }
+
+        .tech-card {
+            backdrop-filter: var(--glass-blur);
+            background: linear-gradient(145deg, rgba(255, 255, 255, 0.6), rgba(255, 255, 255, 0.8));
+            border-radius: 16px;
+            padding: 10px;
+            text-align: center;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            border: 1px solid var(--glass-border);
+            position: relative;
+            overflow: hidden;
+            box-shadow: var(--glass-shadow), var(--glass-inset);
+            color: var(--text-primary);
+        }
+
+        .tech-card::before {
+            content: '';
+            position: absolute;
+            top: -50%; left: -50%;
+            width: 200%; height: 200%;
+            background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+            transform: rotate(45deg);
+            transition: all 0.5s;
+            opacity: 0;
+        }
+
+        .tech-card:hover::before { animation: shimmer 0.8s ease-in-out; }
+
+        @keyframes shimmer {
+            0% { transform: translateX(-100%) translateY(-100%) rotate(45deg); opacity: 0; }
+            50% { opacity: 1; }
+            100% { transform: translateX(100%) translateY(100%) rotate(45deg); opacity: 0; }
+        }
+
+        .tech-card:hover {
+            transform: translateY(-5px) scale(1.01);
+            backdrop-filter: var(--glass-blur-strong);
+            background: linear-gradient(145deg, rgba(255, 255, 255, 0.8), rgba(255, 255, 255, 0.9));
+            box-shadow: var(--glass-shadow-hover), var(--glass-inset-hover);
+        }
+
+        .highlight-box {
+            backdrop-filter: var(--glass-blur);
+            background: linear-gradient(135deg, rgba(102, 126, 234, 0.2), rgba(118, 75, 162, 0.2));
+            border-radius: 20px;
+            padding: 20px;
+            margin: 15px 0;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            box-shadow: var(--glass-shadow), var(--glass-inset);
+            color: var(--text-primary);
+        }
+
+        .highlight-box::before {
+            content: '';
+            position: absolute;
+            top: -2px; left: -2px; right: -2px; bottom: -2px;
+            background: linear-gradient(45deg, var(--kimi-primary), var(--kimi-secondary), var(--kimi-accent), var(--kimi-success), var(--kimi-warning));
+            border-radius: 18px;
+            z-index: -1;
+            animation: rotate 4s linear infinite;
+        }
+
+        @keyframes rotate {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .highlight-box::after {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
+            border-radius: 16px;
+            z-index: -1;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 16px;
+            margin: 12px 0;
+        }
+
+        .feature-card {
+            backdrop-filter: var(--glass-blur);
+            background: linear-gradient(145deg, rgba(255, 255, 255, 0.6), rgba(255, 255, 255, 0.8));
+            border-radius: 16px;
+            padding: 12px;
+            border-left: 4px solid var(--kimi-primary);
+            position: relative;
+            transition: all 0.3s ease;
+            border: 1px solid var(--glass-border);
+            box-shadow: var(--glass-shadow), var(--glass-inset);
+            color: var(--text-primary);
+        }
+
+        .feature-card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: linear-gradient(45deg, rgba(102, 126, 234, 0.1), rgba(118, 75, 162, 0.1));
+            border-radius: 12px;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .feature-card:hover::before { opacity: 1; }
+
+        .feature-card:hover {
+            transform: translateY(-2px);
+            backdrop-filter: var(--glass-blur-strong);
+            background: linear-gradient(145deg, rgba(255, 255, 255, 0.8), rgba(255, 255, 255, 0.9));
+            box-shadow: 0 8px 25px rgba(102, 126, 234, 0.2), var(--glass-inset-hover);
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 15px;
+            margin: 15px 0;
+        }
+
+        .stat-card {
+            backdrop-filter: var(--glass-blur);
+            background: linear-gradient(145deg, rgba(255, 255, 255, 0.6), rgba(255, 255, 255, 0.8));
+            border-radius: 16px;
+            padding: 12px;
+            text-align: center;
+            border: 1px solid var(--glass-border);
+            box-shadow: var(--glass-shadow), var(--glass-inset);
+            transition: all 0.3s ease;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-3px);
+            box-shadow: var(--glass-shadow-hover), var(--glass-inset-hover);
+        }
+
+        .step-number {
+            display: inline-block;
+            width: 28px;
+            height: 28px;
+            backdrop-filter: var(--glass-blur-light);
+            background: linear-gradient(135deg, var(--kimi-primary), var(--kimi-secondary));
+            border-radius: 50%;
+            text-align: center;
+            line-height: 28px;
+            font-weight: bold;
+            margin-right: 8px;
+            font-size: 0.8em;
+            color: white;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3), var(--glass-inset);
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4); }
+            50% { transform: scale(1.05); box-shadow: 0 6px 20px rgba(102, 126, 234, 0.6); }
+            100% { transform: scale(1); box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4); }
+        }
+
+        .code-block {
+            backdrop-filter: var(--glass-blur-light);
+            background: rgba(248, 249, 250, 0.9);
+            border-radius: 16px;
+            padding: 10px;
+            margin: 10px 0;
+            font-family: 'JetBrains Mono', 'Consolas', 'Monaco', monospace;
+            font-size: 0.8em;
+            position: relative;
+            border: 1px solid rgba(52, 152, 219, 0.2);
+            box-shadow: var(--glass-shadow), var(--glass-inset);
+        }
+
+        .code-block::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, var(--kimi-primary), var(--kimi-secondary), var(--kimi-accent));
+            border-radius: 12px 12px 0 0;
+        }
+
+        .comparison-table {
+            backdrop-filter: var(--glass-blur);
+            background: rgba(255, 255, 255, 0.7);
+            border-radius: 16px;
+            padding: 15px;
+            margin: 15px 0;
+            border: 1px solid var(--glass-border);
+            box-shadow: var(--glass-shadow), var(--glass-inset);
+        }
+
+        .comparison-table table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.8em;
+        }
+
+        .comparison-table th,
+        .comparison-table td {
+            padding: 8px 12px;
+            text-align: left;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+        }
+
+        .comparison-table th {
+            background: linear-gradient(135deg, var(--kimi-primary), var(--kimi-secondary));
+            color: white;
+            font-weight: 600;
+        }
+
+        /* 语义化高亮颜色 */
+        .keyword-highlight { color: var(--kimi-danger); font-weight: 600; }
+        .success-highlight { color: var(--kimi-success); font-weight: 600; }
+        .info-highlight { color: var(--kimi-info); font-weight: 600; }
+        .warning-highlight { color: var(--kimi-warning); font-weight: 600; }
+        .number-highlight { color: var(--kimi-warning); font-weight: 700; }
+
+        /* 动画效果 */
+        .auto-animate {
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeInUp 0.5s ease-out forwards;
+        }
+
+        .auto-animate:nth-child(1) { animation-delay: 0.1s; }
+        .auto-animate:nth-child(2) { animation-delay: 0.2s; }
+        .auto-animate:nth-child(3) { animation-delay: 0.3s; }
+        .auto-animate:nth-child(4) { animation-delay: 0.4s; }
+        .auto-animate:nth-child(5) { animation-delay: 0.5s; }
+
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .stagger-animation>* {
+            opacity: 0;
+            transform: translateX(-30px);
+            animation: slideInLeft 0.4s ease-out forwards;
+        }
+
+        .stagger-animation>*:nth-child(1) { animation-delay: 0.1s; }
+        .stagger-animation>*:nth-child(2) { animation-delay: 0.2s; }
+        .stagger-animation>*:nth-child(3) { animation-delay: 0.3s; }
+        .stagger-animation>*:nth-child(4) { animation-delay: 0.4s; }
+        .stagger-animation>*:nth-child(5) { animation-delay: 0.5s; }
+
+        @keyframes slideInLeft {
+            from { opacity: 0; transform: translateX(-30px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+
+        .zoom-in-animation {
+            opacity: 0;
+            transform: scale(0.8);
+            animation: zoomIn 0.5s ease-out forwards;
+        }
+
+        @keyframes zoomIn {
+            from { opacity: 0; transform: scale(0.8); }
+            to { opacity: 1; transform: scale(1); }
+        }
+
+        /* 3D装饰效果 */
+        .title-slide .rotating-light {
+            position: absolute;
+            width: 200px;
+            height: 200px;
+            background: conic-gradient(from 0deg,
+                transparent 0deg,
+                rgba(102, 126, 234, 0.3) 60deg,
+                rgba(118, 75, 162, 0.3) 120deg,
+                rgba(240, 147, 251, 0.3) 180deg,
+                rgba(78, 205, 196, 0.3) 240deg,
+                rgba(243, 156, 18, 0.3) 300deg,
+                transparent 360deg);
+            border-radius: 50%;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) translateZ(-10px);
+            animation: lightRotate 8s linear infinite;
+            z-index: -1;
+            filter: blur(3px);
+        }
+
+        @keyframes lightRotate {
+            0% { transform: translate(-50%, -50%) translateZ(-10px) rotate(0deg); }
+            100% { transform: translate(-50%, -50%) translateZ(-10px) rotate(360deg); }
+        }
+
+        /* 进度条 */
+        .reveal .progress {
+            height: 6px;
+            background: linear-gradient(90deg, var(--kimi-primary), var(--kimi-secondary), var(--kimi-accent));
+            border-radius: 3px;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 2px 8px rgba(102, 126, 234, 0.3);
+        }
+    </style>
+</head>
+
+<body>
+    <!-- 主题切换按钮 -->
+    <div class="theme-switcher">
+        <button class="theme-btn" onclick="switchTheme('white-theme')">🌞 商务白</button>
+        <button class="theme-btn" onclick="switchTheme('dark-theme')">🌙 极客黑</button>
+    </div>
+
+    <div class="reveal">
+        <div class="slides">
+
+            <!-- 封面页 -->
+            <section class="title-slide" id="title-slide">
+                <!-- 3D背景装饰元素 -->
+                <div class="rotating-light"></div>
+
+                <!-- 3D标题容器 -->
+                <div class="title-3d-container">
+                    <h1>🌙 Kimi K2：重塑AI智能体新时代</h1>
+                </div>
+
+                <h4 class="subtitle-3d">万亿参数，突破开源模型天花板</h4>
+                <p class="description-3d">探索 <span class="keyword-highlight">月之暗面</span> 最新力作，领略 <span class="info-highlight">Agent</span> 与 <span class="success-highlight">代码</span> 能力的极致融合</p>
+
+                <div class="highlight-box zoom-in-animation" style="animation-delay: 1.5s;">
+                    <h4>🚀 开源模型的新里程碑</h4>
+                    <p><span class="number-highlight">1T</span> 总参数 | <span class="number-highlight">32B</span> 激活参数 | <span class="success-highlight">开源第一</span></p>
+                </div>
+            </section>
+
+            <!-- 第1页：Kimi K2 概览 -->
+            <section>
+                <h2>🌟 Kimi K2 模型概览</h2>
+                <div class="highlight-box">
+                    <h4><span class="keyword-highlight">月之暗面</span> 于 <span class="info-highlight">2025年7月11日</span> 发布的突破性模型</h4>
+                    <p>业界首个达到 <span class="number-highlight">万亿参数</span> 的开源商用大模型</p>
+                </div>
+
+                <div class="stats-grid auto-animate">
+                    <div class="stat-card">
+                        <div class="step-number">1T</div>
+                        <h4>总参数</h4>
+                        <p><span class="keyword-highlight">万亿级</span></p>
+                    </div>
+                    <div class="stat-card">
+                        <div class="step-number">32B</div>
+                        <h4>激活参数</h4>
+                        <p><span class="info-highlight">高效运行</span></p>
+                    </div>
+                    <div class="stat-card">
+                        <div class="step-number">128K</div>
+                        <h4>上下文长度</h4>
+                        <p><span class="success-highlight">长文本</span></p>
+                    </div>
+                    <div class="stat-card">
+                        <div class="step-number">MoE</div>
+                        <h4>架构设计</h4>
+                        <p><span class="warning-highlight">专家混合</span></p>
+                    </div>
+                </div>
+
+                <div class="features-grid">
+                    <div class="feature-card">
+                        <h4>🎯 核心定位</h4>
+                        <div class="stagger-animation">
+                            <p>• <span class="keyword-highlight">智能体专用</span>：为Agent任务优化设计</p>
+                            <p>• <span class="info-highlight">代码能力</span>：超强编程和算法能力</p>
+                            <p>• <span class="success-highlight">开源先锋</span>：引领开源模型新标准</p>
+                        </div>
+                    </div>
+                    <div class="feature-card">
+                        <h4>🏆 技术突破</h4>
+                        <div class="stagger-animation">
+                            <p>• <span class="warning-highlight">MuonClip优化器</span>：解决注意力爆炸</p>
+                            <p>• <span class="number-highlight">15.5万亿</span> token训练数据</p>
+                            <p>• <span class="keyword-highlight">多领域覆盖</span>：代码、数学、多模态</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 第2页：性能表现 -->
+            <section>
+                <h2>📊 性能表现：开源模型SOTA</h2>
+                <div class="highlight-box">
+                    <h4>在多个权威基准测试中均取得 <span class="success-highlight">开源第一</span> 的成绩</h4>
+                </div>
+
+                <div class="comparison-table zoom-in-animation" style="animation-delay: 0.5s;">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>基准测试</th>
+                                <th>Kimi K2</th>
+                                <th>领先优势</th>
+                                <th>能力类型</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>SWE Bench Verified</td>
+                                <td><span class="success-highlight">65.8%</span></td>
+                                <td><span class="keyword-highlight">+11.2%</span></td>
+                                <td>代码修复</td>
+                            </tr>
+                            <tr>
+                                <td>Tau2</td>
+                                <td><span class="success-highlight">87.3%</span></td>
+                                <td><span class="keyword-highlight">+8.7%</span></td>
+                                <td>数学推理</td>
+                            </tr>
+                            <tr>
+                                <td>AceBench</td>
+                                <td><span class="success-highlight">92.1%</span></td>
+                                <td><span class="keyword-highlight">+6.4%</span></td>
+                                <td>智能体任务</td>
+                            </tr>
+                            <tr>
+                                <td>LiveCodeBench</td>
+                                <td><span class="success-highlight">58.9%</span></td>
+                                <td><span class="keyword-highlight">+9.2%</span></td>
+                                <td>实时编程</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="features-grid">
+                    <div class="feature-card">
+                        <h4>🎯 与顶级闭源模型对比</h4>
+                        <div class="stagger-animation">
+                            <p>• 接近 <span class="info-highlight">GPT-4.5</span> 水平</p>
+                            <p>• 媲美 <span class="info-highlight">Grok-4</span> 性能</p>
+                            <p>• 超越多数 <span class="warning-highlight">Claude-3</span> 变体</p>
+                        </div>
+                    </div>
+                    <div class="feature-card">
+                        <h4>📈 开源生态影响</h4>
+                        <div class="stagger-animation">
+                            <p>• GitHub <span class="number-highlight">5.6K</span> 星标</p>
+                            <p>• Hugging Face <span class="number-highlight">10万+</span> 下载</p>
+                            <p>• Perplexity <span class="success-highlight">官方认可</span></p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 第3页：Agent与工具调用能力 -->
+            <section>
+                <h2>🤖 Agent与工具调用能力</h2>
+                <div class="highlight-box">
+                    <h4>专为 <span class="keyword-highlight">智能体任务</span> 优化，具备稳定的复杂指令解析能力</h4>
+                </div>
+
+                <div class="tech-grid auto-animate">
+                    <div class="tech-card">
+                        <div style="font-size: 1.8em; margin-bottom: 8px;">🔧</div>
+                        <h4>ToolCalls</h4>
+                        <p>自动工具调用</p>
+                    </div>
+                    <div class="tech-card">
+                        <div style="font-size: 1.8em; margin-bottom: 8px;">📝</div>
+                        <h4>JSON Mode</h4>
+                        <p>结构化输出</p>
+                    </div>
+                    <div class="tech-card">
+                        <div style="font-size: 1.8em; margin-bottom: 8px;">🌐</div>
+                        <h4>联网搜索</h4>
+                        <p>实时信息获取</p>
+                    </div>
+                </div>
+
+                <div class="features-grid">
+                    <div class="feature-card">
+                        <h4>🎯 核心能力</h4>
+                        <div class="stagger-animation">
+                            <p>• <span class="keyword-highlight">需求拆解</span>：复杂任务自动分解</p>
+                            <p>• <span class="info-highlight">格式规范</span>：标准ToolCall结构</p>
+                            <p>• <span class="success-highlight">直接执行</span>：可立即运行的指令</p>
+                            <p>• <span class="warning-highlight">错误处理</span>：智能异常恢复</p>
+                        </div>
+                    </div>
+                    <div class="feature-card">
+                        <h4>💼 应用场景</h4>
+                        <div class="stagger-animation">
+                            <p>• <span class="info-highlight">数据分析</span>：自动化数据处理</p>
+                            <p>• <span class="success-highlight">API集成</span>：多服务协调调用</p>
+                            <p>• <span class="keyword-highlight">工作流自动化</span>：业务流程优化</p>
+                            <p>• <span class="warning-highlight">智能助手</span>：个人效率提升</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="code-block zoom-in-animation" style="animation-delay: 1.0s;">
+                    <pre><code class="json">{
+  "function_name": "data_analysis",
+  "parameters": {
+    "dataset": "sales_data.csv",
+    "analysis_type": "trend_analysis",
+    "time_range": "last_quarter"
+  },
+  "execution_mode": "automatic"
+}</code></pre>
+                </div>
+            </section>
+
+            <!-- 第4页：代码与数学能力 -->
+            <section>
+                <h2>💻 代码与数学能力</h2>
+                <div class="highlight-box">
+                    <h4>在 <span class="success-highlight">编程</span> 和 <span class="info-highlight">数学推理</span> 领域展现出顶级水准</h4>
+                </div>
+
+                <div class="features-grid">
+                    <div class="feature-card">
+                        <h4>🔬 代码能力突破</h4>
+                        <div class="stagger-animation">
+                            <p>• <span class="keyword-highlight">多语言支持</span>：Python, JavaScript, Java, C++</p>
+                            <p>• <span class="info-highlight">算法优化</span>：高效算法设计与实现</p>
+                            <p>• <span class="success-highlight">代码审查</span>：自动发现性能问题</p>
+                            <p>• <span class="warning-highlight">Bug修复</span>：智能错误定位与修复</p>
+                        </div>
+                    </div>
+                    <div class="feature-card">
+                        <h4>📊 数学推理优势</h4>
+                        <div class="stagger-animation">
+                            <p>• <span class="info-highlight">逻辑推导</span>：复杂数学证明</p>
+                            <p>• <span class="success-highlight">公式推导</span>：数学表达式简化</p>
+                            <p>• <span class="keyword-highlight">应用数学</span>：实际问题建模</p>
+                            <p>• <span class="warning-highlight">统计分析</span>：数据统计与概率</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="code-block zoom-in-animation" style="animation-delay: 0.8s;">
+                    <pre><code class="python"># Kimi K2 生成的高效排序算法
+def hybrid_sort(arr, threshold=10):
+    """混合排序算法：大数组用快排，小数组用插入排序"""
+    if len(arr) <= threshold:
+        return insertion_sort(arr)
+    else:
+        return quick_sort_optimized(arr)
+        
+# 自动优化的时间复杂度：O(n log n)
+# 空间复杂度优化至：O(log n)</code></pre>
+                </div>
+
+                <div class="stats-grid auto-animate">
+                    <div class="stat-card">
+                        <h4>代码生成</h4>
+                        <p><span class="number-highlight">95%</span> 准确率</p>
+                    </div>
+                    <div class="stat-card">
+                        <h4>Bug检测</h4>
+                        <p><span class="number-highlight">89%</span> 召回率</p>
+                    </div>
+                    <div class="stat-card">
+                        <h4>数学推理</h4>
+                        <p><span class="number-highlight">87%</span> 正确率</p>
+                    </div>
+                    <div class="stat-card">
+                        <h4>算法优化</h4>
+                        <p><span class="number-highlight">40%</span> 性能提升</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 第5页：技术创新 -->
+            <section>
+                <h2>⚡ 技术创新：MuonClip优化器</h2>
+                <div class="highlight-box">
+                    <h4><span class="keyword-highlight">革命性</span> 技术突破，解决大模型训练核心难题</h4>
+                </div>
+
+                <div class="features-grid">
+                    <div class="feature-card">
+                        <h4>🔧 核心问题</h4>
+                        <div class="stagger-animation">
+                            <p>• <span class="keyword-highlight">爆炸注意力</span>：Attention Logits过大</p>
+                            <p>• <span class="warning-highlight">训练不稳定</span>：梯度爆炸和消失</p>
+                            <p>• <span class="info-highlight">收敛困难</span>：大规模参数优化挑战</p>
+                        </div>
+                    </div>
+                    <div class="feature-card">
+                        <h4>✨ MuonClip解决方案</h4>
+                        <div class="stagger-animation">
+                            <p>• <span class="success-highlight">动态裁剪</span>：智能梯度裁剪策略</p>
+                            <p>• <span class="info-highlight">稳定训练</span>：注意力权重平滑化</p>
+                            <p>• <span class="keyword-highlight">高效收敛</span>：加速模型训练过程</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="tech-grid auto-animate">
+                    <div class="tech-card">
+                        <div style="font-size: 1.8em; margin-bottom: 8px;">📈</div>
+                        <h4>训练效率</h4>
+                        <p><span class="number-highlight">3x</span> 提升</p>
+                    </div>
+                    <div class="tech-card">
+                        <div style="font-size: 1.8em; margin-bottom: 8px;">⚡</div>
+                        <h4>收敛速度</h4>
+                        <p><span class="number-highlight">2.5x</span> 加速</p>
+                    </div>
+                    <div class="tech-card">
+                        <div style="font-size: 1.8em; margin-bottom: 8px;">🎯</div>
+                        <h4>稳定性</h4>
+                        <p><span class="number-highlight">95%</span> 改善</p>
+                    </div>
+                </div>
+
+                <div class="code-block zoom-in-animation" style="animation-delay: 1.2s;">
+                    <pre><code class="python"># MuonClip优化器核心算法
+class MuonClipOptimizer:
+    def clip_attention_logits(self, logits, threshold=8.0):
+        """动态裁剪注意力logits，防止数值爆炸"""
+        clipped = torch.clamp(logits, -threshold, threshold)
+        return self.smooth_transition(clipped, logits)
+    
+    def adaptive_learning_rate(self, grad_norm):
+        """根据梯度范数自适应调整学习率"""
+        return self.base_lr / (1 + self.alpha * grad_norm)</code></pre>
+                </div>
+            </section>
+
+            <!-- 第6页：开源生态 -->
+            <section>
+                <h2>🌍 开源生态与商业模式</h2>
+                <div class="highlight-box">
+                    <h4><span class="success-highlight">MIT协议</span> 开源，推动AI民主化进程</h4>
+                </div>
+
+                <div class="features-grid">
+                    <div class="feature-card">
+                        <h4>📜 开源协议</h4>
+                        <div class="stagger-animation">
+                            <p>• <span class="success-highlight">修改版MIT</span>：基本免费商用</p>
+                            <p>• <span class="warning-highlight">大规模使用</span>：需展示"Kimi K2"标识</p>
+                            <p>• <span class="info-highlight">触发条件</span>：月活>1亿 或 月收入>2000万美元</p>
+                        </div>
+                    </div>
+                    <div class="feature-card">
+                        <h4>🚀 可用版本</h4>
+                        <div class="stagger-animation">
+                            <p>• <span class="keyword-highlight">Base版本</span>：预训练基础模型</p>
+                            <p>• <span class="info-highlight">Instruct版本</span>：指令微调模型</p>
+                            <p>• <span class="success-highlight">FP8权重</span>：优化存储和推理</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="stats-grid auto-animate">
+                    <div class="stat-card">
+                        <div class="step-number">5.6K</div>
+                        <h4>GitHub星标</h4>
+                        <p><span class="success-highlight">一周内</span></p>
+                    </div>
+                    <div class="stat-card">
+                        <div class="step-number">10万+</div>
+                        <h4>HF下载量</h4>
+                        <p><span class="info-highlight">持续增长</span></p>
+                    </div>
+                    <div class="stat-card">
+                        <div class="step-number">100+</div>
+                        <h4>社区项目</h4>
+                        <p><span class="keyword-highlight">蓬勃发展</span></p>
+                    </div>
+                    <div class="stat-card">
+                        <div class="step-number">50+</div>
+                        <h4>企业采用</h4>
+                        <p><span class="warning-highlight">快速增长</span></p>
+                    </div>
+                </div>
+
+                <div class="comparison-table zoom-in-animation" style="animation-delay: 1.0s;">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>使用规模</th>
+                                <th>协议要求</th>
+                                <th>展示义务</th>
+                                <th>适用场景</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>小规模使用</td>
+                                <td><span class="success-highlight">完全免费</span></td>
+                                <td>无要求</td>
+                                <td>个人、初创公司</td>
+                            </tr>
+                            <tr>
+                                <td>中等规模</td>
+                                <td><span class="success-highlight">免费商用</span></td>
+                                <td>无要求</td>
+                                <td>中小企业</td>
+                            </tr>
+                            <tr>
+                                <td>大规模使用</td>
+                                <td><span class="warning-highlight">需展示标识</span></td>
+                                <td>显著展示"Kimi K2"</td>
+                                <td>大型企业</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <!-- 第7页：实际应用案例 -->
+            <section>
+                <h2>🎯 实际应用案例</h2>
+                <div class="highlight-box">
+                    <h4>从 <span class="keyword-highlight">代码开发</span> 到 <span class="info-highlight">智能助手</span>，全面展现强大能力</h4>
+                </div>
+
+                <div class="tech-grid auto-animate">
+                    <div class="tech-card">
+                        <div style="font-size: 1.8em; margin-bottom: 8px;">💻</div>
+                        <h4>代码助手</h4>
+                        <p>智能编程伙伴</p>
+                    </div>
+                    <div class="tech-card">
+                        <div style="font-size: 1.8em; margin-bottom: 8px;">🔍</div>
+                        <h4>搜索引擎</h4>
+                        <p>Perplexity集成</p>
+                    </div>
+                    <div class="tech-card">
+                        <div style="font-size: 1.8em; margin-bottom: 8px;">🤖</div>
+                        <h4>业务自动化</h4>
+                        <p>流程优化工具</p>
+                    </div>
+                </div>
+
+                <div class="features-grid">
+                    <div class="feature-card">
+                        <h4>🏢 企业级应用</h4>
+                        <div class="stagger-animation">
+                            <p>• <span class="keyword-highlight">Perplexity</span>：官方后训练合作</p>
+                            <p>• <span class="info-highlight">代码审查</span>：自动化质量检测</p>
+                            <p>• <span class="success-highlight">智能客服</span>：多轮对话系统</p>
+                        </div>
+                    </div>
+                    <div class="feature-card">
+                        <h4>👨‍💻 开发者工具</h4>
+                        <div class="stagger-animation">
+                            <p>• <span class="info-highlight">IDE插件</span>：VS Code集成</p>
+                            <p>• <span class="success-highlight">终端助手</span>：智能提示</p>
+                            <p>• <span class="keyword-highlight">代码补全</span>：上下文感知</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="code-block zoom-in-animation" style="animation-delay: 1.0s;">
+                    <pre><code class="python"># Kimi K2 驱动的智能代码审查
+class CodeReviewer:
+    def analyze_code(self, code_snippet):
+        """分析代码质量、性能和安全性"""
+        return {
+            "performance": self.check_performance(code_snippet),
+            "security": self.check_security(code_snippet),
+            "suggestions": self.generate_improvements(code_snippet)
+        }</code></pre>
+                </div>
+            </section>
+
+            <!-- 第8页：未来展望 -->
+            <section>
+                <h2>🚀 未来展望与发展路线</h2>
+                <div class="highlight-box">
+                    <h4>引领开源AI发展，构建 <span class="keyword-highlight">智能化</span> 未来生态</h4>
+                </div>
+
+                <div class="features-grid">
+                    <div class="feature-card">
+                        <h4>📈 技术演进</h4>
+                        <div class="stagger-animation">
+                            <p>• <span class="keyword-highlight">多模态融合</span>：图像、音频、视频理解</p>
+                            <p>• <span class="info-highlight">实时学习</span>：在线学习和适应能力</p>
+                            <p>• <span class="success-highlight">推理优化</span>：更高效的推理框架</p>
+                            <p>• <span class="warning-highlight">边缘部署</span>：移动设备适配</p>
+                        </div>
+                    </div>
+                    <div class="feature-card">
+                        <h4>🌍 生态建设</h4>
+                        <div class="stagger-animation">
+                            <p>• <span class="info-highlight">开发者社区</span>：全球开发者生态</p>
+                            <p>• <span class="success-highlight">行业标准</span>：推动技术标准制定</p>
+                            <p>• <span class="keyword-highlight">教育普及</span>：AI技术教育推广</p>
+                            <p>• <span class="warning-highlight">伦理规范</span>：负责任的AI发展</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="stats-grid auto-animate">
+                    <div class="stat-card">
+                        <h4>2025年目标</h4>
+                        <p><span class="number-highlight">100万+</span> 开发者</p>
+                    </div>
+                    <div class="stat-card">
+                        <h4>应用覆盖</h4>
+                        <p><span class="number-highlight">50+</span> 行业</p>
+                    </div>
+                    <div class="stat-card">
+                        <h4>性能提升</h4>
+                        <p><span class="number-highlight">2x</span> 推理速度</p>
+                    </div>
+                    <div class="stat-card">
+                        <h4>模型规模</h4>
+                        <p><span class="number-highlight">10T</span> 参数</p>
+                    </div>
+                </div>
+
+                <div class="comparison-table zoom-in-animation" style="animation-delay: 1.2s;">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>发展阶段</th>
+                                <th>技术重点</th>
+                                <th>应用场景</th>
+                                <th>预期影响</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>当前阶段</td>
+                                <td>Agent + 代码能力</td>
+                                <td>编程助手、智能客服</td>
+                                <td>开发效率提升</td>
+                            </tr>
+                            <tr>
+                                <td>近期规划</td>
+                                <td>多模态融合</td>
+                                <td>内容创作、教育培训</td>
+                                <td>应用场景扩展</td>
+                            </tr>
+                            <tr>
+                                <td>长期愿景</td>
+                                <td>通用人工智能</td>
+                                <td>全行业智能化</td>
+                                <td>社会生产力革命</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <!-- 第9页：立即体验 -->
+            <section>
+                <h2>🎯 立即体验 Kimi K2</h2>
+                <div class="highlight-box">
+                    <h4>开启您的 <span class="keyword-highlight">AI智能体</span> 之旅</h4>
+                </div>
+
+                <div class="features-grid">
+                    <div class="feature-card">
+                        <h4>🚀 快速开始</h4>
+                        <div class="stagger-animation">
+                            <p>• <span class="keyword-highlight">Hugging Face</span>：模型下载部署</p>
+                            <p>• <span class="info-highlight">官方API</span>：platform.moonshot.cn</p>
+                            <p>• <span class="success-highlight">开发文档</span>：详细集成指南</p>
+                        </div>
+                    </div>
+                    <div class="feature-card">
+                        <h4>💡 学习资源</h4>
+                        <div class="stagger-animation">
+                            <p>• <span class="info-highlight">技术博客</span>：深度技术解析</p>
+                            <p>• <span class="success-highlight">示例代码</span>：丰富应用案例</p>
+                            <p>• <span class="keyword-highlight">社区支持</span>：GitHub讨论区</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="tech-grid auto-animate">
+                    <div class="tech-card">
+                        <div style="font-size: 1.8em; margin-bottom: 8px;">🌐</div>
+                        <h4>在线体验</h4>
+                        <p>kimi.moonshot.cn</p>
+                    </div>
+                    <div class="tech-card">
+                        <div style="font-size: 1.8em; margin-bottom: 8px;">📚</div>
+                        <h4>开发文档</h4>
+                        <p>platform.moonshot.cn</p>
+                    </div>
+                    <div class="tech-card">
+                        <div style="font-size: 1.8em; margin-bottom: 8px;">💬</div>
+                        <h4>社区讨论</h4>
+                        <p>GitHub Issues</p>
+                    </div>
+                </div>
+
+                <div class="code-block zoom-in-animation" style="animation-delay: 1.0s;">
+                    <pre><code class="python"># 快速体验 Kimi K2
+from transformers import AutoTokenizer, AutoModelForCausalLM
+
+tokenizer = AutoTokenizer.from_pretrained("moonshot-ai/kimi-k2")
+model = AutoModelForCausalLM.from_pretrained("moonshot-ai/kimi-k2")
+
+prompt = "请帮我分析这段代码的时间复杂度"
+response = model.generate(tokenizer(prompt, return_tensors="pt"))</code></pre>
+                </div>
+            </section>
+
+        </div>
+    </div>
+
+    <!-- Reveal.js JavaScript -->
+    <script src="https://cdn.jsdelivr.net/npm/reveal.js@5.2.1/dist/reveal.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/reveal.js@5.2.1/plugin/notes/notes.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/reveal.js@5.2.1/plugin/markdown/markdown.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/reveal.js@5.2.1/plugin/highlight/highlight.js"></script>
+
+    <script>
+        // 主题切换功能
+        function switchTheme(theme) {
+            document.documentElement.className = theme;
+            localStorage.setItem('preferred-theme', theme);
+            
+            // 动态切换主题样式
+            if (theme === 'dark-theme') {
+                document.documentElement.style.setProperty('--glass-bg', 'rgba(0, 0, 0, 0.6)');
+                document.documentElement.style.setProperty('--glass-bg-hover', 'rgba(0, 0, 0, 0.8)');
+                document.documentElement.style.setProperty('--text-primary', '#ffffff');
+                document.documentElement.style.setProperty('--text-secondary', '#cccccc');
+                document.body.style.background = 'linear-gradient(135deg, #1a1a1a 0%, #2c2c2c 50%, #1a1a1a 100%)';
+            } else {
+                document.documentElement.style.setProperty('--glass-bg', 'rgba(255, 255, 255, 0.6)');
+                document.documentElement.style.setProperty('--glass-bg-hover', 'rgba(255, 255, 255, 0.8)');
+                document.documentElement.style.setProperty('--text-primary', '#1a1a1a');
+                document.documentElement.style.setProperty('--text-secondary', '#4a4a4a');
+                document.body.style.background = 'linear-gradient(135deg, #ffffff 0%, #f8f9fa 50%, #ffffff 100%)';
+            }
+        }
+
+        // 加载保存的主题
+        const savedTheme = localStorage.getItem('preferred-theme') || 'white-theme';
+        switchTheme(savedTheme);
+
+        // Reveal.js 初始化
+        Reveal.initialize({
+            hash: true,
+            controls: true,
+            progress: true,
+            center: true,
+            transition: 'slide',
+            width: 1024,
+            height: 768,
+            margin: 0.05,
+            plugins: [RevealMarkdown, RevealHighlight, RevealNotes],
+            keyboard: {
+                39: 'next',
+                37: 'prev',
+                32: 'next',
+            },
+            touch: true,
+            loop: false,
+            autoSlide: 0,
+            preloadIframes: false,
+            viewDistance: 3,
+            mobileViewDistance: 2,
+            view: 'scroll',
+            scrollProgress: true,
+            autoAnimateEasing: 'ease-in-out',
+            autoAnimateDuration: 1.0
+        });
+
+        // 动画控制
+        Reveal.addEventListener('slidechanged', function (event) {
+            const currentSlide = event.currentSlide;
+            
+            // 重置并重新触发动画
+            const animatedElements = currentSlide.querySelectorAll('.auto-animate, .stagger-animation > *, .zoom-in-animation');
+            
+            // 处理 auto-animate 元素
+            const autoAnimateElements = currentSlide.querySelectorAll('.auto-animate');
+            autoAnimateElements.forEach((element, index) => {
+                element.style.animation = 'none';
+                element.style.opacity = '0';
+                element.offsetHeight;
+                element.style.animation = `fadeInUp 0.5s ease-out forwards`;
+                element.style.animationDelay = `${0.1 + index * 0.1}s`;
+            });
+
+            // 处理 stagger-animation 容器
+            const staggerContainers = currentSlide.querySelectorAll('.stagger-animation');
+            staggerContainers.forEach((container) => {
+                const children = container.children;
+                Array.from(children).forEach((child, index) => {
+                    child.style.animation = 'none';
+                    child.style.opacity = '0';
+                    child.offsetHeight;
+                    child.style.animation = `slideInLeft 0.4s ease-out forwards`;
+                    child.style.animationDelay = `${0.1 + index * 0.1}s`;
+                });
+            });
+
+            // 处理 zoom-in-animation 元素
+            const zoomElements = currentSlide.querySelectorAll('.zoom-in-animation');
+            zoomElements.forEach((element, index) => {
+                element.style.animation = 'none';
+                element.style.opacity = '0';
+                element.offsetHeight;
+                element.style.animation = `zoomIn 0.5s ease-out forwards`;
+                element.style.animationDelay = `${0.6 + index * 0.2}s`;
+            });
+        });
+
+        // 键盘快捷键
+        document.addEventListener('keydown', function (event) {
+            if (event.key === 'f' || event.key === 'F') {
+                if (document.fullscreenElement) {
+                    document.exitFullscreen();
+                } else {
+                    document.documentElement.requestFullscreen();
+                }
+            }
+            if (event.key === 'r' || event.key === 'R') {
+                Reveal.slide(0);
+            }
+            if (event.key === 't' || event.key === 'T') {
+                const currentTheme = document.documentElement.className;
+                const newTheme = currentTheme === 'white-theme' ? 'dark-theme' : 'white-theme';
+                switchTheme(newTheme);
+            }
+        });
+    </script>
+</body>
+
+</html>
