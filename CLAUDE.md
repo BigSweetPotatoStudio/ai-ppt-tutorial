@@ -22,7 +22,6 @@
 ```
 商务演示 → 选择白色主题 → 专业权威
 技术分享 → 选择黑色主题 → 科技炫酷
-通用场景 → 提供主题切换 → 用户自选
 品牌适配 → 根据VI选择 → 场景匹配
 ```
 
@@ -42,10 +41,9 @@
 
 ## 🎨 通用设计规范
 
-### 1. 主题切换系统
+### 1. 主题系统
 - **默认主题**: 白色商务主题 (兼容性最佳)
 - **主题文档**: 详细规范请查看 `themes/` 文件夹
-- **切换方式**: HTML类切换、CSS变量切换、按钮组件
 
 ### 2. 颜色语义系统 (双主题共享)
 - **keyword-highlight**: 关键词和重要概念
@@ -104,36 +102,6 @@
 - **stagger-animation**: 交错左滑
 - **zoom-in-animation**: 缩放淡入
 
-## 🔄 主题切换实现
-
-### 1. 基础切换方案
-```html
-<!-- 方案一：HTML类切换 (推荐) -->
-<html class="white-theme"> <!-- 或 dark-theme -->
-```
-
-```javascript
-// 主题切换函数
-function switchTheme(theme) {
-    document.documentElement.className = theme;
-    localStorage.setItem('preferred-theme', theme);
-}
-```
-
-### 2. 切换按钮组件
-```html
-<div class="theme-switcher">
-    <button onclick="switchTheme('white-theme')">🌞 商务白</button>
-    <button onclick="switchTheme('dark-theme')">🌙 极客黑</button>
-</div>
-```
-
-### 3. 最佳实践
-- **默认白色主题** (兼容性最佳)
-- **记住用户选择** (localStorage)
-- **测试双主题兼容** (所有组件)
-- **CSS变量管理** (减少重复代码)
-
 ## ⚙️ Reveal.js 5.2.1 配置
 
 ### 标准配置
@@ -176,7 +144,6 @@ Reveal.initialize({
 
 ### 核心检查
 - [ ] **768px限制**: 内容完整显示，无滚动条
-- [ ] **主题适配**: 白色/黑色主题正常切换
 - [ ] **动画流畅**: 特效运行正常，无卡顿
 - [ ] **投影兼容**: 1024x768分辨率完整显示
 
